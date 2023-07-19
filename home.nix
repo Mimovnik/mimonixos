@@ -15,7 +15,12 @@
       unityhub
       signal-desktop
       keychain
+      xclip
+      bitwarden-cli
+
+      (buildEnv { name = "bwcopy"; paths = [ ./bwcopy ]; })
     ];
+
 
   };
 
