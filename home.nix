@@ -55,6 +55,7 @@
 
       shellAliases = {
         mimonixos-upgrade = "sudo nixos-rebuild --flake /home/mimovnik/.mimonixos#mimonixos switch";
+        mimonixos-test = "sudo nixos-rebuild --flake /home/mimovnik/.mimonixos#mimonixos test";
         mimonixos-update = "nix flake update /home/mimovnik/.mimonixos";
 
         need-ssh = "eval $(keychain --eval --agents ssh id_ed25519)";
