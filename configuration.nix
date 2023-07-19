@@ -69,6 +69,10 @@
     pulse.enable = true;
   };
 
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+  ];
+
   users.users = {
     mimovnik = {
       isNormalUser = true;
