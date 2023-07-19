@@ -48,11 +48,11 @@
     layout = "pl";
     xkbVariant = "";
   };
-  
+
   hardware.opengl = {
-     enable = true;
-     driSupport = true;
-     driSupport32Bit = true;
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
   };
 
   console.keyMap = "pl2";
@@ -69,7 +69,7 @@
     pulse.enable = true;
   };
 
-  users.users= {
+  users.users = {
     mimovnik = {
       isNormalUser = true;
       extraGroups = [ "networkmanager" "wheel" ];
@@ -90,7 +90,7 @@
 
   environment.systemPackages = with pkgs; [
 
-   # cli utilis
+    # cli utilis
     git
     curl
     wget
@@ -99,21 +99,21 @@
     zsh
     inxi
 
-   # desktop stuff
+    # desktop stuff
     libsForQt5.kdeconnect-kde
     firefox
 
   ];
 
-  networking.firewall = { 
+  networking.firewall = {
     enable = true;
-    allowedTCPPortRanges = [ 
+    allowedTCPPortRanges = [
       { from = 1714; to = 1764; } # KDE Connect
-    ];  
-    allowedUDPPortRanges = [ 
+    ];
+    allowedUDPPortRanges = [
       { from = 1714; to = 1764; } # KDE Connect
-    ];  
-  };  
+    ];
+  };
 
   programs.zsh.enable = true;
 

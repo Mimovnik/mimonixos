@@ -7,9 +7,10 @@
     homeDirectory = "/home/mimovnik";
     stateVersion = "23.05";
 
-    packages = with pkgs; [                               
+    packages = with pkgs; [
       yakuake
       vscode
+      rnix-lsp
       youtube-music
       unityhub
       signal-desktop
@@ -18,11 +19,10 @@
 
   };
 
-
   programs = {
     git = {
       enable = true;
-      userName  = "mimovnik";
+      userName = "mimovnik";
       userEmail = "jkwidzinski@gmail.com";
     };
 
@@ -66,7 +66,7 @@
       };
 
       enableAutosuggestions = true;
-      
+
       oh-my-zsh = {
         enable = true;
         plugins = [ "git" ];
