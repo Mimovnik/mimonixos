@@ -57,6 +57,7 @@
       initExtra = ''
         eval $(keychain --eval --agents ssh);
         POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true;
+        unset SSH_ASKPASS;
       '';
 
       shellAliases = {
