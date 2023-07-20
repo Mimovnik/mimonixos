@@ -105,6 +105,7 @@
 
     # desktop stuff
     libsForQt5.kdeconnect-kde
+    libsForQt5.filelight
     firefox
 
   ];
