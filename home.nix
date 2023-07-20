@@ -53,10 +53,17 @@
 
     zsh = {
       enable = true;
+
       history = {
         size = 10000;
         path = "${config.xdg.dataHome}/zsh/history";
+        ignorePatterns = [
+          "rm"
+          "rm *"
+        ];
       };
+
+      defaultKeymap = "emacs";
 
       initExtra = ''
         eval $(keychain --eval --agents ssh);
@@ -77,11 +84,6 @@
       };
 
       enableAutosuggestions = true;
-
-      oh-my-zsh = {
-        enable = true;
-        plugins = [ "git" ];
-      };
 
       plugins = [
         {
