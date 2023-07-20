@@ -29,6 +29,10 @@
       enable = true;
       userName = "mimovnik";
       userEmail = "jkwidzinski@gmail.com";
+      extraConfig = {
+        init.defaultBranch = "main";
+        push.autoSetupRemote = true;
+      };
     };
 
     vscode = {
