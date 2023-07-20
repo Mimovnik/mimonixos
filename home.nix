@@ -22,6 +22,7 @@
       neofetch
       nextcloud-client
       haruna
+      playerctl
 
       (buildEnv { name = "bwcopy"; paths = [ ./bwcopy ]; })
     ];
