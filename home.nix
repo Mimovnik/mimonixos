@@ -21,6 +21,7 @@
       discord
       neofetch
       nextcloud-client
+      haruna
 
       (buildEnv { name = "bwcopy"; paths = [ ./bwcopy ]; })
     ];
