@@ -18,6 +18,7 @@
       xclip
       bitwarden-cli
       steam
+      discord
 
       (buildEnv { name = "bwcopy"; paths = [ ./bwcopy ]; })
     ];
