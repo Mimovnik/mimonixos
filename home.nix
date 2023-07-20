@@ -19,6 +19,7 @@
       bitwarden-cli
       steam
       discord
+      neofetch
 
       (buildEnv { name = "bwcopy"; paths = [ ./bwcopy ]; })
     ];
