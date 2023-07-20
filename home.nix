@@ -17,6 +17,7 @@
       keychain
       xclip
       bitwarden-cli
+      steam
 
       (buildEnv { name = "bwcopy"; paths = [ ./bwcopy ]; })
     ];
@@ -25,6 +26,7 @@
   };
 
   programs = {
+
     git = {
       enable = true;
       userName = "mimovnik";
