@@ -20,6 +20,7 @@
       steam
       discord
       neofetch
+      nextcloud-client
 
       (buildEnv { name = "bwcopy"; paths = [ ./bwcopy ]; })
     ];
