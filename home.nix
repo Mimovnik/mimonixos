@@ -9,7 +9,7 @@
 
     packages = with pkgs; [
       yakuake
-      vscode
+      vscode.fhs
       rnix-lsp
       youtube-music
       unityhub
@@ -39,10 +39,7 @@
 
     vscode = {
       enable = true;
-      extensions = with pkgs.vscode-extensions; [
-        vscodevim.vim
-        jnoortheen.nix-ide
-      ];
+      package = pkgs.vscode.fhs;
     };
 
     neovim = {
