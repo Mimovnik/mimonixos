@@ -25,6 +25,7 @@
       playerctl
       prismlauncher
       jdk
+      obsidian
 
       (buildEnv { name = "bwcopy"; paths = [ ./bwcopy ]; })
     ];
