@@ -23,6 +23,8 @@
       nextcloud-client
       haruna
       playerctl
+      prismlauncher
+      jdk
 
       (buildEnv { name = "bwcopy"; paths = [ ./bwcopy ]; })
     ];
