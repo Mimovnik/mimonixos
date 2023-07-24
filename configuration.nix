@@ -110,14 +110,18 @@
 
   ];
 
-  networking.firewall = {
-    enable = true;
-    allowedTCPPortRanges = [
-      { from = 1714; to = 1764; } # KDE Connect
-    ];
-    allowedUDPPortRanges = [
-      { from = 1714; to = 1764; } # KDE Connect
-    ];
+  networking = {
+    extraHosts = "192.168.1.86 kolpi";
+
+    firewall = {
+      enable = true;
+      allowedTCPPortRanges = [
+        { from = 1714; to = 1764; } # KDE Connect
+      ];
+      allowedUDPPortRanges = [
+        { from = 1714; to = 1764; } # KDE Connect
+      ];
+    };
   };
 
   programs.zsh.enable = true;
