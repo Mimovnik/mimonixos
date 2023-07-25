@@ -26,6 +26,7 @@
       prismlauncher
       jdk
       obsidian
+      steam-run
 
       (buildEnv { name = "bwcopy"; paths = [ ./bwcopy ]; })
     ];
