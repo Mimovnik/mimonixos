@@ -88,6 +88,8 @@
 
       sessionVariables = {
         MIMONIXOS = "/home/mimovnik/.mimonixos";
+        UNITY_PROJECTS = "/run/media/mimovnik/MimoDisk/UnityProjects";
+        MIMODISK = "/run/media/mimovnik/MimoDisk";
       };
 
       enableAutosuggestions = true;
