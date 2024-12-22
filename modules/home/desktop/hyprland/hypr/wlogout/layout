@@ -1,0 +1,36 @@
+{
+    "label" : "lock",
+    "action" : "loginctl lock-session",
+    "text" : "Lock [L]",
+    "keybind" : "l"
+}
+{
+    "label" : "hibernate",
+    "action" : "systemctl hibernate",
+    "text" : "Hibernate [H]",
+    "keybind" : "h"
+}
+{
+    "label" : "logout",
+    "action" : "~/.config/hypr/scripts/gracefully.sh logout",
+    "text" : "Logout [E]",
+    "keybind" : "e"
+}
+{
+    "label" : "shutdown",
+    "action" : "~/.config/hypr/scripts/gracefully.sh shutdown",
+    "text" : "Shutdown [S]",
+    "keybind" : "s"
+}
+{
+    "label" : "suspend",
+    "action" : "systemctl suspend",
+    "text" : "Suspend [U]",
+    "keybind" : "u"
+}
+{
+    "label" : "reboot",
+    "action" : "~/.config/hypr/scripts/gracefully.sh reboot",
+    "text" : "Reboot [R]",
+    "keybind" : "r"
+}

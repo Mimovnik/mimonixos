@@ -1,0 +1,57 @@
+@import url("../colors.css");
+
+/** ********** Fonts ********** **/
+* {
+  font-family: "JetBrains Mono", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
+/** ********** Main Window ********** **/
+window {
+  background-color: black;
+}
+
+/** ********** Buttons ********** **/
+button {
+  background-color: @black;
+  color: @white;
+  border: 2px solid @black;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 10%;
+}
+
+button:focus,
+button:active,
+button:hover {
+  background-color: @gutter-grey;
+  outline-style: none;
+}
+
+/** ********** Icons ********** **/
+#lock {
+  background-image: image(url("icons/lock.png"));
+}
+
+#logout {
+  background-image: image(url("icons/logout.png"));
+}
+
+#suspend {
+  background-image: image(url("icons/suspend.png"));
+}
+
+#hibernate {
+  background-image: image(url("icons/hibernate.png"));
+}
+
+#shutdown {
+  background-image: image(url("icons/shutdown.png"));
+}
+
+#reboot {
+  background-image: image(url("icons/reboot.png"));
+}
