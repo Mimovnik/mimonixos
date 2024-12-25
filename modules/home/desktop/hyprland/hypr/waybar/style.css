@@ -49,6 +49,8 @@ tooltip label {
 }
 
 #custom-launcher,
+#custom-keyhint,
+#custom-windowtitle,
 #workspaces button,
 #custom-playerctl,
 #tray,
@@ -71,6 +73,13 @@ tooltip label {
   padding-right: 10px;
 }
 
+#custom-keyhint {
+  font-size: 14px;
+  padding-left: 4px;
+  padding-right: 4px;
+  color: @white;
+}
+
 #custom-launcher {
   font-size: 20px;
   padding-left: 8px;
@@ -78,6 +87,7 @@ tooltip label {
   color: @blue;
 }
 
+#custom-windowtitle,
 #custom-playerctl {
   color: @white;
   padding-left: 20px;

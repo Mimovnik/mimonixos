@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     # Must-have https://wiki.hyprland.org/Useful-Utilities/Must-have/
-    hyprpolkitagent
+    libsForQt5.polkit-kde-agent # hyprpolkitagent doesnt work with brave???
     xdg-desktop-portal-hyprland
     libsForQt5.qt5.qtwayland
 
@@ -10,6 +10,7 @@
     networkmanagerapplet
     pwvucontrol
     wlogout
+    alsa-utils
 
     # Application runner
     rofi-wayland

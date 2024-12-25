@@ -1,4 +1,4 @@
-# nixos-config
+# Mimonixos
 
 Collection of my NixOS configs
 

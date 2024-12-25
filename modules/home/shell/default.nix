@@ -50,12 +50,14 @@
       autosuggestion.enable = true;
 
       shellAliases = {
-        gits = "git status";
-        gitd = "git diff";
-        gita = "git add";
-        gitA = "git add -A";
-        gitc = "git commit";
-        gitl = "git log";
+        gs = "git status";
+        gd = "git diff";
+        ga = "git add";
+        gA = "git add -A";
+        gc = "git commit";
+        gl = "git log";
+
+        trash = "mv ~/Trash";
       };
 
       plugins = [

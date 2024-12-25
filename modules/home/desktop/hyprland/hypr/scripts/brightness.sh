@@ -4,7 +4,7 @@ iDIR="$HOME/.config/hypr/mako/icons"
 
 # Get brightness
 get_backlight() {
-  LIGHT=$(printf %.0f $((100.0 * $(brightnessctl g) / $(brightnessctl m).0)))
+  LIGHT=$(printf %.0f $((100 * $(brightnessctl g) / $(brightnessctl m))))
 	echo "${LIGHT}%"
 }
 

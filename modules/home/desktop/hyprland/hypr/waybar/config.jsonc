@@ -4,11 +4,13 @@
 
   "modules-left": [
     "custom/powermenu",
+    "custom/keyhint",
     "custom/launcher",
     "hyprland/workspaces",
   ],
 
   "modules-center": [
+    "custom/windowtitle",
   ],
 
   "modules-right": [
@@ -32,16 +34,27 @@
     "format-alt": " {:%a %b %d, %G}",
   },
 
+  "custom/windowtitle": {
+    "format": "{}",
+    "exec": "$HOME/.config/hypr/scripts/window-title.sh",
+  },
+
   "custom/launcher": {
     "format": "\uf313 ",
-    "on-click": "$HOME/.config/hypr/scripts/menu",
-    "tooltip": false,
+    "on-click": "$HOME/.config/hypr/scripts/menu.sh",
+    "tooltip-format": "Application launcher",
+  },
+
+  "custom/keyhint": {
+    "format": "?",
+    "on-click": "$HOME/.config/hypr/scripts/keyhint.sh",
+    "tooltip-format": "Keyhint",
   },
 
   "custom/powermenu": {
     "format": "\uf011",
-    "on-click": "$HOME/.config/hypr/scripts/wlogout",
-    "tooltip": false,
+    "on-click": "$HOME/.config/hypr/scripts/logout.sh",
+    "tooltip-format": "Power menu",
   },
 
   "custom/playerctl": {

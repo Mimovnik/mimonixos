@@ -10,8 +10,9 @@ start() {
 start hyprpaper
 start hypridle
 
-start signal-desktop
+# Icons will appear in the tray from right to left
 start nm-applet
+start signal-desktop
 
 ~/.config/hypr/scripts/start-mako.sh &
 

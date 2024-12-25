@@ -11,6 +11,7 @@
     libsForQt5.qt5.qtgraphicaleffects
     egl-wayland
     xwayland
+    kitty
   ];
 
   programs.hyprland = {

@@ -31,7 +31,13 @@
       glados-vm = mkConfig {
         system = "x86_64-linux";
         hostname = "glados-vm";
-        inherit nixpkgs home-manager username;
+        inherit nixpkgs home-manager nixvim username;
+      };
+
+      walle = mkConfig {
+        system = "x86_64-linux";
+        hostname = "walle";
+        inherit nixpkgs home-manager nixvim username;
       };
     };
   };

@@ -13,7 +13,7 @@ configuration {
     sidebar-mode:        false;
 }
 
-@import "~/.config/hypr/rofi/configs/arc_dark_transparent_colors.rasi"
+@import "~/.config/hypr/rofi/arc_dark_transparent_colors.rasi"
 
 window {
     background-color: @background;

@@ -3,6 +3,7 @@
   home-manager,
   system,
   hostname,
+  nixvim,
   username
 }:
 nixpkgs.lib.nixosSystem {
@@ -25,6 +26,7 @@ nixpkgs.lib.nixosSystem {
         extraSpecialArgs = {
           inherit system;
           inherit username;
+	  inherit nixvim;
         };
       };
     }

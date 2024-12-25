@@ -18,6 +18,7 @@
     playerctl
     imv # simple image viewer
     pavucontrol
+    yazi
 
     # gui
     vesktop
