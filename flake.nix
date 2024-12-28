@@ -28,6 +28,12 @@
     username = "mimovnik";
   in {
     nixosConfigurations = {
+      glados = mkConfig {
+        system = "x86_64-linux";
+        hostname = "glados";
+        inherit nixpkgs home-manager nixvim username;
+      };
+
       glados-vm = mkConfig {
         system = "x86_64-linux";
         hostname = "glados-vm";
