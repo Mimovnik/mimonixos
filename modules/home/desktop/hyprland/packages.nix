@@ -1,7 +1,8 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     # Must-have https://wiki.hyprland.org/Useful-Utilities/Must-have/
-    libsForQt5.polkit-kde-agent # hyprpolkitagent doesnt work with brave???
+    hyprpolkitagent
+    # kdePackages.kwallet # brave uses that
     xdg-desktop-portal-hyprland
     libsForQt5.qt5.qtwayland
 
