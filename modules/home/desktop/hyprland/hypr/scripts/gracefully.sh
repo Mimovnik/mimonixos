@@ -11,11 +11,11 @@ close() {
 
 if [[ $1 = "shutdown" ]]; then
   close
-  sleep 5
+  sleep 2
   systemctl poweroff >> $LOG_FILE 2>&1
 elif [[ $1 = "reboot" ]]; then
   close
-  sleep 5
+  sleep 2
   systemctl reboot >> $LOG_FILE 2>&1
 elif [[ $1 = "logout" ]]; then
   close

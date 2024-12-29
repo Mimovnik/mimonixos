@@ -19,6 +19,7 @@
     imv # simple image viewer
     pavucontrol
     yazi
+    alejandra
 
     # gui
     vesktop

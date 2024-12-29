@@ -1,4 +1,4 @@
-{...}:{
+{...}: {
   imports = [
     ../../modules/home/base
     ../../modules/home/shell

@@ -9,6 +9,5 @@
     ../../modules/system/desktop/hyprland
 
     ../../modules/system/steam
-
   ];
 }

@@ -1,4 +1,4 @@
-{
+{...}: {
   imports = [
     ./packages.nix
     ../../common/gtk.nix
@@ -11,6 +11,11 @@
 
   home.file.".config/hypr/wallpapers" = {
     source = ../../../../assets/wallpapers;
+    recursive = true;
+  };
+
+  home.file.".config/hypr/sfx" = {
+    source = ../../../../assets/sfx;
     recursive = true;
   };
 }
