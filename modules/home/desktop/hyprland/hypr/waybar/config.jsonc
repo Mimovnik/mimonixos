@@ -72,7 +72,6 @@
   },
 
   "pulseaudio": {
-    // "format": "{volume}% {icon} {format_source}",
     "format": "{icon}  {volume}%",
     "format-muted": " Mute",
     "format-bluetooth": " {volume}% {format_source}",
@@ -89,9 +88,10 @@
       "default": ["", "", ""],
     },
     "scroll-step": 5.0,
-    // Commands to execute on events
-    "on-click": "amixer set Master toggle",
+    "on-click": "$HOME/.config/hypr/scripts/volumectl.sh --mute-toggle",
     "on-click-right": "pwvucontrol",
+    "on-scroll-up": "$HOME/.config/hypr/scripts/volumectl.sh --vol 5",
+    "on-scroll-down": "$HOME/.config/hypr/scripts/volumectl.sh --vol -5",
     "smooth-scrolling-threshold": 1,
   },
 

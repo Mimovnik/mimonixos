@@ -13,6 +13,7 @@
     keychain
     bitwarden-cli
     sshpass
+    bc
     (pkgs.fetchgit {
       url = "https://github.com/Mimovnik/NeedSsh.git";
       sha256 = "sha256-ElwaE7C8MlVhwgnzyIbkl2fCqfWBe6CtmgzYHdZgeNU=";
@@ -45,6 +46,14 @@
         bindkey  "^[[3~"  delete-char
 
         eval $(keychain --eval --quiet --agents ssh);
+
+        calc() {
+          if [[ $# -lt 1 ]]; then
+            echo "Error: Too many args. Usage: `calc "2 * 2"`. Remember to use double quotes."
+            exit 1
+          fi
+          echo "scale=2; $1" | bc
+        }
       '';
 
       autosuggestion.enable = true;
@@ -53,8 +62,11 @@
         gs = "git status";
         gd = "git diff";
         ga = "git add";
+        gaa = "git add -A";
         gA = "git add -A";
         gc = "git commit";
+        gca = "git commit --amend";
+        gcan = "git commit --amend --no-edit";
         gl = "git log";
 
         trash = "mv ~/Trash";

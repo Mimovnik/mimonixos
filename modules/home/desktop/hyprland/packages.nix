@@ -4,14 +4,16 @@
     hyprpolkitagent
     # kdePackages.kwallet # brave uses that
     xdg-desktop-portal-hyprland
-    libsForQt5.qt5.qtwayland
+    wireplumber
+    kdePackages.xwaylandvideobridge
+    kdePackages.qtwayland
+    kdePackages.kwallet
 
     # Status bar
     waybar
     networkmanagerapplet
     pwvucontrol
     wlogout
-    alsa-utils
 
     # Application runner
     rofi-wayland
@@ -26,6 +28,7 @@
 
     # Notifications
     mako
+    swayosd
     libnotify # needed for notify-send
 
     # Utils
@@ -33,6 +36,7 @@
     brightnessctl # adjust brightness
     hyprshot # screen shot
     jq # json parser
+    alsa-utils
 
     # Color picker
     hyprpicker

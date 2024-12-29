@@ -1,12 +1,35 @@
-{pkgs, unstable-pkgs, hostname, username, ...}: {
-
+{
+  pkgs,
+  unstable-pkgs,
+  hostname,
+  username,
+  ...
+}: {
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+    # Services
+  services = {
 
-  # Services
-  services.printing.enable = true;
-  services.openssh.enable = true;
+    printing.enable = true;
+
+    openssh.enable = true;
+
+    dbus.enable = true;
+
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      # If you want to use JACK applications, uncomment this
+      #jack.enable = true;
+    };
+  };
+
+  # Enable sound with pipewire.
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
 
   # Shell
   programs.zsh.enable = true;
@@ -89,17 +112,6 @@
       monospace = ["JetBrainsMono Nerd Font" "Noto Color Emoji"];
       emoji = ["Noto Color Emoji"];
     };
-  };
-  # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
   };
 
   # Security

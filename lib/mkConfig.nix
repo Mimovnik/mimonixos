@@ -4,7 +4,7 @@
   system,
   hostname,
   nixvim,
-  username
+  username,
 }:
 nixpkgs.lib.nixosSystem {
   modules = [
@@ -26,7 +26,7 @@ nixpkgs.lib.nixosSystem {
         extraSpecialArgs = {
           inherit system;
           inherit username;
-	  inherit nixvim;
+          inherit nixvim;
         };
       };
     }
