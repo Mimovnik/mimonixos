@@ -4,7 +4,7 @@
   ...
 }: let
   nixvim' = nixvim.packages.${system}.default;
-  nvim = nixvim'.nixvimExtend {
+  nvim = nixvim'.extend {
     config.vimAlias = true;
   };
 in {
