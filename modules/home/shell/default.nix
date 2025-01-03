@@ -8,7 +8,6 @@
     which
     tree
     ripgrep
-    bat
     fzf
     keychain
     bitwarden-cli
@@ -21,6 +20,13 @@
   ];
 
   programs = {
+    bat = {
+      enable = true;
+      config = {
+        theme = "OneHalfDark";
+      };
+    };
+
     zsh = {
       enable = true;
 
