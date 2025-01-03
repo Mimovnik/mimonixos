@@ -9,9 +9,7 @@ start() {
 
 start hyprpaper
 start hypridle
-start swayosd-server
 
-# Icons will appear in the tray from right to left
 start nm-applet
 start signal-desktop
 
