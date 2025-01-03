@@ -1,27 +1,38 @@
 {pkgs, ...}: {
-  services.xserver.enable = true;
-
-  services.displayManager.sddm = {
-    enable = true;
-    theme = "${import ../../common/sddm-chili-theme.nix {inherit pkgs;}}";
-  };
+  imports = [
+    ../../common/sddm.nix
+  ];
 
   environment.systemPackages = with pkgs; [
-    libsForQt5.qt5.qtquickcontrols2
-    libsForQt5.qt5.qtgraphicaleffects
-    egl-wayland
-    xwayland
     kitty
   ];
 
   programs.hyprland = {
     enable = true;
+    systemd.setPath.enable = true;
     xwayland.enable = true;
   };
 
   environment = {
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
+    };
+  };
+
+  security = {
+    pam.services.hyprlock = {};
+    polkit = {
+      enable = true;
+    };
+  };
+
+  services = {
+    dbus = {
+      implementation = "broker";
+      packages = with pkgs; [gcr];
+    };
+    gnome = {
+      gnome-keyring.enable = true;
     };
   };
 }

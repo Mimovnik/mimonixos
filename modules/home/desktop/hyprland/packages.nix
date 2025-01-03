@@ -2,12 +2,7 @@
   home.packages = with pkgs; [
     # Must-have https://wiki.hyprland.org/Useful-Utilities/Must-have/
     hyprpolkitagent
-    # kdePackages.kwallet # brave uses that
-    xdg-desktop-portal-hyprland
     wireplumber
-    kdePackages.xwaylandvideobridge
-    kdePackages.qtwayland
-    kdePackages.kwallet
 
     # Status bar
     waybar
@@ -28,7 +23,6 @@
 
     # Notifications
     mako
-    swayosd
     libnotify # needed for notify-send
 
     # Utils
