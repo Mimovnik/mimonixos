@@ -58,7 +58,9 @@
 
       autosuggestion.enable = true;
 
-      shellAliases = {
+      shellAliases = let
+        configDir = "~/.mimonixos";
+      in {
         gs = "git status";
         gd = "git diff";
         ga = "git add";
@@ -70,6 +72,13 @@
         gl = "git log";
 
         trash = "mv ~/Trash";
+
+        mimvim = "cd ${configDir} && vim";
+        mimbld = "sudo nixos-rebuild switch --flake ${configDir}";
+        mimtest = "sudo nixos-rebuild test --show-trace --flake ${configDir}";
+        mimup = "sudo nix flake update ${configDir}";
+        mimclean = "sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d";
+        mimgc = "sudo nix-collect-garbage --delete-old";
       };
 
       plugins = [
