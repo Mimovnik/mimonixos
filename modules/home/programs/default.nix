@@ -30,6 +30,7 @@
     onlyoffice-bin
     obsidian
     nautilus
+    gnome-disk-utility
     nextcloud-client
   ];
 }
