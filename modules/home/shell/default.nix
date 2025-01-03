@@ -40,6 +40,12 @@
 
       defaultKeymap = "emacs";
 
+      autosuggestion.enable = true;
+      
+      sessionVariables = {
+        MANPAGER = "nvim +Man!";
+      };
+
       initExtra = ''
         POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true;
 
@@ -60,31 +66,50 @@
           fi
           echo "scale=2; $1" | bc
         }
-      '';
 
-      autosuggestion.enable = true;
+        find-nixpkgs() {
+          local query
+          query=$(printf ".*%s.*" "$@")
+          nix search nixpkgs "$query"
+        }
+      '';
 
       shellAliases = let
         configDir = "~/.mimonixos";
       in {
         gs = "git status";
-        gd = "git diff";
+        gd = "git diff --staged";
+        gds = "git diff";
         ga = "git add";
-        gaa = "git add -A";
+        gap = "git add --patch";
         gA = "git add -A";
         gc = "git commit";
         gca = "git commit --amend";
         gcan = "git commit --amend --no-edit";
-        gl = "git log";
+        gl = "git log --all --decorate --oneline --graph";
 
         trash = "mv ~/Trash";
 
+        mimv = "cd ${configDir} && vim";
         mimvim = "cd ${configDir} && vim";
-        mimbld = "sudo nixos-rebuild switch --flake ${configDir}";
+
+        mims = "find-nixpkgs";
+        mimsearch = "find-nixpkgs";
+
+        mimb = "sudo nixos-rebuild switch --flake ${configDir}";
+        mimbuild = "sudo nixos-rebuild switch --flake ${configDir}";
+
+        mimt = "sudo nixos-rebuild test --show-trace --flake ${configDir}";
         mimtest = "sudo nixos-rebuild test --show-trace --flake ${configDir}";
-        mimup = "sudo nix flake update ${configDir}";
+
+        mimup = "sudo nix flake update --flake ${configDir}";
+        mimupdate = "sudo nix flake update --flake ${configDir}";
+
+        mimc = "sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d";
         mimclean = "sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d";
+
         mimgc = "sudo nix-collect-garbage --delete-old";
+        mimgarbagecollect = "sudo nix-collect-garbage --delete-old";
       };
 
       plugins = [
