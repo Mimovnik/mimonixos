@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   # Startup
   "$startup" = "~/.config/hypr/scripts/startup.sh";
   exec-once = [
@@ -6,7 +6,7 @@
   ];
 
   # Main mod
-  "$mainMod" = "SUPER";
+  "$mainMod" = lib.mkDefault "SUPER";
 
   # Programs
   "$terminal" = "kitty";
@@ -113,14 +113,6 @@
     "$mainMod, mouse:273, resizewindow"
   ];
 
-  # gladosLeftMon=HDMI-A-1
-  # gladosRightMon=DVI-I-1
-  # TODO move to glados config
-  monitor = [
-    "HDMI-A-1,preferred,0x0,1.25"
-    "DVI-I-1,preferred,auto,1.2"
-  ];
-
   xwayland = {
     use_nearest_neighbor = false;
   };
@@ -129,11 +121,6 @@
     # TODO: move to system config
     "QT_QPA_PLATFORMTHEME,qt5ct # change to qt6ct if you have that"
     "ELECTRON_OZONE_PLATFORM_HINT,auto"
-
-    # Nvidia
-    # TODO: move to glados config
-    "LIBVA_DRIVER_NAME,nvidia"
-    "__GLX_VENDOR_LIBRARY_NAME,nvidia"
 
     # Cursor
     # TODO: move to system config
@@ -156,13 +143,6 @@
 
     sensitivity = 0; # -1.0 to 1.0, 0 means no modification.
     accel_profile = "adaptive"; # TODO: look into custom profiles
-  };
-
-  # Example per-device config
-  # TODO: move to host specific
-  device = {
-    name = "steelseries-steelseries-rival-300-gaming-mouse";
-    sensitivity = -1.0;
   };
 
   general = {
@@ -245,21 +225,7 @@
   ];
 
   # Workspace Rules
-  workspace =
-    [
-      "special:magic, on-created-empty:[size 60% 60%; float;] $terminal"
-    ]
-    # TODO move to glados config
-    ++ (builtins.concatLists (builtins.genList (i: let
-        ws = i + 1;
-        gladosLeftMon = "HDMI-A-1";
-        gladosRightMon = "DVI-I-1";
-      in [
-        "${toString ws}, monitor:${
-          if ws <= 5
-          then toString gladosLeftMon
-          else toString gladosRightMon
-        }"
-      ])
-      10));
+  workspace = [
+    "special:magic, on-created-empty:[size 60% 60%; float;] $terminal"
+  ];
 }

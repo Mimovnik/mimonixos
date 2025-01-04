@@ -5,5 +5,6 @@
     ../../modules/home/nixvim
     ../../modules/home/desktop/hyprland
     ../../modules/home/programs
+    ./home/hyprland.nix
   ];
 }
