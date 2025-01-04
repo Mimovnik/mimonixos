@@ -8,9 +8,8 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-    # Services
+  # Services
   services = {
-
     printing.enable = true;
 
     openssh.enable = true;

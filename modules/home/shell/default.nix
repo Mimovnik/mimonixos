@@ -41,7 +41,7 @@
       defaultKeymap = "emacs";
 
       autosuggestion.enable = true;
-      
+
       sessionVariables = {
         MANPAGER = "nvim +Man!";
       };

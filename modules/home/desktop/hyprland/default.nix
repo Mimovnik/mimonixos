@@ -1,4 +1,9 @@
-{config, pkgs, ...}: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./packages.nix
     ../../common/gtk.nix
@@ -15,7 +20,7 @@
 
     xwayland.enable = true;
 
-    settings = import ./config.nix;
+    settings = import ./config.nix {inherit lib;};
   };
 
   home.file = {
