@@ -50,7 +50,7 @@ tooltip label {
 
 #custom-launcher,
 #custom-keyhint,
-#custom-windowtitle,
+#window,
 #workspaces button,
 #custom-playerctl,
 #tray,
@@ -87,7 +87,7 @@ tooltip label {
   color: @blue;
 }
 
-#custom-windowtitle,
+#window,
 #custom-playerctl {
   color: @white;
   padding-left: 20px;
