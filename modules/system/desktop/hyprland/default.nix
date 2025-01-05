@@ -5,6 +5,8 @@
 
   environment.systemPackages = with pkgs; [
     kitty
+
+    seahorse # gnome keyring gui manager
   ];
 
   programs.hyprland = {
@@ -20,7 +22,11 @@
   };
 
   security = {
-    pam.services.hyprlock = {};
+    pam.services = {
+      hyprlock = {};
+      sddm.enableGnomeKeyring = true;
+    };
+
     polkit = {
       enable = true;
     };
@@ -31,8 +37,6 @@
       implementation = "broker";
       packages = with pkgs; [gcr];
     };
-    gnome = {
-      gnome-keyring.enable = true;
-    };
+    gnome.gnome-keyring.enable = true;
   };
 }
