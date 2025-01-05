@@ -10,7 +10,7 @@
   ],
 
   "modules-center": [
-    "custom/windowtitle",
+    "hyprland/window",
   ],
 
   "modules-right": [
@@ -34,9 +34,13 @@
     "format-alt": " {:%a %b %d, %G}",
   },
 
-  "custom/windowtitle": {
+  "hyprland/window": {
     "format": "{}",
-    "exec": "$HOME/.config/hypr/scripts/window-title.sh",
+    "icon": true,
+    "rewrite": {
+      "(.*) - kitty": "> [$1]"
+    },
+    "separate-outputs": true
   },
 
   "custom/launcher": {
