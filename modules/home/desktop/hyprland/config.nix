@@ -16,7 +16,7 @@
   "$keyhint" = "~/.config/hypr/scripts/keyhint.sh";
   "$volumectl" = "~/.config/hypr/scripts/volumectl.sh";
   "$brightctl" = "swayosd-client --brightness";
-  "$browser" = "brave";
+  "$browser" = "brave --password-store=gnome";
 
   bind =
     [
