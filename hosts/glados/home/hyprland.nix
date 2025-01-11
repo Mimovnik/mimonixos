@@ -13,19 +13,18 @@
         "DVI-I-1,preferred,auto,1.2"
       ];
 
-      workspace =
-        builtins.concatLists (builtins.genList (i: let
-            ws = i + 1;
-            gladosLeftMon = "HDMI-A-1";
-            gladosRightMon = "DVI-I-1";
-          in [
-            "${toString ws}, monitor:${
-              if ws <= 5
-              then toString gladosLeftMon
-              else toString gladosRightMon
-            }"
-          ])
-          10);
+      workspace = builtins.concatLists (builtins.genList (i: let
+          ws = i + 1;
+          gladosLeftMon = "HDMI-A-1";
+          gladosRightMon = "DVI-I-1";
+        in [
+          "${toString ws}, monitor:${
+            if ws <= 5
+            then toString gladosLeftMon
+            else toString gladosRightMon
+          }"
+        ])
+        10);
 
       env = [
         # Nvidia

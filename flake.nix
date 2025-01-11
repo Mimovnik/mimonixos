@@ -13,17 +13,30 @@
 
     nixvim = {
       url = "github:Mimovnik/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    systems.url = "github:nix-systems/default";
+
+    pre-commit-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs = {
+    self,
     nixpkgs,
     nixpkgs-unstable,
     home-manager,
     nixvim,
+    systems,
+    pre-commit-hooks,
     ...
   } @ inputs: let
     mkConfig = import ./lib/mkConfig.nix;
+
+    forAllSystems = nixpkgs.lib.genAttrs (import systems);
 
     username = "mimovnik";
   in {
@@ -46,5 +59,49 @@
         inherit nixpkgs home-manager nixvim username;
       };
     };
+
+    checks = forAllSystems (system: {
+      pre-commit-check = pre-commit-hooks.lib.${system}.run {
+        src = ./.;
+        default_stages = ["pre-commit" "pre-push"];
+        hooks = {
+          # Common
+          check-added-large-files.enable = true;
+          check-case-conflicts.enable = true;
+          check-executables-have-shebangs.enable = true;
+          end-of-file-fixer.enable = true;
+          mixed-line-endings.enable = true;
+          trim-trailing-whitespace.enable = true;
+
+          # Data serialization formats
+          check-toml.enable = true;
+          check-yaml = {
+            enable = true;
+            excludes = ["^(.*\.j2\.yml)$"];
+          };
+          check-json.enable = true;
+          pretty-format-json = {
+            enable = true;
+            args = ["--autofix" "--top-keys=version,metadata"];
+          };
+
+          # Git
+          check-merge-conflicts.enable = true;
+
+          # Nix
+          alejandra.enable = true;
+        };
+      };
+    });
+
+    devShells = forAllSystems (system: {
+      default = let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+        pkgs.mkShellNoCC {
+          buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
+          inherit (self.checks.${system}.pre-commit-check) shellHook;
+        };
+    });
   };
 }

@@ -1,6 +1,6 @@
 # Rebuild and switch
 switch:
-  sudo nixos-rebuild switch 
+  sudo nixos-rebuild switch
 
 # Rebuild but don't switch
 test:
