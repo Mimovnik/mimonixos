@@ -49,6 +49,7 @@ tooltip label {
 }
 
 #custom-launcher,
+#custom-timer,
 #custom-keyhint,
 #window,
 #workspaces button,
@@ -67,6 +68,7 @@ tooltip label {
 #clock,
 #pulseaudio,
 #network,
+#custom-timer,
 #battery
  {
   padding-left: 10px;
