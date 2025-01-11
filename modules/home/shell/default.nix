@@ -72,6 +72,12 @@
           query=$(printf ".*%s.*" "$@")
           nix search nixpkgs "$query"
         }
+
+        deploy-nixos() {
+          local config_dir=$1
+          local host=$2
+          nixos-rebuild switch --flake $config_dir#$host --target-host root@$host
+        }
       '';
 
       shellAliases = let
@@ -101,6 +107,9 @@
 
         mimt = "sudo nixos-rebuild test --show-trace --flake ${configDir}";
         mimtest = "sudo nixos-rebuild test --show-trace --flake ${configDir}";
+
+        mimd = "deploy-nixos ${configDir}";
+        mimdeploy = "deploy-nixos ${configDir}";
 
         mimup = "sudo nix flake update --flake ${configDir}";
         mimupdate = "sudo nix flake update --flake ${configDir}";

@@ -6,6 +6,11 @@
 
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,6 +33,7 @@
     self,
     nixpkgs,
     nixpkgs-unstable,
+    disko,
     home-manager,
     nixvim,
     systems,
@@ -44,19 +50,25 @@
       glados = mkConfig {
         system = "x86_64-linux";
         hostname = "glados";
-        inherit nixpkgs home-manager nixvim username;
+        inherit nixpkgs disko home-manager nixvim username;
       };
 
       glados-vm = mkConfig {
         system = "x86_64-linux";
         hostname = "glados-vm";
-        inherit nixpkgs home-manager nixvim username;
+        inherit nixpkgs disko home-manager nixvim username;
       };
 
       walle = mkConfig {
         system = "x86_64-linux";
         hostname = "walle";
-        inherit nixpkgs home-manager nixvim username;
+        inherit nixpkgs disko home-manager nixvim username;
+      };
+
+      samurai-tv = mkConfig {
+        system = "x86_64-linux";
+        hostname = "samurai-tv";
+        inherit nixpkgs disko home-manager nixvim username;
       };
     };
 

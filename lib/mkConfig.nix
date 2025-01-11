@@ -5,6 +5,8 @@
   hostname,
   nixvim,
   username,
+  disko,
+  ...
 }:
 nixpkgs.lib.nixosSystem {
   modules = [
@@ -15,6 +17,8 @@ nixpkgs.lib.nixosSystem {
         inherit username;
       };
     }
+
+    disko.nixosModules.disko
 
     home-manager.nixosModules.home-manager
     {
