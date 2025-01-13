@@ -4,7 +4,6 @@
 
   "modules-left": [
     "custom/powermenu",
-    "custom/keyhint",
     "custom/launcher",
     "hyprland/workspaces",
   ],
@@ -59,12 +58,6 @@
     "format": "\uf313 ",
     "on-click": "$HOME/.config/hypr/scripts/menu.sh",
     "tooltip-format": "Application launcher",
-  },
-
-  "custom/keyhint": {
-    "format": "?",
-    "on-click": "$HOME/.config/hypr/scripts/keyhint.sh",
-    "tooltip-format": "Keyhint",
   },
 
   "custom/powermenu": {
