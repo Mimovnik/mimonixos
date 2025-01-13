@@ -147,5 +147,10 @@
       git = true;
       icons = "auto";
     };
+
+    thefuck = {
+      enable = true;
+      enableZshIntegration = true;
+    };
   };
 }
