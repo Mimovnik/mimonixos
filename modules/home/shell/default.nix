@@ -84,8 +84,8 @@
         configDir = "~/.mimonixos";
       in {
         gs = "git status";
-        gd = "git diff --staged";
-        gds = "git diff";
+        gd = "git diff";
+        gds = "git diff --staged";
         ga = "git add";
         gap = "git add --patch";
         gA = "git add -A";
