@@ -40,6 +40,39 @@
     };
   };
 
+  services = {
+    hypridle = {
+      enable = true;
+      settings = {
+        general = {
+          lock_cmd = "pidof hyprlock || ${lib.getExe pkgs.hyprlock}";
+          before_sleep_cmd = "pidof hyprlock || ${lib.getExe pkgs.hyprlock}";
+          after_sleep_cmd = "hyprctl dispatch dpms on";
+        };
+
+        listener = lib.mkDefault [
+          # Dim
+          {
+            timeout = 150; # 2.5min.
+            on-timeout = "${lib.getExe pkgs.brightnessctl} -s set 10";
+            on-resume = "${lib.getExe pkgs.brightnessctl} -r";
+          }
+          # Lock
+          {
+            timeout = 900; # 15min
+            on-timeout = "pidof hyprlock || ${lib.getExe pkgs.hyprlock}";
+          }
+          # Screen off
+          {
+            timeout = 990; # 16.5min
+            on-timeout = "hyprctl dispatch dpms off";
+            on-resume = "hyprctl dispatch dpms on";
+          }
+        ];
+      };
+    };
+  };
+
   # https://github.com/hyprwm/hyprland-wiki/issues/409
   # https://github.com/nix-community/home-manager/pull/4707
   xdg.portal = {

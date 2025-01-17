@@ -8,7 +8,6 @@ start() {
 }
 
 start hyprpaper
-start hypridle
 
 start nm-applet
 start signal-desktop
