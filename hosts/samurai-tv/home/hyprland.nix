@@ -22,4 +22,20 @@
           10));
     };
   };
+
+  services = {
+    hypridle = {
+      enable = true;
+      settings = {
+        listener = [
+          # Screen off
+          {
+            timeout = 3600; # 1 hour
+            on-timeout = "hyprctl dispatch dpms off";
+            on-resume = "hyprctl dispatch dpms on";
+          }
+        ];
+      };
+    };
+  };
 }

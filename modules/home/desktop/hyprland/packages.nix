@@ -18,7 +18,6 @@
     hyprcursor
 
     # Screen lock and idle
-    hypridle
     hyprlock
 
     # Notifications
