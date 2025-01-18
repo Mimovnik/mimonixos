@@ -62,7 +62,7 @@
         calc() {
           if [[ $# -lt 1 ]]; then
             echo "Error: Too many args. Usage: `calc "2 * 2"`. Remember to use double quotes."
-            exit 1
+            return 1
           fi
           echo "scale=2; $1" | bc
         }
@@ -75,8 +75,18 @@
 
         deploy-nixos() {
           local config_dir=$1
+
+          if [ -z $2 ]; then
+            echo "usage: mimdeploy <host> [address=host]"
+            return 1
+          fi
+
           local host=$2
-          nixos-rebuild switch --flake $config_dir#$host --target-host root@$host
+          local address=$3
+          if [ -z $3 ]; then
+            address=$host
+          fi
+          nixos-rebuild switch --flake $config_dir#$host --target-host root@$address
         }
       '';
 
