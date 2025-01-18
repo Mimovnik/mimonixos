@@ -41,7 +41,7 @@
   };
 
   services = {
-    hypridle = {
+    hypridle = lib.mkDefault {
       enable = true;
       settings = {
         general = {
@@ -50,7 +50,7 @@
           after_sleep_cmd = "hyprctl dispatch dpms on";
         };
 
-        listener = lib.mkDefault [
+        listener = [
           # Dim
           {
             timeout = 150; # 2.5min.
