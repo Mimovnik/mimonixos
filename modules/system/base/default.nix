@@ -52,6 +52,7 @@
     isNormalUser = true;
     description = username;
     extraGroups = ["networkmanager" "wheel"];
+    initialHashedPassword = "$y$j9T$LbWJ5akVYZD726dlgAc0c1$cbVuR3O5.Hc7y5r49xIIMzK.T/1evgK0h3Zy719RBgD";
   };
 
   # Nix
