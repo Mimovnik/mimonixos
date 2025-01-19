@@ -371,11 +371,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1735927552,
-        "narHash": "sha256-FVnWiWSPLqx/MU5uBEfHLcx3UvtGH0rSXbkoP0xy+TE=",
+        "lastModified": 1737343565,
+        "narHash": "sha256-IUhSAFJ5Bt9+15slofyJ7OcHMErSVUaD1UjjQ3QoSkU=",
         "owner": "Mimovnik",
         "repo": "nixvim",
-        "rev": "6b4b8459a0b2536b19071b443665a1907bd6dbc1",
+        "rev": "ca5882aeca1759b37b27a774b895ad67199b3d86",
         "type": "github"
       },
       "original": {
