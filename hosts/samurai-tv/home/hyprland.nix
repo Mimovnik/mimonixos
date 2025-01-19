@@ -3,12 +3,14 @@
     enable = true;
 
     settings = let
-      monitor = "HDMI-A-1";
+      builtinMonitor = "LVDS-1";
+      tv = "HDMI-A-1";
     in {
       "$mainMod" = lib.mkForce "ALT";
 
       monitor = [
-        "${monitor},preferred,auto,1.2"
+        "${builtinMonitor}, disable"
+        "${tv},preferred,auto,1.2"
       ];
       workspace =
         [
@@ -17,7 +19,7 @@
         ++ (builtins.concatLists (builtins.genList (i: let
             ws = i + 1;
           in [
-            "${toString ws}, monitor:${monitor}"
+            "${toString ws}, monitor:${tv}"
           ])
           10));
     };
