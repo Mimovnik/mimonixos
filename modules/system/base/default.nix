@@ -24,6 +24,8 @@
       # If you want to use JACK applications, uncomment this
       #jack.enable = true;
     };
+
+    blueman.enable = true;
   };
 
   # Enable sound with pipewire.
@@ -45,6 +47,10 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   networking.firewall.enable = true;
+
+  # Bluetooth
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
 
   # Users
   ## Don't forget to set a password with ‘passwd’.
