@@ -106,6 +106,8 @@
 
         trash = "mv ~/Trash";
 
+        ssh = "kitten ssh";
+
         mimv = "cd ${configDir} && vim";
         mimvim = "cd ${configDir} && vim";
 
