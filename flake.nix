@@ -67,6 +67,12 @@
         hostname = "samurai-tv";
         inherit nixpkgs disko home-manager nixvim username;
       };
+
+      dryer = mkConfig {
+        system = "x86_64-linux";
+        hostname = "dryer";
+        inherit nixpkgs disko home-manager nixvim username;
+      };
     };
 
     checks = forAllSystems (system: {
