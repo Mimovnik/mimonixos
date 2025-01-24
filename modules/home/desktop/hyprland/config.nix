@@ -210,11 +210,13 @@
   windowrule = [
     "suppressevent maximize, class:.*"
 
-    "float,pwvucontrol"
-    "size 30% 50%,pwvucontrol"
+    "float, pwvucontrol"
+    "size 520 800, pwvucontrol"
+    "move 1520 50, pwvucontrol"
 
-    "float,nm-connection-editor"
-    "size 30% 50%,nm-connection-editor"
+    "float, nm-connection-editor"
+    "size 620 580, nm-connection-editor"
+    "move 1340 50, nm-connection-editor"
 
     "float,imv"
 
