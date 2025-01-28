@@ -16,10 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "github:Mimovnik/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixvim.url = "github:Mimovnik/nixvim";
 
     systems.url = "github:nix-systems/default";
 
