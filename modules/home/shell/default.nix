@@ -103,6 +103,10 @@
         gca = "git commit --amend";
         gcan = "git commit --amend --no-edit";
         gl = "git log --all --decorate --oneline --graph";
+        gsw = "git switch";
+        grs = "git restore";
+        grss = "git restore --staged";
+        grb = "git rebase -i";
 
         trash = "mv ~/Trash";
 
