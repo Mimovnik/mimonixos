@@ -7,6 +7,7 @@
 }: {
   imports = [
     ../common/authorized-keys.nix
+    ../common/tailscale.nix
   ];
 
   # Bootloader.
