@@ -13,5 +13,7 @@
     ../../modules/system/steam
 
     ../../modules/system/virtualisation/docker.nix
+
+    ../../modules/system/common/otd.nix
   ];
 }
