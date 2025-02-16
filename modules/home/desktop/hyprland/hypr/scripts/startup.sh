@@ -15,3 +15,5 @@ start signal-desktop
 ~/.config/hypr/scripts/start-mako.sh &
 
 ~/.config/hypr/scripts/start-waybar.sh &
+
+~/.config/hypr/scripts/start-preset.sh default &
