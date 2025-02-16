@@ -19,7 +19,7 @@ function app_is_running() {
 function wait_for_app() {
   local COUNT=0
   local SLEEP="0.1"
-  local LIMIT=50 # NOT SECONDS but number of sleeps
+  local LIMIT=100 # NOT SECONDS but number of sleeps
   local CLASS="$1"
   echo " - Waiting for $CLASS..."
   while ! app_is_running "$CLASS"; do
