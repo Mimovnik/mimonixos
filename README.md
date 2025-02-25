@@ -2,6 +2,13 @@
 
 Collection of my NixOS configs
 
+# Templates
+Use development shell templates:
+```bash
+nix flake init -t github:Mimovnik/mimonixos#<devshell>
+```
+where `<devshell>` is one of the devshell templates from `template/devshells/<devshell>` directory
+
 # Installation
 
 ## 1. Host with NixOS

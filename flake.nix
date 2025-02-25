@@ -118,5 +118,7 @@
           inherit (self.checks.${system}.pre-commit-check) shellHook;
         };
     });
+
+    templates = import ./templates;
   };
 }
