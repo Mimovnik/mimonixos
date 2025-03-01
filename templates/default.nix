@@ -20,4 +20,9 @@ rec {
     path = ./python;
     description = "Python development shell template";
   };
+
+  rust = {
+    path = ./rust;
+    description = "Rust development shell template";
+  };
 }
