@@ -80,9 +80,9 @@ tooltip label {
 }
 
 #custom-launcher {
-  font-size: 20px;
+  font-size: 14px;
   padding-left: 8px;
-  padding-right: 4px;
+  padding-right: 8px;
   color: @blue;
 }
 

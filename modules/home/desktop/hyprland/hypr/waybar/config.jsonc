@@ -51,7 +51,7 @@
     "tooltip-format": "Timer"
   },
   "custom/launcher": {
-    "format": "\uf313 ",
+    "format": "\uf002",
     "on-click": "$HOME/.config/hypr/scripts/menu.sh",
     "tooltip-format": "Application launcher"
   },
