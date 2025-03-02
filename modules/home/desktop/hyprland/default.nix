@@ -39,6 +39,7 @@
       binde = , j, resizeactive, 0 10
 
       bind = , escape, submap, reset
+      bind = $mainMod, R, submap, reset
       submap = reset
     '';
   };
