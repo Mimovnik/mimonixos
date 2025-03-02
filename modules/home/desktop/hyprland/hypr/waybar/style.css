@@ -63,13 +63,18 @@ tooltip label {
   margin-left: 2px;
   margin-right: 2px;
 }
+#submap
+{
+  background-color: alpha(red, 0.5);
+}
 
+#submap,
 #clock,
 #pulseaudio,
 #network,
 #custom-timer,
 #battery
- {
+{
   padding-left: 10px;
   padding-right: 10px;
 }
