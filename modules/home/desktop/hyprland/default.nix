@@ -21,6 +21,26 @@
     xwayland.enable = true;
 
     settings = import ./config.nix {inherit lib;};
+
+    # The submap is in extraConfig and not in config.nix due to:
+    # https://github.com/nix-community/home-manager/issues/6062
+    extraConfig = ''
+      submap = resize
+      binde = , right, resizeactive, 10 0
+      binde = , l, resizeactive, 10 0
+
+      binde = , left, resizeactive, -10 0
+      binde = , h, resizeactive, -10 0
+
+      binde = , up, resizeactive, 0 -10
+      binde = , k, resizeactive, 0 -10
+
+      binde = , down, resizeactive, 0 10
+      binde = , j, resizeactive, 0 10
+
+      bind = , escape, submap, reset
+      submap = reset
+    '';
   };
 
   home.file = {

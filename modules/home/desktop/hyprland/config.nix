@@ -23,7 +23,7 @@
       # Program binds
       "$mainMod, T, exec, $terminal"
       "$mainMod, O, exec, $logout"
-      "$mainMod, R, exec, $startup"
+      "$mainMod SHIFT, R, exec, $startup"
       "$mainMod, M, exec, $menu"
       "$mainMod, SPACE, exec, $menu"
       "$mainMod, B, exec, $browser"
@@ -36,6 +36,10 @@
       "$mainMod, F, Fullscreen, "
       "$mainMod, S, togglesplit," # dwindle
       "$mainMod, P, pseudo," # dwindle
+
+      # The submap is in extraConfig due to:
+      # https://github.com/nix-community/home-manager/issues/6062
+      "$mainMod, R, submap, resize"
 
       # Move focus
       "$mainMod, H, movefocus, l"
