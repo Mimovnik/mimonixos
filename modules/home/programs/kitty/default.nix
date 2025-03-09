@@ -1,4 +1,8 @@
 {
+  home.file.".config/kitty/nvim-pager.sh" = {
+    source = ./nvim-pager.sh;
+  };
+
   programs.kitty = {
     enable = true;
     themeFile = "OneDark";
@@ -23,6 +27,7 @@
       background_opacity = "0.99";
       enable_audio_bell = false;
       tab_bar_edge = "top";
+      scrollback_pager = "~/.config/kitty/nvim-pager.sh 'INPUT_LINE_NUMBER' 'CURSOR_LINE' 'CURSOR_COLUMN'";
     };
   };
 }
