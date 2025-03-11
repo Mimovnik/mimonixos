@@ -27,6 +27,11 @@
       };
     };
 
+    tmux = {
+      enable = true;
+      clock24 = true;
+    };
+
     zsh = {
       enable = true;
 
@@ -87,6 +92,26 @@
             address=$host
           fi
           nixos-rebuild switch --flake $config_dir#$host --target-host root@$address
+        }
+
+        tmux-run() {
+          if [[ $# -eq 0 ]]; then
+              echo "Usage: tmux-run <command> [args...]"
+              return 1
+          fi
+
+          local command_name="$1"
+          local session_name="$command_name"
+          local suffix=0
+
+          # Handle name collisions by appending a suffix
+          while tmux has-session -t "$session_name" 2>/dev/null; do
+              session_name="''${command_name}_$((++suffix))"
+          done
+
+          tmux new-session -d -s "$session_name"
+
+          tmux send-keys -t "$session_name" "$*" C-m
         }
       '';
 
