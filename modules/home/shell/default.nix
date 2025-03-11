@@ -17,6 +17,7 @@
       url = "https://github.com/Mimovnik/NeedSsh.git";
       sha256 = "sha256-ElwaE7C8MlVhwgnzyIbkl2fCqfWBe6CtmgzYHdZgeNU=";
     })
+    lsof
   ];
 
   programs = {
