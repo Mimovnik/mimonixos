@@ -6,6 +6,11 @@ rec {
     description = "Empty development shell template";
   };
 
+  unfree = {
+    path = ./unfree;
+    description = "Unfree development shell template";
+  };
+
   c = {
     path = ./c;
     description = "C development shell template";

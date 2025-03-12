@@ -16,9 +16,7 @@
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin"];
       perSystem = {pkgs, ...}: {
         devShells.default = pkgs.mkShellNoCC {
-          # The Nix packages provided in the environment
-          # Add any you need here
-          packages = with pkgs; [
+          buildInputs = with pkgs; [
             gcc
             gnumake
             gdb
