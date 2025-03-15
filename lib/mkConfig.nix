@@ -1,5 +1,6 @@
 {
   nixpkgs,
+  nixpkgs-unstable,
   home-manager,
   system,
   hostname,
@@ -13,6 +14,7 @@ nixpkgs.lib.nixosSystem {
     ../hosts/${hostname}/system.nix
     {
       _module.args = {
+        inherit nixpkgs-unstable;
         inherit hostname;
         inherit username;
       };

@@ -1,6 +1,6 @@
 {
   pkgs,
-  unstable-pkgs,
+  nixpkgs-unstable,
   hostname,
   username,
   ...
@@ -120,9 +120,9 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [
     (final: _prev: {
-      unstable = import unstable-pkgs {
-        system = final.system;
-        config.allowunfree = true;
+      unstable = import nixpkgs-unstable {
+        system = _prev.system;
+        config.allowUnfree = true;
       };
     })
   ];
