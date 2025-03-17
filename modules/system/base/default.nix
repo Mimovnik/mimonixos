@@ -108,6 +108,34 @@
 
       # Whether to warn about dirty Git/Mercurial trees.
       warn-dirty = false;
+
+      ################
+      # Substituters #
+      ################
+
+      # The timeout (in seconds) for establishing connections in the binary cache substituter.
+      # It corresponds to curl’s –connect-timeout option. A value of 0 means no limit.
+      connect-timeout = 5;
+
+      # Allow the use of cachix
+      trusted-users = [
+        "root"
+        "mimovnik"
+      ];
+
+      builders-use-substitutes = true;
+
+      # If set to true, Nix will fall back to building from source if a binary substitute
+      # fails. This is equivalent to the –fallback flag. The default is false.
+      fallback = true;
+
+      substituters = [
+        "https://devenv.cachix.org"
+      ];
+
+      trusted-public-keys = [
+        "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+      ];
     };
 
     gc = {
@@ -135,6 +163,7 @@
     just
     ripgrep
     nix-tree
+    unstable.devenv
     pulseaudio
   ];
 
