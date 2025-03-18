@@ -23,6 +23,7 @@
     alejandra
 
     # gui
+    code-cursor
     vesktop
     brave
     signal-desktop
