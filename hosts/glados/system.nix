@@ -14,6 +14,8 @@
 
     ../../modules/system/virtualisation/docker.nix
 
+    ../../modules/system/virtualisation/lxd.nix
+
     ../../modules/system/common/otd.nix
   ];
 }
