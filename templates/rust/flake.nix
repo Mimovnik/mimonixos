@@ -15,14 +15,17 @@
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin"];
       perSystem = {pkgs, ...}: {
-        devShells.default = pkgs.mkShellNoCC {
+        devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
             cargo
             rustc
+            rustfmt
           ];
 
           shellHook = ''
             echo "Welcome to the Rust devshell!"
+            echo -n "Rust compiler version:"
+            rustc --version
           '';
         };
       };
