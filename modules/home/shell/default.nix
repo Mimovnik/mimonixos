@@ -114,6 +114,17 @@
 
           tmux send-keys -t "$session_name" "$*" C-m
         }
+
+        run-nixpkgs() {
+          if [[ $# -eq 0 ]]; then
+              echo "Usage: tmux-run <command> [args...]"
+              return 1
+          fi
+
+          local cmd="$1"
+          local args="''${@:2}"
+          nix run nixpkgs#$cmd -- $args
+        }
       '';
 
       shellAliases = let
@@ -156,11 +167,12 @@
         mimup = "sudo nix flake update --flake ${configDir}";
         mimupdate = "sudo nix flake update --flake ${configDir}";
 
-        mimc = "sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d";
         mimclean = "sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d";
 
         mimgc = "sudo nix-collect-garbage --delete-old";
         mimgarbagecollect = "sudo nix-collect-garbage --delete-old";
+
+        mimrun = "run-nixpkgs";
       };
 
       plugins = [
