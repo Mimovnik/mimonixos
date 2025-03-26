@@ -21,6 +21,7 @@
     pavucontrol
     yazi
     alejandra
+    tealdeer
 
     # gui
     code-cursor
