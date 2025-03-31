@@ -21,8 +21,7 @@
     hyprlock
 
     # Notifications
-    mako
-    libnotify # needed for notify-send
+    libnotify
 
     # Utils
     wl-clipboard # copy/paste (also wl-copy cmd)

@@ -8,6 +8,7 @@
     ./packages.nix
     ../../common/gtk.nix
     ./swayosd.nix
+    ./swaync.nix
   ];
 
   wayland.windowManager.hyprland = {

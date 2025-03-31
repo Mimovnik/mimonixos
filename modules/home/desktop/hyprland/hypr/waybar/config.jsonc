@@ -12,6 +12,7 @@
   ],
   "modules-right": [
     "tray",
+    "custom/swaync",
     "custom/timer",
     "pulseaudio",
     "battery",
@@ -39,6 +40,27 @@
       "(.*) - kitty": "> [$1]"
     },
     "separate-outputs": true
+  },
+  "custom/swaync": { // https://haseebmajid.dev/posts/2024-03-15-til-how-to-get-swaync-to-play-nice-with-waybar/
+    "format": "<big>{icon}</big>",
+    "format-icons": {
+      "none": "",
+      "notification": "<span foreground='#f5c2e7'>󱅫</span>",
+      "dnd-none": "󰂠",
+      "dnd-notification": "󱅫",
+      "inhibited-none": "",
+      "inhibited-notification": "<span foreground='#f5c2e7'>󰅸</span>",
+      "dnd-inhibited-none": "󰪓",
+      "dnd-inhibited-notification": "󰅸"
+    },
+    "max-length": 3,
+    "return-type": "json",
+    "escape": true,
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client --subscribe-waybar",
+    "on-click": "swaync-client --toggle-panel --skip-wait",
+    "on-click-right": "swaync-client --toggle-dnd --skip-wait",
+    "tooltip-format": "󰵚  {} notification(s)"
   },
   "custom/timer": {
     "format": "\u231B {}",
