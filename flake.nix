@@ -73,6 +73,12 @@
         hostname = "dryer";
         inherit nixpkgs nixpkgs-unstable disko home-manager nixvim username;
       };
+
+      carbon = mkConfig {
+        system = "x86_64-linux";
+        hostname = "carbon";
+        inherit nixpkgs nixpkgs-unstable disko home-manager nixvim username;
+      };
     };
 
     checks = forAllSystems (system: {
