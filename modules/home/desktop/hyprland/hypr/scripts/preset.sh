@@ -15,7 +15,7 @@ function is_running() {
   type=$(echo "$WIN_PARAM" | cut -d: -f1)
   value=$(echo "$WIN_PARAM" | cut -d: -f2)
 
-  jq_arg=".[] | select(.$type == \"$value\")"
+  jq_arg=".[] | select(.$type | contains(\"$value\"))"
 
   if hyprctl clients -j | jq -e "$jq_arg" >/dev/null; then
     return 0
@@ -78,11 +78,15 @@ function start_singleton_app() {
 }
 
 function preset_default() {
-  start_singleton_app "brave --password-store=gnome" 1 "class:brave-browser"
-  start_singleton_app kitty 2 "class:kitty"
-  start_singleton_app signal-desktop 5 "class:signal"
-  start_singleton_app vesktop 7 "initialTitle:Discord"
-  hyprctl dispatch forcerendererreload
+  start_singleton_app "brave --password-store=gnome" 1 "class:brave-browser" &
+  start_singleton_app kitty 2 "class:kitty" &
+  start_singleton_app signal-desktop 5 "class:signal" &
+  start_singleton_app vesktop 7 "initialTitle:Discord" &
+}
+
+function preset_deep() {
+  start_singleton_app "brave --password-store=gnome" 1 "class:brave-browser" &
+  start_singleton_app kitty 2 "class:kitty" &
 }
 
 function preset_clear() {
@@ -97,10 +101,17 @@ if [ -n "$1" ]; then
 fi
 
 case "$OPT" in
-default) preset_default ;;
+default)
+  preset_clear
+  preset_default
+  ;;
+deep)
+  preset_clear
+  preset_deep
+  ;;
 clear) preset_clear ;;
 *)
-  echo "Usage: $(basename "$0") {default|clear}"
+  echo "Usage: $(basename "$0") {default|deep|clear}"
   exit 1
   ;;
 esac

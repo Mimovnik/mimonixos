@@ -10,8 +10,7 @@ start() {
 start hyprpaper
 
 start nm-applet
-start signal-desktop
 
 ~/.config/hypr/scripts/start-waybar.sh &
 
-~/.config/hypr/scripts/start-preset.sh default &
+~/.config/hypr/scripts/preset.sh default &

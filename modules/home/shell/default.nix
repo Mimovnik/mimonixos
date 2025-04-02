@@ -173,6 +173,8 @@
         mimgarbagecollect = "sudo nix-collect-garbage --delete-old";
 
         mimrun = "run-nixpkgs";
+
+        mimpreset = "~/.config/hypr/scripts/preset.sh";
       };
 
       plugins = [
