@@ -64,7 +64,8 @@
   },
   "custom/timer": {
     "format": "\u231B {}",
-    "exec": "$HOME/.config/hypr/scripts/timer/timer-back.sh",
+    "exec": "$HOME/.config/hypr/scripts/timer/timerctl.sh print && $HOME/.config/hypr/scripts/timer/timerctl.sh pause-toggle",
+    "interval": 1,
     "on-click": "$HOME/.config/hypr/scripts/timer/timerctl.sh pause-toggle",
     "on-click-right": "$HOME/.config/hypr/scripts/timer/timerctl.sh reset",
     "on-scroll-up": "$HOME/.config/hypr/scripts/timer/timerctl.sh inc 60",

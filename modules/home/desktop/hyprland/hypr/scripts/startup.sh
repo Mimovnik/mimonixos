@@ -11,6 +11,8 @@ start hyprpaper
 
 start nm-applet
 
+~/.config/hypr/scripts/timer/timer-back.sh &
+
 ~/.config/hypr/scripts/start-waybar.sh &
 
 ~/.config/hypr/scripts/preset.sh default &
