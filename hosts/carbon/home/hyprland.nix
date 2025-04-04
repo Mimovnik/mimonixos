@@ -5,9 +5,11 @@
     settings = {
       "$mainMod" = lib.mkForce "ALT";
 
-      # monitor = [
-      #   "eDP-1,preferred,auto,1.2"
-      # ];
+      animations.enabled = lib.mkForce false;
+
+      monitor = [
+        "eDP-1,preferred,auto,2.0"
+      ];
     };
   };
 }
