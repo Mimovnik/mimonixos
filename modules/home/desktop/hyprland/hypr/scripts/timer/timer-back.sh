@@ -15,7 +15,7 @@ DEC="dec"
 INIT_SECONDS=$((90 * 60))
 
 total_seconds=$INIT_SECONDS
-paused=true
+paused=false
 
 print() {
   local seconds=$1
@@ -28,7 +28,6 @@ print() {
 start() {
   while true; do
     total_seconds=$INIT_SECONDS
-    paused=true
     print $total_seconds
     while [ $total_seconds -gt 0 ]; do
       print $total_seconds
@@ -39,7 +38,7 @@ start() {
         sleep 0.1
       fi
     done
-
+    paused=true
     alarm
   done
 }
