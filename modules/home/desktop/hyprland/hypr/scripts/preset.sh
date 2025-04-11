@@ -2,7 +2,6 @@
 
 # Heavily inspired by wimpysworld's hyprActivity
 # https://github.com/wimpysworld/nix-config/blob/b19c79a0cc88cd9db8ef7221e27f16101ab9aa0d/home-manager/_mixins/desktop/hyprland/default.nix#L10
-
 set +e # Disable errexit
 set +u # Disable nounset
 
@@ -78,15 +77,15 @@ function start_singleton_app() {
 }
 
 function preset_default() {
-  start_singleton_app "brave --password-store=gnome" 1 "class:brave-browser" &
-  start_singleton_app kitty 2 "class:kitty" &
-  start_singleton_app signal-desktop 5 "class:signal" &
-  start_singleton_app vesktop 7 "initialTitle:Discord" &
+  start_singleton_app "brave --password-store=gnome" 1 "class:brave-browser"
+  start_singleton_app kitty 2 "class:kitty"
+  start_singleton_app signal-desktop 5 "class:signal"
+  start_singleton_app vesktop 7 "initialTitle:Discord"
 }
 
 function preset_deep() {
-  start_singleton_app "brave --password-store=gnome" 1 "class:brave-browser" &
-  start_singleton_app kitty 2 "class:kitty" &
+  start_singleton_app "brave --password-store=gnome" 1 "class:brave-browser"
+  start_singleton_app kitty 2 "class:kitty"
 }
 
 function preset_clear() {
@@ -102,11 +101,9 @@ fi
 
 case "$OPT" in
 default)
-  preset_clear
   preset_default
   ;;
 deep)
-  preset_clear
   preset_deep
   ;;
 clear) preset_clear ;;
