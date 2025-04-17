@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SFX=$HOME/.config/hypr/sfx/duck.wav
+SFX=$HOME/.config/hypr/sfx/bubble_pop.wav
 
 change_vol() {
   local delta=$1
