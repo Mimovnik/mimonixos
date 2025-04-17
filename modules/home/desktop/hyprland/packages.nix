@@ -29,6 +29,7 @@
     hyprshot # screen shot
     jq # json parser
     alsa-utils
+    gromit-mpx # screen drawing
 
     # Color picker
     hyprpicker

@@ -70,6 +70,12 @@
       "$mainMod, I, focusmonitor, l"
       "$mainMod, I, togglespecialworkspace, magic"
       "$mainMod SHIFT, I, movetoworkspace, special:magic"
+
+      # Gromit-mpx
+      ", F7, togglespecialworkspace, gromit"
+      ", F6, exec, gromit-mpx --clear"
+      ", F8, exec, gromit-mpx --undo"
+      "SHIFT, F8, exec, gromit-mpx --redo"
     ]
     # Switch workspaces with mainMod + [0-9]
     # and
@@ -228,11 +234,21 @@
     "move 0 0,logout"
     "size 100% 100%,logout"
     "animation slide,logout"
+
+    # Gromit-mpx
+    "suppressevent fullscreen, ^(Gromit-mpx)$"
+    "tile, ^(Gromit-mpx)$"
+    "opacity 1 override, 1 override, ^(Gromit-mpx)$"
+    "noblur, ^(Gromit-mpx)$"
+    "opacity 1 override, 1 override, ^(Gromit-mpx)$"
+    "noanim, ^(Gromit-mpx)$"
+    "nodim, ^(Gromit-mpx)$"
   ];
 
   # Workspace Rules
   workspace = [
     "special:magic, on-created-empty:[size 60% 60%; float;] $terminal"
+    "special:gromit, gapsin:0, gapsout:0, shadow:false, on-created-empty: gromit-mpx -a"
   ];
 
   layerrule = [
