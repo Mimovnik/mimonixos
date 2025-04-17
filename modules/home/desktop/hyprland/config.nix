@@ -68,8 +68,8 @@
 
       # Special workspace (scratchpad)
       "$mainMod, I, focusmonitor, l"
-      "$mainMod, I, togglespecialworkspace, magic"
-      "$mainMod SHIFT, I, movetoworkspace, special:magic"
+      "$mainMod, I, togglespecialworkspace, terminal"
+      "$mainMod SHIFT, I, movetoworkspace, special:terminal"
 
       # Gromit-mpx
       ", F7, togglespecialworkspace, gromit"
@@ -183,9 +183,11 @@
       "windows, 1, 7, myBezier"
       "windowsOut, 1, 7, default, popin 80%"
       "border, 1, 10, default"
-      "borderangle, 1, 8, default"
       "fade, 1, 7, default"
       "workspaces, 1, 6, default"
+
+      # Special animation for scratchpad
+      "specialWorkspace, 1, 7, default, slidefadevert -50%"
     ];
   };
 
@@ -247,7 +249,7 @@
 
   # Workspace Rules
   workspace = [
-    "special:magic, on-created-empty:[size 60% 60%; float;] $terminal"
+    "special:terminal, on-created-empty:[size 60% 60%; float;] $terminal"
     "special:gromit, gapsin:0, gapsout:0, shadow:false, on-created-empty: gromit-mpx -a"
   ];
 
