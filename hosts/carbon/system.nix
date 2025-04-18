@@ -13,5 +13,7 @@
     ../../modules/system/common/hostnames.nix
 
     ../../modules/system/steam
+
+    ../../modules/system/virtualisation/docker.nix
   ];
 }
