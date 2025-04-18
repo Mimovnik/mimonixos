@@ -40,7 +40,8 @@
         size = 10000;
         path = "${config.xdg.dataHome}/zsh/history";
         ignorePatterns = [
-          "*rm*"
+          "rm*"
+          "sudo rm*"
         ];
       };
 
