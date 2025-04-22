@@ -4,6 +4,17 @@
     userName = "mimovnik";
     userEmail = "mimovnik@protonmail.com";
 
+    signing = {
+      key = "~/.ssh/id_ed25519";
+      signByDefault = true;
+    };
+
+    extraConfig = {
+      gpg.format = "ssh";
+      commit.gpgsign = true;
+      gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
+    };
+
     extraConfig = {
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
@@ -39,4 +50,9 @@
       };
     };
   };
+
+  # TODO: move the keys to a module
+  home.file.".ssh/allowed_signers".text = ''
+    mimovnik@protonmail.com  ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINmku0qaxDIbYb6MlZEMhqRC0KIdeQoNwIQi6/a4z3Fn mimovnik@glados
+  '';
 }
