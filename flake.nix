@@ -79,6 +79,12 @@
         hostname = "carbon";
         inherit nixpkgs nixpkgs-unstable disko home-manager nixvim username;
       };
+
+      termi = mkConfig {
+        system = "x86_64-linux";
+        hostname = "termi";
+        inherit nixpkgs nixpkgs-unstable disko home-manager nixvim username;
+      };
     };
 
     checks = forAllSystems (system: {

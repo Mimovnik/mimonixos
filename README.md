@@ -170,7 +170,7 @@ ssh root@$TARGET
 ```bash
 CONFIG="samurai-tv"
 TARGET=192.168.0.5
-nix run github:nix-community/nixos-anywhere -- --generate-hardware-config nixos-generate-config ./hosts/$CONFIG/hardware-configuration.nix --flake ~/.mimonixos#$CONFIG --target-host root@$TARGET
+nix run github:nix-community/nixos-anywhere -- --generate-hardware-config nixos-generate-config ~/.mimonixos/hosts/$CONFIG/hardware-configuration.nix --flake ~/.mimonixos#$CONFIG --target-host root@$TARGET
 ```
 
 > [!NOTE]
