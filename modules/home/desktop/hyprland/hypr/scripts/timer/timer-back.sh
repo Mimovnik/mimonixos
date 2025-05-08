@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 
-TIME_IS_UP_MSG="Timer: The time is up!"
+# Notifcations after time is up
+# in format of "title@message" where @ is the delimeter
+NOTIFY_MSGS=(
+  "⏱️ Ultradian cycle complete!@Mental stamina isn’t just about grinding - it’s about recovery too. Step back and refresh 🧠"
+  "⏱️ Cycle complete.@Don’t skip the break — that’s where the brain upgrades happen. 🧩"
+  "🧠 Mental cooldown activated.@You’ve earned this break. Step away, no guilt. You’re building momentum the smart way. 🚶‍♂️☕"
+  "💥 FOCUS BEAST MODE: DEACTIVATED@Recovery protocol engaged. Get up, breathe, and don’t even think about skipping that break."
+  "💥 FOCUS BEAST MODE: DEACTIVATED@You just rode the peak of your brain’s ultradian wave. Now it needs that break to refuel. Step away and reload. 🧠🔋"
+  "🔥 ULTRADIAN CYCLE: COMPLETE@Your brain’s run out of high-octane fuel — and no, more coffee isn’t the answer. Recharge now to come back sharper. ☕⚡"
+  "🔥 PEAK PERFORMANCE WINDOW CLOSED@That 90-minute flow was no accident — it’s biology. Ignore the break and you’re working on fumes. Move it! 🧠💨"
+  "🧠 COGNITIVE POWER DIPPING@That focus streak? Ultradian rhythm magic. Time to rest so the next wave hits hard. Don’t stall the comeback. 🌊"
+)
 
 CMD_PIPE="/tmp/timer_cmd.pipe"
 OUT_FILE="/tmp/timer_out.txt"
@@ -44,7 +55,10 @@ start() {
 }
 
 alarm() {
-  notify-send -h string:x-canonical-private-synchronous:sys-notify -u critical "$TIME_IS_UP_MSG"
+  random_notify_msg=${NOTIFY_MSGS[RANDOM % ${#NOTIFY_MSGS[@]}]}
+  title=$(echo "$random_notify_msg" | cut -d@ -f1)
+  message=$(echo "$random_notify_msg" | cut -d@ -f2)
+  notify-send -h string:x-canonical-private-synchronous:sys-notify -u critical "$title" "$message"
 }
 
 cleanup() {
