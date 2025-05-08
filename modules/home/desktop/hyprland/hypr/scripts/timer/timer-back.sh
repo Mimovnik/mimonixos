@@ -23,9 +23,7 @@ PAUSE="pause"
 INC="inc"
 DEC="dec"
 
-INIT_SECONDS=$((90 * 60))
-
-total_seconds=$INIT_SECONDS
+total_seconds=$init_seconds
 paused=false
 
 print() {
@@ -38,7 +36,7 @@ print() {
 
 start() {
   while true; do
-    total_seconds=$INIT_SECONDS
+    total_seconds=$init_seconds
     print $total_seconds
     while [ $total_seconds -gt 0 ]; do
       print $total_seconds
@@ -73,8 +71,8 @@ handle_signal() {
     if read -r cmd arg <"$CMD_PIPE"; then
       case "$cmd" in
       $RESET)
-        echo "Resetting: $(print $INIT_SECONDS)" >&2
-        total_seconds=$INIT_SECONDS
+        echo "Resetting: $(print $init_seconds)" >&2
+        total_seconds=$init_seconds
         paused=true
         ;;
       $PAUSE)
@@ -127,5 +125,14 @@ touch "$OUT_FILE"
 trap 'handle_signal USR1' USR1
 trap 'handle_signal INT' INT
 trap 'handle_signal TERM' TERM
+
+if [[ -n "$1" ]]; then
+  init_seconds=$(("$1" * 60))
+  echo "Setting the timer to $1 minutes"
+else
+  minutes=90
+  init_seconds=$((minutes * 60))
+  echo "Setting the timer to default $minutes minutes"
+fi
 
 start
