@@ -8,6 +8,5 @@
 
     # Custom
     ./home/hyprland.nix
-    ./home/programs.nix
   ];
 }
