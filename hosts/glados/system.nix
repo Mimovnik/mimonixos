@@ -22,4 +22,6 @@
 
     ../../modules/system/common/otd.nix
   ];
+
+  powerManagement.cpuFreqGovernor = "performance";
 }
