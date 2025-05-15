@@ -129,7 +129,7 @@
 
   env = [
     # TODO: move to system config
-    "QT_QPA_PLATFORMTHEME,qt5ct # change to qt6ct if you have that"
+    "QT_QPA_PLATFORMTHEME,qt5ct"
     "ELECTRON_OZONE_PLATFORM_HINT,auto"
 
     # Cursor
