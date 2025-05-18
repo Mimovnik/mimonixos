@@ -78,7 +78,6 @@ function start_singleton_app() {
 
 function preset_default() {
   start_singleton_app "brave --password-store=gnome" 1 "class:brave-browser"
-  start_singleton_app kitty 2 "class:kitty"
   start_singleton_app signal-desktop 5 "class:signal"
   start_singleton_app vesktop 7 "initialTitle:Discord"
 }
