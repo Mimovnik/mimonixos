@@ -18,6 +18,8 @@
 
     ../../modules/system/virtualisation/libvirt.nix
 
+    ../../modules/system/virtualisation/bridge.nix
+
     ../../modules/system/virtualisation/docker.nix
 
     ../../modules/system/virtualisation/lxd.nix
