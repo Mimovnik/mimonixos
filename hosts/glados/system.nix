@@ -16,6 +16,8 @@
 
     ../../modules/system/steam
 
+    ../../modules/system/virtualisation/libvirt.nix
+
     ../../modules/system/virtualisation/docker.nix
 
     ../../modules/system/virtualisation/lxd.nix
