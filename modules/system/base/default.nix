@@ -8,6 +8,7 @@
   imports = [
     ../common/authorized-keys.nix
     ../common/tailscale.nix
+    ../common/adb-udev.nix
   ];
 
   # Bootloader.
