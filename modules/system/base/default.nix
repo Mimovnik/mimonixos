@@ -145,12 +145,14 @@
         "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       ];
     };
+  };
 
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 2d";
-    };
+  # Nix helper
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 31d --keep 6";
+    flake = "/home/${username}/.mimonixos";
   };
 
   nixpkgs.config.allowUnfree = true;
