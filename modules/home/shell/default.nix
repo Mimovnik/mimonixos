@@ -156,11 +156,11 @@
         mims = "find-nixpkgs";
         mimsearch = "find-nixpkgs";
 
-        mimb = "sudo nixos-rebuild switch --flake ${configDir}";
-        mimbuild = "sudo nixos-rebuild switch --flake ${configDir}";
+        mimb = "nh os switch ${configDir}";
+        mimbuild = "nh os switch ${configDir}";
 
-        mimt = "sudo nixos-rebuild test --show-trace --flake ${configDir}";
-        mimtest = "sudo nixos-rebuild test --show-trace --flake ${configDir}";
+        mimt = "nh os test ${configDir}";
+        mimtest = "nh os test ${configDir}";
 
         mimd = "deploy-nixos ${configDir}";
         mimdeploy = "deploy-nixos ${configDir}";
