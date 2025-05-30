@@ -22,6 +22,7 @@
     yazi
     alejandra
     tealdeer
+    socat
 
     # gui
     code-cursor
