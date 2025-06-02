@@ -25,7 +25,7 @@
     socat
 
     # gui
-    code-cursor
+    obs-studio
     vesktop
     brave
     signal-desktop
