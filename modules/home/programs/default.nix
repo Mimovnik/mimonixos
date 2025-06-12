@@ -25,6 +25,7 @@
     socat
 
     # gui
+    vorta
     obs-studio
     firefox
     kdenlive
