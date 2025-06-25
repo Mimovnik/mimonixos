@@ -28,10 +28,10 @@
     vorta
     obs-studio
     firefox
-    kdenlive
+    kdePackages.kdenlive
     vesktop
     brave
-    signal-desktop
+    # signal-desktop
     anki
     krita
     onlyoffice-bin

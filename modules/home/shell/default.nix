@@ -53,7 +53,7 @@
         MANPAGER = "nvim +Man!";
       };
 
-      initExtra = ''
+      initContent = ''
         POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true;
 
         unset SSH_ASKPASS;
