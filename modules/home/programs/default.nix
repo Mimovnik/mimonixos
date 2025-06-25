@@ -31,7 +31,7 @@
     kdePackages.kdenlive
     vesktop
     brave
-    # signal-desktop
+    unstable.signal-desktop
     anki
     krita
     onlyoffice-bin
