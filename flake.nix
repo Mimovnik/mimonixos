@@ -6,6 +6,11 @@
 
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.1.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,6 +35,7 @@
     self,
     nixpkgs,
     nixpkgs-unstable,
+    lix-module,
     disko,
     home-manager,
     nixvim,
@@ -47,43 +53,43 @@
       glados = mkConfig {
         system = "x86_64-linux";
         hostname = "glados";
-        inherit nixpkgs nixpkgs-unstable disko home-manager nixvim username;
+        inherit nixpkgs nixpkgs-unstable lix-module disko home-manager nixvim username;
       };
 
       glados-vm = mkConfig {
         system = "x86_64-linux";
         hostname = "glados-vm";
-        inherit nixpkgs nixpkgs-unstable disko home-manager nixvim username;
+        inherit nixpkgs nixpkgs-unstable lix-module disko home-manager nixvim username;
       };
 
       walle = mkConfig {
         system = "x86_64-linux";
         hostname = "walle";
-        inherit nixpkgs nixpkgs-unstable disko home-manager nixvim username;
+        inherit nixpkgs nixpkgs-unstable lix-module disko home-manager nixvim username;
       };
 
       samurai-tv = mkConfig {
         system = "x86_64-linux";
         hostname = "samurai-tv";
-        inherit nixpkgs nixpkgs-unstable disko home-manager nixvim username;
+        inherit nixpkgs nixpkgs-unstable lix-module disko home-manager nixvim username;
       };
 
       dryer = mkConfig {
         system = "x86_64-linux";
         hostname = "dryer";
-        inherit nixpkgs nixpkgs-unstable disko home-manager nixvim username;
+        inherit nixpkgs nixpkgs-unstable lix-module disko home-manager nixvim username;
       };
 
       carbon = mkConfig {
         system = "x86_64-linux";
         hostname = "carbon";
-        inherit nixpkgs nixpkgs-unstable disko home-manager nixvim username;
+        inherit nixpkgs nixpkgs-unstable lix-module disko home-manager nixvim username;
       };
 
       termi = mkConfig {
         system = "x86_64-linux";
         hostname = "termi";
-        inherit nixpkgs nixpkgs-unstable disko home-manager nixvim username;
+        inherit nixpkgs nixpkgs-unstable lix-module disko home-manager nixvim username;
       };
     };
 

@@ -1,6 +1,7 @@
 {
   nixpkgs,
   nixpkgs-unstable,
+  lix-module,
   home-manager,
   system,
   hostname,
@@ -19,6 +20,8 @@ nixpkgs.lib.nixosSystem {
         inherit username;
       };
     }
+
+    lix-module.nixosModules.default
 
     disko.nixosModules.disko
 
