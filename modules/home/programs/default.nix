@@ -25,6 +25,7 @@
     socat
 
     # gui
+    godot
     vorta
     obs-studio
     firefox
