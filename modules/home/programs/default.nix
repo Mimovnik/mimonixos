@@ -25,6 +25,7 @@
 
     # gui
     godot
+    aseprite
     vorta
     obs-studio
     firefox
