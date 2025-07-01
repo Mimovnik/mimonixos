@@ -21,6 +21,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+
     nixvim.url = "github:Mimovnik/nixvim";
 
     systems.url = "github:nix-systems/default";
@@ -41,9 +43,12 @@
     nixvim,
     systems,
     pre-commit-hooks,
+    nixos-wsl,
     ...
   } @ inputs: let
     mkConfig = import ./lib/mkConfig.nix;
+
+    mkWslConfig = import ./lib/mkWslConfig.nix;
 
     forAllSystems = nixpkgs.lib.genAttrs (import systems);
 
@@ -90,6 +95,13 @@
         system = "x86_64-linux";
         hostname = "termi";
         inherit nixpkgs nixpkgs-unstable lix-module disko home-manager nixvim username;
+      };
+
+      zibuk = mkWslConfig {
+        system = "x86_64-linux";
+        hostname = "zibuk";
+        username = "nixos";
+        inherit nixpkgs nixpkgs-unstable lix-module home-manager nixvim nixos-wsl;
       };
     };
 

@@ -5,6 +5,7 @@
     ./disko-config.nix
 
     ../../modules/system/base
+    ../../modules/system/boot
 
     ../../modules/system/desktop/hyprland
 
