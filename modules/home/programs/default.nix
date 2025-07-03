@@ -3,7 +3,6 @@
     ./git
     ./direnv
     ./kitty
-    ./vscode
   ];
 
   home.packages = with pkgs; [
