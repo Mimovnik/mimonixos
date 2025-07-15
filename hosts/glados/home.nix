@@ -5,6 +5,7 @@
     ../../modules/home/nixvim
     ../../modules/home/desktop/hyprland
     ../../modules/home/programs
+    ../../modules/home/desktop-apps
     ./home/hyprland.nix
   ];
 }
