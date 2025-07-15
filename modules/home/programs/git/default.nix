@@ -1,8 +1,8 @@
-{
+{lib, ...}: {
   programs.git = {
     enable = true;
-    userName = "mimovnik";
-    userEmail = "mimovnik@protonmail.com";
+    userName = lib.mkDefault "mimovnik";
+    userEmail = lib.mkDefault "mimovnik@protonmail.com";
 
     signing = {
       key = "~/.ssh/id_ed25519";
