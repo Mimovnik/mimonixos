@@ -9,7 +9,7 @@
     ../../modules/system/base
     ../../modules/system/boot
 
-    ../../modules/system/desktop/hyprland
+    ../../modules/system/desktop/cosmic
 
     ../../modules/system/common/hostnames.nix
 

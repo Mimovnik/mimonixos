@@ -58,43 +58,43 @@
       glados = mkConfig {
         system = "x86_64-linux";
         hostname = "glados";
-        inherit nixpkgs nixpkgs-unstable lix-module disko home-manager nixvim username;
+        inherit inputs username;
       };
 
       glados-vm = mkConfig {
         system = "x86_64-linux";
         hostname = "glados-vm";
-        inherit nixpkgs nixpkgs-unstable lix-module disko home-manager nixvim username;
+        inherit inputs username;
       };
 
       walle = mkConfig {
         system = "x86_64-linux";
         hostname = "walle";
-        inherit nixpkgs nixpkgs-unstable lix-module disko home-manager nixvim username;
+        inherit inputs username;
       };
 
       samurai-tv = mkConfig {
         system = "x86_64-linux";
         hostname = "samurai-tv";
-        inherit nixpkgs nixpkgs-unstable lix-module disko home-manager nixvim username;
+        inherit inputs username;
       };
 
       dryer = mkConfig {
         system = "x86_64-linux";
         hostname = "dryer";
-        inherit nixpkgs nixpkgs-unstable lix-module disko home-manager nixvim username;
+        inherit inputs username;
       };
 
       carbon = mkConfig {
         system = "x86_64-linux";
         hostname = "carbon";
-        inherit nixpkgs nixpkgs-unstable lix-module disko home-manager nixvim username;
+        inherit inputs username;
       };
 
       termi = mkConfig {
         system = "x86_64-linux";
         hostname = "termi";
-        inherit nixpkgs nixpkgs-unstable lix-module disko home-manager nixvim username;
+        inherit inputs username;
       };
 
       zibuk = mkWslConfig {
