@@ -11,7 +11,7 @@
 
     ../../modules/system/nvidia
 
-    ../../modules/system/desktop/hyprland
+    ../../modules/system/desktop/kde
 
     ../../modules/system/common/hostnames.nix
 
