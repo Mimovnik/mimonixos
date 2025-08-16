@@ -9,7 +9,7 @@
     ../../modules/system/base
     ../../modules/system/boot
 
-    ../../modules/system/desktop/cosmic
+    ../../modules/system/desktop/kde
 
     ../../modules/system/common/hostnames.nix
 

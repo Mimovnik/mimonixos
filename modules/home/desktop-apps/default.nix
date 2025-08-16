@@ -5,7 +5,7 @@
     playerctl
 
     godot
-    aseprite
+    # aseprite
     vorta
     obs-studio
     firefox
