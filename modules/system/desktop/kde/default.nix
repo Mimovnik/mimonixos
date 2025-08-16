@@ -9,6 +9,6 @@
   security.pam.services = {
     sddm.fprintAuth = true;
     kscreenlocker.fprintAuth = true;
-    sudo.fprintAuth = true;
+    sudo.fprintAuth = false;
   };
 }
