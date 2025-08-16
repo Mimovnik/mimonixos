@@ -21,6 +21,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
     nixvim.url = "github:Mimovnik/nixvim";
@@ -40,6 +46,7 @@
     lix-module,
     disko,
     home-manager,
+    plasma-manager,
     nixvim,
     systems,
     pre-commit-hooks,

@@ -10,6 +10,7 @@
   lix-module = inputs.lix-module;
   disko = inputs.disko;
   home-manager = inputs.home-manager;
+  plasma-manager = inputs.plasma-manager;
   nixvim = inputs.nixvim;
 in
   nixpkgs.lib.nixosSystem {
@@ -33,6 +34,7 @@ in
           useGlobalPkgs = true;
           useUserPackages = true;
           users.${username} = import ../hosts/${hostname}/home.nix;
+          sharedModules = [plasma-manager.homeManagerModules.plasma-manager];
 
           extraSpecialArgs = {
             inherit system;
