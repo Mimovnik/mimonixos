@@ -11,4 +11,13 @@
 
     ../../modules/system/steam
   ];
+
+  # Enable mimonix modules using the new options system
+  mimonix = {
+    system.base.enable = true;
+    system.boot.enable = true;
+    desktop.hyprland.enable = true;
+    programs.steam.enable = true;
+    networking.hostnames.enable = true;
+  };
 }

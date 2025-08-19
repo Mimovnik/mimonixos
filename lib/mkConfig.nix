@@ -15,6 +15,7 @@
 in
   nixpkgs.lib.nixosSystem {
     modules = [
+      ../modules/mimonix.nix  # Include our mimonix modules
       ../hosts/${hostname}/system.nix
       {
         _module.args = {
@@ -34,7 +35,10 @@ in
           useGlobalPkgs = true;
           useUserPackages = true;
           users.${username} = import ../hosts/${hostname}/home.nix;
-          sharedModules = [plasma-manager.homeManagerModules.plasma-manager];
+          sharedModules = [
+            plasma-manager.homeManagerModules.plasma-manager
+            ../modules/mimonix.nix  # Include mimonix modules for home-manager too
+          ];
 
           extraSpecialArgs = {
             inherit system;

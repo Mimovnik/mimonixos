@@ -17,4 +17,13 @@
 
     ../../modules/system/virtualisation/docker.nix
   ];
+
+  # Enable mimonix modules using the new options system
+  mimonix = {
+    system.base.enable = true;
+    system.boot.enable = true;
+    desktop.kde.system.enable = true;
+    programs.steam.enable = true;
+    virtualisation.docker.enable = true;
+  };
 }

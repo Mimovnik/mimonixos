@@ -17,4 +17,14 @@
 
     ../../modules/system/virtualisation/docker.nix
   ];
+
+  # Enable mimonix modules using the new options system
+  mimonix = {
+    system.base.enable = true;
+    system.boot.enable = true;
+    desktop.hyprland.enable = true;
+    programs.steam.enable = true;
+    virtualisation.docker.enable = true;
+    networking.hostnames.enable = true;
+  };
 }

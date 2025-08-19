@@ -1,42 +1,56 @@
-{pkgs, ...}: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.mimonix.desktop.hyprland;
+in {
   imports = [
     ../../common/sddm.nix
   ];
 
-  environment.systemPackages = with pkgs; [
-    kitty
-
-    seahorse # gnome keyring gui manager
-  ];
-
-  programs.hyprland = {
-    enable = true;
-    systemd.setPath.enable = true;
-    xwayland.enable = true;
+  options.mimonix.desktop.hyprland = {
+    enable = mkEnableOption "Hyprland Wayland compositor";
   };
 
-  environment = {
-    sessionVariables = {
-      NIXOS_OZONE_WL = "1";
-    };
-  };
+  config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      kitty
 
-  security = {
-    pam.services = {
-      hyprlock = {};
-      sddm.enableGnomeKeyring = true;
-    };
+      seahorse # gnome keyring gui manager
+    ];
 
-    polkit = {
+    programs.hyprland = {
       enable = true;
+      systemd.setPath.enable = true;
+      xwayland.enable = true;
     };
-  };
 
-  services = {
-    dbus = {
-      implementation = "broker";
-      packages = with pkgs; [gcr];
+    environment = {
+      sessionVariables = {
+        NIXOS_OZONE_WL = "1";
+      };
     };
-    gnome.gnome-keyring.enable = true;
+
+    security = {
+      pam.services = {
+        hyprlock = {};
+        sddm.enableGnomeKeyring = true;
+      };
+
+      polkit = {
+        enable = true;
+      };
+    };
+
+    services = {
+      dbus = {
+        implementation = "broker";
+        packages = with pkgs; [gcr];
+      };
+      gnome.gnome-keyring.enable = true;
+    };
   };
 }

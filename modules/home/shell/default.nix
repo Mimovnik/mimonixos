@@ -1,53 +1,63 @@
 {
   config,
+  lib,
   pkgs,
   ...
-}: {
-  home.packages = with pkgs; [
-    file
-    which
-    tree
-    ripgrep
-    fzf
-    keychain
-    bitwarden-cli
-    sshpass
-    bc
-    (pkgs.fetchgit {
-      url = "https://github.com/Mimovnik/NeedSsh.git";
-      sha256 = "sha256-ElwaE7C8MlVhwgnzyIbkl2fCqfWBe6CtmgzYHdZgeNU=";
-    })
-    lsof
-  ];
+}:
+with lib; let
+  cfg = config.mimonix.shell;
+  configDir = "/home/${config.home.username}/.mimonixos";
+in {
+  options.mimonix.shell = {
+    enable = mkEnableOption "shell configuration with zsh, tmux, and CLI tools";
+  };
 
-  programs = {
-    bat = {
-      enable = true;
-      config = {
-        theme = "OneHalfDark";
-      };
-    };
+  config = mkIf cfg.enable {
+    home.packages = with pkgs; [
+      file
+      which
+      tree
+      ripgrep
+      fzf
+      keychain
+      bitwarden-cli
+      sshpass
+      bc
+      (pkgs.fetchgit {
+        url = "https://github.com/Mimovnik/NeedSsh.git";
+        sha256 = "sha256-ElwaE7C8MlVhwgnzyIbkl2fCqfWBe6CtmgzYHdZgeNU=";
+      })
+      lsof
+    ];
 
-    tmux = {
-      enable = true;
-      clock24 = true;
-    };
-
-    zsh = {
-      enable = true;
-
-      history = {
-        size = 10000;
-        path = "${config.xdg.dataHome}/zsh/history";
-        ignorePatterns = [
-          "rm*"
-          "sudo rm*"
-        ];
+    programs = {
+      bat = {
+        enable = true;
+        config = {
+          theme = "OneHalfDark";
+        };
       };
 
-      defaultKeymap = "emacs";
+      tmux = {
+        enable = true;
+        clock24 = true;
+      };
 
-      autosuggestion.enable = true;
+      zsh = {
+        enable = true;
+
+        history = {
+          size = 10000;
+          path = "${config.xdg.dataHome}/zsh/history";
+          ignorePatterns = [
+            "rm*"
+            "sudo rm*"
+          ];
+        };
+
+        defaultKeymap = "emacs";
+
+        autosuggestion.enable = true;
 
       sessionVariables = {
         MANPAGER = "nvim +Man!";
@@ -209,5 +219,6 @@
       enable = true;
       enableZshIntegration = true;
     };
+  };
   };
 }
