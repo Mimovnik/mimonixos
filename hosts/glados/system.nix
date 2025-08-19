@@ -28,5 +28,15 @@
     ../../modules/system/common/otd.nix
   ];
 
+  # Enable mimonix modules using the new options system
+  mimonix = {
+    system.base.enable = true;
+    system.boot.enable = true;
+    hardware.nvidia.enable = true;
+    desktop.kde.system.enable = true;
+    programs.steam.enable = true;
+    virtualisation.docker.enable = true;
+  };
+
   powerManagement.cpuFreqGovernor = "performance";
 }
