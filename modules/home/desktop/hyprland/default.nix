@@ -1,9 +1,12 @@
 {
   config,
-  pkgs,
   lib,
+  pkgs,
   ...
-}: {
+}:
+with lib; let
+  cfg = config.mimonix.desktop.hyprland.home;
+in {
   imports = [
     ./packages.nix
     ../../common/gtk.nix
@@ -11,23 +14,28 @@
     ./swaync.nix
   ];
 
-  wayland.windowManager.hyprland = {
-    enable = true;
+  options.mimonix.desktop.hyprland.home = {
+    enable = mkEnableOption "Hyprland Wayland compositor configuration";
+  };
 
-    systemd = {
+  config = mkIf cfg.enable {
+    wayland.windowManager.hyprland = {
       enable = true;
-      enableXdgAutostart = true;
-    };
 
-    xwayland.enable = true;
+      systemd = {
+        enable = true;
+        enableXdgAutostart = true;
+      };
 
-    settings = import ./config.nix {inherit lib;};
+      xwayland.enable = true;
 
-    # The submap is in extraConfig and not in config.nix due to:
-    # https://github.com/nix-community/home-manager/issues/6062
-    extraConfig = ''
-      submap = resize
-      binde = , right, resizeactive, 10 0
+      settings = import ./config.nix {inherit lib;};
+
+      # The submap is in extraConfig and not in config.nix due to:
+      # https://github.com/nix-community/home-manager/issues/6062
+      extraConfig = ''
+        submap = resize
+        binde = , right, resizeactive, 10 0
       binde = , l, resizeactive, 10 0
 
       binde = , left, resizeactive, -10 0
@@ -112,5 +120,6 @@
       pkgs.xdg-desktop-portal-hyprland
     ];
     xdgOpenUsePortal = true;
+  };
   };
 }

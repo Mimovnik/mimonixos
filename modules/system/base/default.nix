@@ -1,52 +1,67 @@
 {
+  config,
+  lib,
   pkgs,
   nixpkgs-unstable,
   hostname,
   username,
   ...
-}: {
+}:
+with lib; let
+  cfg = config.mimonix.system.base;
+in {
   imports = [
     ../common/authorized-keys.nix
     ../common/tailscale.nix
     ../common/adb-udev.nix
   ];
 
-  # Services
-  services = {
-    printing.enable = true;
-
-    openssh = {
-      enable = true;
-      settings.PasswordAuthentication = false;
-    };
-
-    dbus.enable = true;
-
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      #jack.enable = true;
-    };
-
-    blueman.enable = true;
-
-    udisks2 = {
-      enable = true;
-    };
-
-    gvfs.enable = true;
-    pulseaudio.enable = false;
+  options.mimonix.system.base = {
+    enable = mkEnableOption "base system configuration";
   };
 
-  # Enable sound with pipewire.
-  security.rtkit.enable = true;
+  config = mkIf cfg.enable {
+    # Enable sub-modules by default
+    mimonix.users.authorizedKeys.enable = mkDefault true;
+    mimonix.services.tailscale.enable = mkDefault true;
+    mimonix.services.adb.enable = mkDefault true;
 
-  # Shell
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
+    # Services
+    services = {
+      printing.enable = true;
+
+      openssh = {
+        enable = true;
+        settings.PasswordAuthentication = false;
+      };
+
+      dbus.enable = true;
+
+      pipewire = {
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
+        # If you want to use JACK applications, uncomment this
+        #jack.enable = true;
+      };
+
+      blueman.enable = true;
+
+      udisks2 = {
+        enable = true;
+      };
+
+      gvfs.enable = true;
+      pulseaudio.enable = false;
+    };
+
+    # Enable sound with pipewire.
+    security.rtkit.enable = true;
+
+    # Shell
+    programs.zsh.enable = true;
+    users.defaultUserShell = pkgs.zsh;
 
   # Variables
   environment.variables.EDITOR = "vim";
@@ -229,4 +244,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
+  };
 }
