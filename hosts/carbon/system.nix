@@ -6,6 +6,8 @@
 
     ./zfs.nix
 
+    ./nvidia.nix
+
     ../../modules/system/base
     ../../modules/system/boot
 
