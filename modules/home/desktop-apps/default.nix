@@ -5,6 +5,7 @@
     playerctl
 
     godot
+    vscode.fhs
     # aseprite
     vorta
     obs-studio
