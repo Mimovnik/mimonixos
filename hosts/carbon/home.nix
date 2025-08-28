@@ -5,7 +5,7 @@
     ../../modules/home/nixvim
     ../../modules/home/programs
     ../../modules/home/desktop-apps
-    ../../modules/home/desktop/kde
+    ../../modules/home/desktop/sway
 
     # Custom
     ./home/programs.nix
