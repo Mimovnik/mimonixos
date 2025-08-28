@@ -18,5 +18,7 @@
     ../../modules/system/steam
 
     ../../modules/system/virtualisation/docker.nix
+
+    ./adb-firewall.nix
   ];
 }
