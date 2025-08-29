@@ -1,8 +1,8 @@
 {
   imports = [
     ./base.nix
+    ./keybindings.nix
     # ./idle.nix
-    # ./keybindings.nix
     # ./launcher.nix
     # ./styling.nix
     # ./waybar.nix

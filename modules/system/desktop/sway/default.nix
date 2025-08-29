@@ -3,23 +3,35 @@
   username,
   ...
 }: {
-  services.greetd = {
-    enable = true;
-    settings = rec {
-      initial_session = {
-        command = "${pkgs.sway}/bin/sway";
-        user = "${username}";
+  services = {
+    greetd = {
+      enable = true;
+      settings = rec {
+        initial_session = {
+          command = "${pkgs.sway}/bin/sway";
+          user = "${username}";
+        };
+        default_session = initial_session;
       };
-      default_session = initial_session;
     };
-  };
 
-  services.gnome.gnome-keyring.enable = true;
+    gnome.gnome-keyring.enable = true;
+  };
 
   programs = {
     dconf.enable = true;
     ydotool.enable = true;
     seahorse.enable = true;
+  };
+
+  security = {
+    polkit.enable = true;
+    pam = {
+      services = {
+        swaylock = {};
+        greetd.enableGnomeKeyring = true;
+      };
+    };
   };
 
   xdg.portal = {
@@ -30,11 +42,5 @@
     wlr.enable = true;
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
     config.common.default = ["gtk"];
-  };
-
-  security = {
-    polkit.enable = true;
-
-    pam.services.swaylock = {};
   };
 }
