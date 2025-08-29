@@ -1,12 +1,14 @@
 {pkgs, ...}: {
+  imports = [
+    ./vscode
+  ];
+
   # Programs that are useful only in desktop environment (so not in wsl for example)
   home.packages = with pkgs; [
     pavucontrol
     playerctl
 
     godot
-    vscode.fhs
-    # aseprite
     vorta
     obs-studio
     firefox
