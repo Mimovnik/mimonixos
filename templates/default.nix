@@ -30,4 +30,9 @@ rec {
     path = ./rust;
     description = "Rust development shell template";
   };
+
+  flutter = {
+    path = ./flutter;
+    description = "Flutter development shell template";
+  };
 }
