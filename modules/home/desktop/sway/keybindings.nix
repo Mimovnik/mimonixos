@@ -1,6 +1,9 @@
-{pkgs, ...}: let
-  terminal = "kitty";
-  browser = "brave --password-store=gnome";
+{
+  pkgs,
+  browser,
+  terminal,
+  ...
+}: let
   mod = "Mod1"; # ALt
 in {
   wayland.windowManager.sway = {

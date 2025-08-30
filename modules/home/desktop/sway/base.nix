@@ -1,6 +1,8 @@
 {
   pkgs,
   lib,
+  browser,
+  terminal,
   ...
 }: {
   home.packages = [
@@ -40,6 +42,9 @@
 
     config = {
       startup = [
+        # Focus workspace 1 on startup
+        {command = "swaymsg workspace 1";}
+
         /*
         by default in Wayland, copy-paste only happens *on pasting*
         so if you copy, close the source application, and try to paste, it's not there
@@ -55,17 +60,9 @@
         */
         {command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";}
 
-        # autostart apps
-        {command = "kitty";}
-      ];
-      window.commands = [
-        {
-          command = "floating enable";
-          criteria = {
-            title = "Bitwarden - Vivaldi";
-            app_id = "vivaldi-stable";
-          };
-        }
+        # Autostart apps on specific workspaces
+        {command = "${browser} & sleep 2 && swaymsg '[title=\"Brave\"] move workspace 1'";}
+        {command = "${terminal} --app-id terminal & sleep 2 && swaymsg '[app_id=\"terminal\"] move scratchpad'";}
       ];
     };
   };

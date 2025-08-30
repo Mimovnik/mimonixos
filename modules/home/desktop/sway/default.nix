@@ -1,11 +1,13 @@
 {
+  pkgs,
+  lib,
+  ...
+} @ args: let
+  terminal = "kitty";
+  browser = "brave --password-store=gnome";
+in {
   imports = [
-    ./base.nix
-    ./keybindings.nix
-    # ./idle.nix
-    # ./launcher.nix
-    # ./styling.nix
-    # ./waybar.nix
-    # ./workspaces.nix
+    (import ./base.nix (args // {inherit terminal browser;}))
+    (import ./keybindings.nix (args // {inherit terminal browser;}))
   ];
 }
