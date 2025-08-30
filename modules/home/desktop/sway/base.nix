@@ -5,13 +5,13 @@
   terminal,
   ...
 }: {
-  home.packages = [
-    pkgs.pavucontrol # audio mixer & config
-    pkgs.xdg-utils # for xdg-open etc.
-    pkgs.playerctl # for controlling media player apps
-    pkgs.wl-clipboard # wayland clipboard management
-    pkgs.sway-contrib.grimshot # screenshot script
-    pkgs.rofi-bluetooth # rofi-based bluetooth menu
+  home.packages = with pkgs; [
+    xdg-utils # for xdg-open etc.
+    playerctl # for controlling media player apps
+    wl-clipboard # wayland clipboard management
+    sway-contrib.grimshot # screenshot script
+    rofi-bluetooth # rofi-based bluetooth menu
+    pavucontrol # audio mixer & config
   ];
 
   wayland.windowManager.sway = {
