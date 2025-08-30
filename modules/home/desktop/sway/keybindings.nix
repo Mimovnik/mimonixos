@@ -74,6 +74,13 @@ in {
           "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
           "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
           "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
+
+          "XF86AudioRaiseVolume" = "exec swayosd-client --output-volume +5";
+          "XF86AudioLowerVolume" = "exec swayosd-client --output-volume -5";
+          "XF86AudioMute" = "exec swayosd-client --output-volume mute-toggle";
+
+          "XF86MonBrightnessUp" = "exec swayosd-client --brightness +10";
+          "XF86MonBrightnessDown" = "exec swayosd-client --brightness -10";
         };
 
       modes.resize = {
