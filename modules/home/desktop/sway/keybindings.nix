@@ -71,9 +71,9 @@ in {
           "Ctrl+Print" = "exec grimshot save window ~/Pictures/Screenshots";
           "${mod}+Print" = "exec grimshot save output ~/Pictures/Screenshots";
 
-          "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
-          "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
-          "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
+          "XF86AudioPlay" = "exec playerctl play-pause";
+          "XF86AudioNext" = "exec playerctl next";
+          "XF86AudioPrev" = "exec playerctl previous";
 
           "XF86AudioRaiseVolume" = "exec swayosd-client --output-volume +5";
           "XF86AudioLowerVolume" = "exec swayosd-client --output-volume -5";
