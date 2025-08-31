@@ -163,6 +163,11 @@
         config.allowUnfree = true;
       };
     })
+    (final: _prev: {
+      mimo = {
+        assets = final.callPackage ../../../pkgs/assets.nix {};
+      };
+    })
   ];
 
   # System-wide packages

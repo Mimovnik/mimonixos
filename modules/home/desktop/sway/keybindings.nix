@@ -6,6 +6,10 @@
 }: let
   mod = "Mod1"; # ALt
 in {
+  home.packages = with pkgs; [
+    alsa-utils # aplay command for playing sound
+  ];
+
   wayland.windowManager.sway = {
     enable = true;
     config = {
@@ -31,6 +35,43 @@ in {
             ]
           ) (builtins.genList (n: n + 1) 10)
         );
+
+        # Shell script to extend  play sound when controlling volume
+        volumectlPkg = pkgs.writeShellApplication {
+          name = "volumectl";
+          runtimeInputs = [pkgs.alsa-utils]; # these will be in PATH
+          text = ''
+            SFX="${pkgs.mimo.assets}/sfx/bubble_pop.wav"
+
+            change_vol() {
+              local delta=$1
+              swayosd-client --output-volume "$delta"
+              aplay -D default $SFX
+            }
+
+            toggle_vol() {
+              swayosd-client --output-volume mute-toggle
+              aplay -D default $SFX
+            }
+
+            toggle_mic() {
+              swayosd-client --input-volume mute-toggle
+            }
+
+            if [[ "$1" == "--vol" ]]; then
+              change_vol "$2"
+            elif [[ "$1" == "--mute-toggle" ]]; then
+              toggle_vol
+            elif [[ "$1" == "--mic-toggle" ]]; then
+            	toggle_mic
+            else
+              echo "error: no such argument $1"
+              exit 1
+            fi
+
+          '';
+        };
+        volumectl = "${volumectlPkg}/bin/volumectl";
       in
         workspaceBinds
         // {
@@ -75,9 +116,10 @@ in {
           "XF86AudioNext" = "exec playerctl next";
           "XF86AudioPrev" = "exec playerctl previous";
 
-          "XF86AudioRaiseVolume" = "exec swayosd-client --output-volume +5";
-          "XF86AudioLowerVolume" = "exec swayosd-client --output-volume -5";
-          "XF86AudioMute" = "exec swayosd-client --output-volume mute-toggle";
+          "XF86AudioRaiseVolume" = "exec ${volumectl} --vol +5";
+          "XF86AudioLowerVolume" = "exec ${volumectl} --vol -5";
+          "XF86AudioMute" = "exec ${volumectl} --mute-toggle";
+          "XF86AudioMicMute" = "exec ${volumectl} --mic-toggle";
 
           "XF86MonBrightnessUp" = "exec swayosd-client --brightness +10";
           "XF86MonBrightnessDown" = "exec swayosd-client --brightness -10";
