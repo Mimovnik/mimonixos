@@ -166,6 +166,7 @@
     (final: _prev: {
       mimo = {
         assets = final.callPackage ../../../pkgs/assets.nix {};
+        sway-volumectl = final.callPackage ../../../pkgs/sway-volumectl.nix {};
       };
     })
   ];
