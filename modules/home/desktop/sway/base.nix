@@ -12,6 +12,7 @@
     sway-contrib.grimshot # screenshot script
     rofi-bluetooth # rofi-based bluetooth menu
     pavucontrol # audio mixer & config
+    rofi-wayland # application launcher
   ];
 
   wayland.windowManager.sway = {

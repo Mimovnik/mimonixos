@@ -2,6 +2,7 @@
   pkgs,
   browser,
   terminal,
+  menu,
   ...
 }: let
   mod = "Mod1"; # ALt
@@ -78,6 +79,7 @@ in {
           # Apps
           "${mod}+t" = "exec ${terminal}";
           "${mod}+b" = "exec ${browser}";
+          "${mod}+m" = "exec ${menu}";
 
           # Window control
           "${mod}+q" = "kill";
