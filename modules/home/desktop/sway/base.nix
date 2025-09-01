@@ -11,7 +11,6 @@
     wl-clipboard # wayland clipboard management
     sway-contrib.grimshot # screenshot script
     rofi-bluetooth # rofi-based bluetooth menu
-    pavucontrol # audio mixer & config
     rofi-wayland # application launcher
   ];
 
@@ -42,9 +41,16 @@
     };
 
     config = {
+      bars = []; # disable default bars
       startup = [
         # Focus workspace 1 on startup
         {command = "swaymsg workspace 1";}
+
+        # Start waybar
+        {
+          command = "pkill waybar; waybar"; # restart waybar
+          always = true;
+        }
 
         /*
         by default in Wayland, copy-paste only happens *on pasting*
