@@ -45,14 +45,8 @@
 
       bars = []; # disable default bars
       startup = [
-        # Focus workspace 1 on startup
-        {command = "swaymsg workspace 1";}
-
         # Start waybar
-        {
-          command = "pkill waybar; waybar"; # restart waybar
-          always = true;
-        }
+        {command = "waybar";}
 
         /*
         by default in Wayland, copy-paste only happens *on pasting*
