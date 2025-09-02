@@ -77,6 +77,40 @@
     };
   };
 
+  # GTK theme
+  home.sessionVariables.GTK_THEME = "Materia-dark";
+
+  gtk = {
+    enable = true;
+    cursorTheme = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
+      size = 22;
+    };
+
+    theme = {
+      name = "Materia-dark";
+      package = pkgs.materia-theme;
+    };
+
+    iconTheme = {
+      name = "Tela";
+      package = pkgs.tela-icon-theme;
+    };
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
+
+  home.pointerCursor = {
+    name = "Bibata-Modern-Ice";
+    package = pkgs.bibata-cursors;
+    size = 22;
+  };
+
   # MIME app associatons only make sense on graphical systems, as they use .desktop files as base
   xdg.mimeApps = let
     # helpers for easier setting of a program as default for multiple MIME types
