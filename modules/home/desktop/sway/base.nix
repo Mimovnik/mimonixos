@@ -41,6 +41,8 @@
     };
 
     config = {
+      defaultWorkspace = "workspace number 1";
+
       bars = []; # disable default bars
       startup = [
         # Focus workspace 1 on startup
