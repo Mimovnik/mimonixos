@@ -10,7 +10,6 @@ in {
   imports = [
     (import ./base.nix (args // {inherit terminal browser;}))
     (import ./keybindings.nix (args // {inherit terminal browser menu;}))
-    ./style.nix
     (import ./waybar.nix (args // {inherit terminal;}))
   ];
 }

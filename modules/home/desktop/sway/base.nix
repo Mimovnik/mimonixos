@@ -67,6 +67,15 @@
         {command = "${browser} & sleep 2 && swaymsg '[title=\"Brave\"] move workspace 1'";}
         {command = "${terminal} --app-id terminal & sleep 2 && swaymsg '[app_id=\"terminal\"] move scratchpad'";}
       ];
+      window = {
+        border = 2;
+        titlebar = false;
+      };
+
+      floating = {
+        border = 2;
+        titlebar = true;
+      };
     };
   };
 
