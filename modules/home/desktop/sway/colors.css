@@ -1,0 +1,17 @@
+ /*
+  * one dark theme
+  * https://github.com/joshdick/onedark.vim
+  * */
+
+@define-color black         #282c34;
+@define-color white         #abb2bf;
+@define-color light-red     #e06c75;
+@define-color dark-red      #be5046;
+@define-color green         #98c379;
+@define-color light-yellow  #e5c07b;
+@define-color dark-yellow   #d19a66;
+@define-color blue          #61afef;
+@define-color magenta       #c678dd;
+@define-color cyan          #56b6c2;
+@define-color gutter-grey   #4b5263;
+@define-color comment-grey  #5c6370;

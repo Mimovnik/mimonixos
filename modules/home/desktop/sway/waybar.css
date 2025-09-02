@@ -1,0 +1,136 @@
+
+* {
+  /* https://docs.gtk.org/gtk3/css-overview.html#colors */
+  color: @white;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 10pt;
+  font-weight: bold;
+  border-radius: 8px;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+
+@keyframes blink_red {
+  to {
+    background-color: @dark-red;
+    color: @light-red;
+  }
+}
+
+.warning,
+.critical,
+.urgent {
+  animation-name: blink_red;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: 5;
+  animation-direction: alternate;
+}
+
+window#waybar {
+  background-color: transparent;
+}
+
+window > box {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  padding: 3px;
+  padding-left: 8px;
+}
+
+tooltip {
+  background: black;
+}
+
+tooltip label {
+  color: @white;
+}
+
+#custom-swaync,
+#window,
+#workspaces button,
+#tray,
+#pulseaudio,
+#battery,
+#clock
+{
+  background-color: alpha(black, 0.5);
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+#mode
+{
+  background-color: alpha(red, 0.5);
+}
+
+#mode,
+#clock,
+#pulseaudio,
+#network,
+#battery
+{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#custom-swaync
+{
+  padding-left: 10px;
+  padding-right: 14px;
+}
+
+#workspaces button {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+#workspaces button.active {
+  color: @black;
+  background-color: alpha(@blue, 0.5);
+}
+
+#workspaces button.urgent {
+  color: @light-red;
+}
+
+#workspaces button:hover {
+  background-color: @comment-grey;
+  color: @black;
+}
+
+#clock {
+  color: @blue;
+}
+
+#battery {
+  min-width: 55px;
+  color: @white;
+}
+
+#battery.charging,
+#battery.full,
+#battery.plugged {
+  color: @green;
+}
+
+#battery.critical:not(.charging) {
+  color: @light-red;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#pulseaudio {
+  color: @white;
+}
+
+#tray {
+  padding-right: 8px;
+  padding-left: 10px;
+}

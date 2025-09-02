@@ -114,5 +114,6 @@
         };
       }
     ];
+    style = builtins.readFile ./colors.css + "\n" + builtins.readFile ./waybar.css;
   };
 }
