@@ -10,8 +10,6 @@
     playerctl # for controlling media player apps
     wl-clipboard # wayland clipboard management
     sway-contrib.grimshot # screenshot script
-    rofi-bluetooth # rofi-based bluetooth menu
-    rofi-wayland # application launcher
   ];
 
   wayland.windowManager.sway = {
