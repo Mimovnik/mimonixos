@@ -8,6 +8,11 @@ in {
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
+
+    extraConfig = {
+      display-drun = "";
+    };
+
     theme = {
       "*" = {
         background = mkLiteral "#000000";
