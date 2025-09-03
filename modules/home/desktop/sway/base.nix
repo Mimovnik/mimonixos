@@ -62,8 +62,11 @@
         {command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";}
 
         # Autostart apps on specific workspaces
-        {command = "${browser} & sleep 2 && swaymsg '[title=\"Brave\"] move workspace 1'";}
         {command = "${terminal} --app-id terminal & sleep 2 && swaymsg '[app_id=\"terminal\"] move scratchpad'";}
+
+        {command = "${browser}     & sleep 10 && swaymsg '[title=\"Brave\"]   move workspace 1'";}
+        {command = "signal-desktop & sleep 10 && swaymsg '[title=\"Signal\"]  move workspace 5'";}
+        {command = "vesktop        & sleep 10 && swaymsg '[title=\"Discord\"] move workspace 7'";}
       ];
       window = {
         border = 2;
