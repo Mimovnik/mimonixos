@@ -10,6 +10,7 @@
     playerctl # for controlling media player apps
     wl-clipboard # wayland clipboard management
     sway-contrib.grimshot # screenshot script
+    mimo.sway-battery-notify # battery level notifications
   ];
 
   wayland.windowManager.sway = {
@@ -45,6 +46,9 @@
       startup = [
         # Start waybar
         {command = "waybar";}
+
+        # Battery notification script
+        {command = "sway-battery-notify";}
 
         /*
         by default in Wayland, copy-paste only happens *on pasting*

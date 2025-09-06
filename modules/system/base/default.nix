@@ -167,6 +167,7 @@
       mimo = {
         assets = final.callPackage ../../../pkgs/assets.nix {};
         sway-volumectl = final.callPackage ../../../pkgs/sway-volumectl.nix {};
+        sway-battery-notify = final.callPackage ../../../pkgs/sway-battery-notify.nix {};
       };
     })
   ];

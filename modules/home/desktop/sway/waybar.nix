@@ -91,7 +91,7 @@
         battery = {
           bat = "BAT0";
           adapter = "ADP0";
-          interval = 5;
+          interval = 1;
           states = {
             warning = 30;
             critical = 15;
