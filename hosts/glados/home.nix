@@ -1,4 +1,4 @@
-{...}: {
+{lib, ...}: {
   imports = [
     ../../modules/home/base
     ../../modules/home/desktop/sway
@@ -7,4 +7,7 @@
     ../../modules/home/programs
     ../../modules/home/desktop-apps
   ];
+
+  # Enable Sway window manager
+  mimo.sway.enable = true;
 }

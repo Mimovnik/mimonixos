@@ -10,4 +10,10 @@
     # Custom
     ./home/programs.nix
   ];
+
+  # Enable Sway window manager
+  mimo.sway = {
+    enable = true;
+    mod = "Mod1"; # Alt key
+  };
 }
