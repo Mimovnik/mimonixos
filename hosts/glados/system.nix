@@ -11,7 +11,7 @@
 
     ../../modules/system/nvidia
 
-    ../../modules/system/desktop/kde
+    ../../modules/system/desktop/sway
 
     ../../modules/system/common/hostnames.nix
 

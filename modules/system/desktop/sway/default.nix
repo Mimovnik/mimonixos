@@ -3,25 +3,44 @@
   username,
   ...
 }: {
+  environment.systemPackages = with pkgs; [
+    sway
+    wl-clipboard
+  ];
+
+  # NVIDIA-specific environment variables for Wayland
+  environment.sessionVariables = {
+    # NVIDIA Wayland support
+    LIBVA_DRIVER_NAME = "nvidia";
+    XDG_SESSION_TYPE = "wayland";
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    WLR_NO_HARDWARE_CURSORS = "1";
+  };
+
   services = {
     greetd = {
       enable = true;
-      settings = rec {
-        initial_session = {
-          command = "${pkgs.sway}/bin/sway";
+      settings = {
+        default_session = {
+          command = "${pkgs.sway}/bin/sway --unsupported-gpu";
           user = "${username}";
         };
-        default_session = initial_session;
       };
     };
 
     gnome.gnome-keyring.enable = true;
+    dbus.enable = true;
   };
 
   programs = {
     dconf.enable = true;
     ydotool.enable = true;
     seahorse.enable = true;
+    sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
+    };
   };
 
   security = {
@@ -34,13 +53,13 @@
     };
   };
 
+  # Enable seat management
+  services.seatd.enable = true;
+
   xdg.portal = {
     enable = true;
-    # there is some weirdness happening here
-    # https://github.com/NixOS/nixpkgs/issues/160923
-    #xdgOpenUsePortal = true;
     wlr.enable = true;
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
-    config.common.default = ["gtk"];
+    config.common.default = ["wlr" "gtk"];
   };
 }
