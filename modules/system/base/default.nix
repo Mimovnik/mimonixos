@@ -10,7 +10,6 @@
     ../common/tailscale.nix
     ../common/adb-udev.nix
   ];
-
   # Services
   services = {
     printing.enable = true;
@@ -40,6 +39,8 @@
     gvfs.enable = true;
     pulseaudio.enable = false;
   };
+
+  systemd.services."getty@tty5".enable = true;
 
   # Enable sound with pipewire.
   security.rtkit.enable = true;
