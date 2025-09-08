@@ -6,11 +6,6 @@
 
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.1.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,7 +38,6 @@
     self,
     nixpkgs,
     nixpkgs-unstable,
-    lix-module,
     disko,
     home-manager,
     plasma-manager,
@@ -56,6 +50,8 @@
     mkConfig = import ./lib/mkConfig.nix;
 
     mkWslConfig = import ./lib/mkWslConfig.nix;
+
+    mkHomeConfig = import ./lib/mkHomeConfig.nix;
 
     forAllSystems = nixpkgs.lib.genAttrs (import systems);
 
@@ -108,7 +104,58 @@
         system = "x86_64-linux";
         hostname = "zibuk";
         username = "nixos";
-        inherit nixpkgs nixpkgs-unstable lix-module home-manager nixvim nixos-wsl;
+        inherit nixpkgs nixpkgs-unstable nixos-wsl;
+      };
+    };
+
+    homeConfigurations = {
+      "${username}@glados" = mkHomeConfig {
+        system = "x86_64-linux";
+        hostname = "glados";
+        inherit inputs username;
+      };
+
+      "${username}@glados-vm" = mkHomeConfig {
+        system = "x86_64-linux";
+        hostname = "glados-vm";
+        inherit inputs username;
+      };
+
+      "${username}@walle" = mkHomeConfig {
+        system = "x86_64-linux";
+        hostname = "walle";
+        inherit inputs username;
+      };
+
+      "${username}@samurai-tv" = mkHomeConfig {
+        system = "x86_64-linux";
+        hostname = "samurai-tv";
+        inherit inputs username;
+      };
+
+      "${username}@dryer" = mkHomeConfig {
+        system = "x86_64-linux";
+        hostname = "dryer";
+        inherit inputs username;
+      };
+
+      "${username}@carbon" = mkHomeConfig {
+        system = "x86_64-linux";
+        hostname = "carbon";
+        inherit inputs username;
+      };
+
+      "${username}@termi" = mkHomeConfig {
+        system = "x86_64-linux";
+        hostname = "termi";
+        inherit inputs username;
+      };
+
+      "nixos@zibuk" = mkHomeConfig {
+        system = "x86_64-linux";
+        hostname = "zibuk";
+        username = "nixos";
+        inherit inputs;
       };
     };
 

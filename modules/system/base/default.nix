@@ -76,6 +76,8 @@
 
   # Nix
   nix = {
+    package = pkgs.lixPackageSets.stable.lix;
+
     settings = {
       experimental-features = "nix-command flakes";
 
@@ -157,21 +159,7 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [
-    (final: _prev: {
-      unstable = import nixpkgs-unstable {
-        system = _prev.system;
-        config.allowUnfree = true;
-      };
-    })
-    (final: _prev: {
-      mimo = {
-        assets = final.callPackage ../../../pkgs/assets.nix {};
-        sway-volumectl = final.callPackage ../../../pkgs/sway-volumectl.nix {};
-        sway-battery-notify = final.callPackage ../../../pkgs/sway-battery-notify.nix {};
-      };
-    })
-  ];
+  nixpkgs.overlays = import ../../../overlays {inherit nixpkgs-unstable;};
 
   # System-wide packages
   environment.systemPackages = with pkgs; [
@@ -183,6 +171,7 @@
     nix-tree
     unstable.devenv
     pulseaudio
+    home-manager
   ];
 
   # Locale

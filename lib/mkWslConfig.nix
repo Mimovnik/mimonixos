@@ -1,12 +1,9 @@
 {
   nixpkgs,
   nixpkgs-unstable,
-  lix-module,
-  home-manager,
   nixos-wsl,
   system,
   hostname,
-  nixvim,
   username,
   ...
 }:
@@ -22,23 +19,6 @@ nixpkgs.lib.nixosSystem {
         inherit hostname;
         inherit username;
         inherit system;
-      };
-    }
-
-    lix-module.nixosModules.default
-
-    home-manager.nixosModules.home-manager
-    {
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        users.${username} = import ../hosts/${hostname}/home.nix;
-
-        extraSpecialArgs = {
-          inherit system;
-          inherit username;
-          inherit nixvim;
-        };
       };
     }
   ];
