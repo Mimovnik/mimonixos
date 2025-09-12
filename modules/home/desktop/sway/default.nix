@@ -33,6 +33,17 @@ in {
       default = "Mod4"; # Super key
       description = "Modifier key for keybindings";
     };
+
+    workspaceOutputs = lib.mkOption {
+      type = lib.types.attrsOf lib.types.str;
+      default = {};
+      example = {
+        "1" = "DP-1";
+        "2" = "DP-2";
+        "3" = "HDMI-A-1";
+      };
+      description = "Map workspaces to specific outputs/monitors. Keys are workspace numbers as strings, values are output names as recognized by `swaymsg -t get_outputs`.";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -179,6 +190,15 @@ in {
           border = 2;
           titlebar = true;
         };
+
+        # Workspace output assignments
+        workspaceOutputAssign = lib.mkIf (cfg.workspaceOutputs != {}) (
+          lib.mapAttrsToList (workspace: output: {
+            workspace = workspace;
+            output = output;
+          })
+          cfg.workspaceOutputs
+        );
 
         startup = [
           {command = "waybar";}
