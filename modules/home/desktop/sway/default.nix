@@ -289,6 +289,9 @@ in {
           "*" = {
             xkb_layout = "pl";
             xkb_options = "caps:escape";
+          };
+
+          "type:touchpad" = {
             tap = "enabled";
             natural_scroll = "enabled";
           };
