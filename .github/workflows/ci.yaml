@@ -2,16 +2,125 @@ name: CI
 
 on:
   push:
+    branches: [main]
   pull_request:
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
   check:
-    runs-on: ubuntu-22.04
-    permissions:
-      contents: read
-      id-token: write
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: DeterminateSystems/nix-installer-action@main
-      - uses: DeterminateSystems/magic-nix-cache-action@main
-      - run: nix flake check
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v14
+
+      - name: Setup Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@v8
+
+      - name: Check flake
+        run: nix flake check --all-systems
+
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v14
+
+      - name: Setup Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@v8
+
+      - name: Run pre-commit checks
+        run: nix develop --command pre-commit run --all-files
+
+  evaluate-outputs:
+    runs-on: ubuntu-latest
+    outputs:
+      nixos-hosts: ${{ steps.get-hosts.outputs.nixos-hosts }}
+      home-configs: ${{ steps.get-hosts.outputs.home-configs }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v14
+
+      - name: Setup Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@v8
+
+      - name: Evaluate all flake outputs
+        id: get-hosts
+        run: |
+          echo "Evaluating flake outputs..."
+          nixos_hosts=$(nix eval .#nixosConfigurations --apply builtins.attrNames --json)
+          home_configs=$(nix eval .#homeConfigurations --apply builtins.attrNames --json)
+
+          echo "nixos-hosts=$nixos_hosts" >> $GITHUB_OUTPUT
+          echo "home-configs=$home_configs" >> $GITHUB_OUTPUT
+
+          echo "NixOS hosts: $nixos_hosts"
+          echo "Home Manager configs: $home_configs"
+
+          echo "Templates:"
+          nix eval .#templates --apply builtins.attrNames --json
+
+      - name: Check for evaluation warnings
+        run: |
+          echo "Checking for evaluation warnings..."
+          nix flake show --all-systems 2>&1 | tee evaluation.log
+          if grep -i "warning" evaluation.log; then
+            echo "::warning::Evaluation warnings found"
+          fi
+
+  build-nixos:
+    runs-on: ubuntu-latest
+    needs: evaluate-outputs
+    strategy:
+      matrix:
+        host: ${{ fromJson(needs.evaluate-outputs.outputs.nixos-hosts) }}
+      fail-fast: false
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v14
+
+      - name: Setup Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@v8
+
+      - name: Build NixOS configuration for ${{ matrix.host }}
+        run: |
+          nix build .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel \
+            --dry-run \
+            --show-trace \
+            --print-build-logs
+
+  build-home-manager:
+    runs-on: ubuntu-latest
+    needs: evaluate-outputs
+    strategy:
+      matrix:
+        config: ${{ fromJson(needs.evaluate-outputs.outputs.home-configs) }}
+      fail-fast: false
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v14
+
+      - name: Setup Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@v8
+
+      - name: Build Home Manager configuration for ${{ matrix.config }}
+        run: |
+          nix build .#homeConfigurations.\"${{ matrix.config }}\".activationPackage \
+            --dry-run \
+            --show-trace \
+            --print-build-logs
