@@ -49,6 +49,13 @@
         };
       };
     };
+
+    ignores = [
+      ".envrc"
+      ".direnv/"
+      "flake.nix"
+      "flake.lock"
+    ];
   };
 
   # TODO: move the keys to a module
