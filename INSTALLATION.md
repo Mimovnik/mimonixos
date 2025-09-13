@@ -29,16 +29,50 @@ sudo ln -s ~/.mimonixos /etc/nixos
 sudo nixos-rebuild switch --flake ~/.mimonixos#myhost
 ```
 
-### 1.5 Aliases
+### 1.5 Setup Home Manager (Standalone)
 
-Once the system is rebuilt you can use aliases for rebuliding, testing, editing, updating and deploying this config:
+Since this configuration uses standalone Home Manager, you'll need to set it up separately:
 
-
-List them with:
+#### 1.5.1 Install Home Manager
 ```bash
-alias | grep mim
+nix run home-manager/release-25.05 -- init --switch
 ```
 
+#### 1.5.2 Apply your Home Manager configuration
+```bash
+home-manager switch --flake ~/.mimonixos#${USER}@myhost
+```
+
+Replace `myhost` with your actual hostname and `${USER}` with your username.
+
+#### 1.5.3 Available Home Manager configurations
+To see all available Home Manager configurations:
+```bash
+nix flake show ~/.mimonixos | grep homeConfigurations
+```
+
+### 1.6 Rebuilding
+
+For future updates, you'll need to rebuild both NixOS and Home Manager:
+
+```bash
+# Rebuild NixOS system
+sudo nixos-rebuild switch --flake ~/.mimonixos#myhost
+
+# Rebuild Home Manager
+home-manager switch --flake ~/.mimonixos#${USER}@myhost
+```
+
+> [!TIP]
+> This configuration includes `nh` (Nix Helper) which provides a more user-friendly interface:
+> ```bash
+> # NixOS system rebuild
+> nh os switch
+>
+> # Home Manager rebuild
+> nh home switch
+> ```
+> `nh` automatically detects your hostname and provides better output formatting, progress indicators, and error handling.
 
 ## 2. Other hosts
 
@@ -166,8 +200,62 @@ nix run github:nix-community/nixos-anywhere -- --generate-hardware-config nixos-
 > git add any new files regarding the new host configuration
 > nix won't see the files unless they are staged
 
+6. Setup Home Manager on the new host
+After nixos-anywhere completes, SSH into the new host and set up Home Manager:
+
+```bash
+# SSH to the new host
+ssh ${USER}@$TARGET
+
+# Install Home Manager
+nix run home-manager/release-25.05 -- init --switch
+
+# Apply your Home Manager configuration
+home-manager switch --flake ~/.mimonixos#${USER}@$CONFIG
+```
 
 Example of such configuration is in `hosts/samurai-tv`
 > [!NOTE]
 > I didn't have hardware-configuration.nix before running nixos-anywhere
 > Although I imported it in system.nix
+
+## Quick Reference
+
+### Rebuild Commands
+
+For daily use, here are the commands you'll need:
+
+**Using `nh` (recommended):**
+```bash
+# NixOS system rebuild
+nh os switch
+
+# Home Manager rebuild
+nh home switch
+
+# Both together
+nh os switch && nh home switch
+```
+
+**Traditional commands:**
+```bash
+# NixOS system rebuild
+sudo nixos-rebuild switch --flake ~/.mimonixos#$(hostname)
+
+# Home Manager rebuild
+home-manager switch --flake ~/.mimonixos#${USER}@$(hostname)
+
+# Both together (useful for updates)
+sudo nixos-rebuild switch --flake ~/.mimonixos#$(hostname) && home-manager switch --flake ~/.mimonixos#${USER}@$(hostname)
+```
+
+### Available Configurations
+
+List all available configurations:
+```bash
+# NixOS configurations
+nix eval ~/.mimonixos#nixosConfigurations --apply builtins.attrNames
+
+# Home Manager configurations
+nix eval ~/.mimonixos#homeConfigurations --apply builtins.attrNames
+```
