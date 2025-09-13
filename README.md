@@ -10,9 +10,17 @@ For detailed installation instructions, see [INSTALLATION.md](./INSTALLATION.md)
 
 Use development shell templates:
 ```bash
-nix flake init -t github:Mimovnik/mimonixos#<devshell>
+nix flake init -t github:Mimovnik/mimonixos#<template>
 ```
-where `<devshell>` is one of the devshell templates from `template/devshells/<devshell>` directory
+
+To discover available templates:
+```bash
+# Show the flakes outputs
+nix flake show github:Mimovnik/mimonixos
+
+# Or get template names directly
+nix eval github:Mimovnik/mimonixos#templates --apply builtins.attrNames
+```
 
 ## Development
 
