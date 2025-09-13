@@ -319,8 +319,8 @@ in {
       };
 
       extraConfig = ''
-        bindgesture swipe:3:right workspace next_on_output
-        bindgesture swipe:3:left workspace prev_on_output
+        bindgesture swipe:3:left workspace next_on_output
+        bindgesture swipe:3:right workspace prev_on_output
       '';
     };
 
