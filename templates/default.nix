@@ -35,4 +35,9 @@ rec {
     path = ./flutter;
     description = "Flutter development shell template";
   };
+
+  unity = {
+    path = ./unity;
+    description = "Unity development shell template with .NET 6 support";
+  };
 }
