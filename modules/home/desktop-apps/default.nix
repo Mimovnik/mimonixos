@@ -8,6 +8,7 @@
     pavucontrol
     playerctl
 
+    unityhub
     godot
     vorta
     obs-studio
