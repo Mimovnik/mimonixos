@@ -186,6 +186,7 @@
 
           # Git
           check-merge-conflicts.enable = true;
+          commitizen.enable = true;
 
           # Nix
           alejandra.enable = true;
