@@ -64,12 +64,6 @@
         inherit inputs username;
       };
 
-      glados-vm = mkConfig {
-        system = "x86_64-linux";
-        hostname = "glados-vm";
-        inherit inputs username;
-      };
-
       walle = mkConfig {
         system = "x86_64-linux";
         hostname = "walle";
@@ -112,12 +106,6 @@
       "${username}@glados" = mkHomeConfig {
         system = "x86_64-linux";
         hostname = "glados";
-        inherit inputs username;
-      };
-
-      "${username}@glados-vm" = mkHomeConfig {
-        system = "x86_64-linux";
-        hostname = "glados-vm";
         inherit inputs username;
       };
 
