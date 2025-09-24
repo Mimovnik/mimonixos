@@ -292,7 +292,7 @@ in {
 
             # System
             "${cfg.mod}+Shift+c" = "reload";
-            "${cfg.mod}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
+            "${cfg.mod}+Shift+q" = "exec swaynag -t warning -m 'Are you sure you want to quit?' -b 'Yes, shutdown' 'shutdown now' -b 'No, cancel' ''";
           };
 
         modes.resize = {
