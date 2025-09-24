@@ -271,9 +271,9 @@ in {
             "${cfg.mod}+Shift+u" = "move workspace to output right";
 
             # Screenshots
-            "Print" = "exec grimshot save area ~/Pictures/Screenshots";
-            "Ctrl+Print" = "exec grimshot save window ~/Pictures/Screenshots";
-            "${cfg.mod}+Print" = "exec grimshot save output ~/Pictures/Screenshots";
+            "Print" = "exec grimshot savecopy area ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S')_area.png";
+            "Ctrl+Print" = "exec grimshot savecopy window ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S')_window.png";
+            "${cfg.mod}+Print" = "exec grimshot savecopy output ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S')_output.png";
 
             # Media control
             "XF86AudioPlay" = "exec playerctl play-pause";
