@@ -23,7 +23,7 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.sway}/bin/sway --unsupported-gpu";
+          command = "${pkgs.sway}/bin/sway --unsupported-gpu > /tmp/sway.log 2>&1";
           user = "${username}";
         };
       };
