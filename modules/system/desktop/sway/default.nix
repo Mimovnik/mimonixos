@@ -55,6 +55,7 @@
 
   # Enable seat management
   services.seatd.enable = true;
+  users.users.${username}.extraGroups = ["seat"];
 
   xdg.portal = {
     enable = true;
