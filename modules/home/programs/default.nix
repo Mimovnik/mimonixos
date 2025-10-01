@@ -20,5 +20,6 @@
     alejandra
     tealdeer
     socat
+    pciutils
   ];
 }
