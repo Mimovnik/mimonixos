@@ -62,8 +62,21 @@
   networking.firewall.enable = true;
 
   # Bluetooth
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+
+    settings = {
+      General = {
+        ControllerMode = "bredr"; # Fix frequent Bluetooth audio dropouts
+        Experimental = true;
+        FastConnectable = true;
+      };
+      Policy = {
+        AutoEnable = true;
+      };
+    };
+  };
 
   # Users
   ## Don't forget to set a password with ‘passwd’.
