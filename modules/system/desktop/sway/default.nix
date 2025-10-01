@@ -8,14 +8,8 @@
     wl-clipboard
   ];
 
-  # NVIDIA-specific environment variables for Wayland
   environment.sessionVariables = {
-    # NVIDIA Wayland support
-    LIBVA_DRIVER_NAME = "nvidia";
     XDG_SESSION_TYPE = "wayland";
-    GBM_BACKEND = "nvidia-drm";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    WLR_NO_HARDWARE_CURSORS = "1";
   };
 
   services = {
@@ -23,7 +17,7 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.sway}/bin/sway --unsupported-gpu > /tmp/sway.log 2>&1";
+          command = "${pkgs.sway}/bin/sway > /tmp/sway.log 2>&1";
           user = "${username}";
         };
       };

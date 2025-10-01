@@ -9,7 +9,7 @@
     ../../modules/system/base
     ../../modules/system/boot
 
-    ../../modules/system/nvidia
+    ../../modules/system/amdgpu
 
     ../../modules/system/desktop/sway
 
