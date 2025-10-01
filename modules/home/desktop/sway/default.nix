@@ -44,6 +44,43 @@ in {
       };
       description = "Map workspaces to specific outputs/monitors. Keys are workspace numbers as strings, values are output names as recognized by `swaymsg -t get_outputs`.";
     };
+
+    outputs = lib.mkOption {
+      type = lib.types.attrsOf (lib.types.submodule {
+        options = {
+          position = lib.mkOption {
+            type = lib.types.str;
+            example = "1920 0";
+            description = "Position of the output in the format 'x y'";
+          };
+          resolution = lib.mkOption {
+            type = lib.types.nullOr lib.types.str;
+            default = "1920x1080";
+            example = "1920x1080";
+            description = "Resolution of the output";
+          };
+          scale = lib.mkOption {
+            type = lib.types.nullOr lib.types.str;
+            default = "1.0";
+            example = "1.5";
+            description = "Scale factor for the output";
+          };
+        };
+      });
+      default = {};
+      example = {
+        "HDMI-A-1" = {
+          position = "0 0";
+          resolution = "1920x1080";
+        };
+        "DP-1" = {
+          position = "1920 0";
+          resolution = "2560x1440";
+          scale = "1.5";
+        };
+      };
+      description = "Configuration for outputs/monitors including position, resolution, and scale.";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -323,6 +360,9 @@ in {
             accel_profile = "adaptive";
           };
         };
+
+        # Output configuration
+        output = cfg.outputs;
       };
 
       extraConfig = ''
