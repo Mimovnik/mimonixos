@@ -12,14 +12,18 @@
     wget
     curl
     dig
-    htop
-    btop
     just
     imv # simple image viewer
-    yazi
     alejandra
     tealdeer
     socat
     pciutils
+
+    # tui
+    yazi
+    htop
+    btop
+    bluetui
+    impala
   ];
 }
