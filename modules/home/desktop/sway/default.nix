@@ -18,7 +18,7 @@ in {
 
     browser = lib.mkOption {
       type = lib.types.str;
-      default = "brave --password-store=gnome";
+      default = "brave --password-store=gnome --ozone-platform=x11";
       description = "Default web browser";
     };
 
