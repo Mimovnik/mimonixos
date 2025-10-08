@@ -187,6 +187,8 @@
     home-manager
     mesa-demos
     vulkan-tools
+    alejandra
+    nixd
   ];
 
   # Locale

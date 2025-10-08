@@ -14,7 +14,6 @@
     dig
     just
     imv # simple image viewer
-    alejandra
     tealdeer
     socat
     pciutils
