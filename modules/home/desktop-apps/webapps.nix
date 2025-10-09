@@ -1,95 +1,59 @@
-{
-  xdg.desktopEntries = let
+{lib, ...}: {
+  options.mimo.webapps = lib.mkOption {
+    type = lib.types.attrsOf (lib.types.submodule {
+      options = {
+        title = lib.mkOption {
+          type = lib.types.str;
+          description = "Display title of the web application";
+        };
+        exec = lib.mkOption {
+          type = lib.types.str;
+          description = "Command to execute the web application";
+        };
+      };
+    });
+    default = {};
+    description = "Web applications configuration";
+  };
+
+  config.mimo.webapps = let
     browser = "brave --password-store=gnome";
   in {
-    # name = {
-    #   name = "Display Name";
-    #   comment = "Description";
-    #   exec = "${browser} --app=https://url";
-    #   icon = "icon-name";
-    #   categories = ["Category1" "Category2" "X-CustomCategory"];
-    #   mimeType = ["text/html" "application/xhtml+xml"];
-    # };
-
     chatgpt = {
-      name = "ChatGPT";
-      comment = "AI-powered chat assistant";
+      title = "ChatGPT";
       exec = "${browser} --app=https://chat.openai.com";
-      icon = "chatgpt";
-      categories = ["X-Ai" "Utility" "Education"];
-      mimeType = ["text/html" "application/xhtml+xml"];
     };
-
     github = {
-      name = "GitHub";
-      comment = "Code hosting platform";
+      title = "GitHub";
       exec = "${browser} --app=https://github.com";
-      icon = "github";
-      categories = ["Development" "Network"];
-      mimeType = ["text/html" "application/xhtml+xml"];
     };
-
     youtube-music = {
-      name = "YouTube Music";
-      comment = "Music streaming service";
+      title = "YouTube Music";
       exec = "${browser} --app=https://music.youtube.com";
-      icon = "youtube-music";
-      categories = ["Audio" "Player" "Music"];
-      mimeType = ["text/html" "application/xhtml+xml"];
     };
-
     youtube = {
-      name = "YouTube";
-      comment = "Video streaming platform";
+      title = "YouTube";
       exec = "${browser} --app=https://youtube.com";
-      icon = "youtube";
-      categories = ["Audio" "Video" "Player" "X-Entertainment"];
-      mimeType = ["text/html" "application/xhtml+xml"];
     };
-
     protonmail = {
-      name = "ProtonMail";
-      comment = "Secure email service";
+      title = "ProtonMail";
       exec = "${browser} --app=https://mail.proton.me";
-      icon = "protonmail";
-      categories = ["Network" "Email" "Office" "X-Communication"];
-      mimeType = ["text/html" "application/xhtml+xml"];
     };
-
     enauczanie = {
-      name = "eNauczanie";
-      comment = "Educational platform";
+      title = "eNauczanie";
       exec = "${browser} --app=https://enauczanie.pg.edu.pl/2025/my/";
-      icon = "enauczanie";
-      categories = ["Education"];
-      mimeType = ["text/html" "application/xhtml+xml"];
     };
-
     nextcloud-files = {
-      name = "Nextcloud Files";
-      comment = "Files on Nextcloud";
+      title = "Nextcloud Files";
       exec = "${browser} --app=https://kwidzinski.net.pl/apps/files";
-      icon = "nextcloud";
-      categories = ["Network" "FileManager" "FileTransfer"];
-      mimeType = ["text/html" "application/xhtml+xml"];
     };
-
-    nextcloud-tasks = {
-      name = "Nextcloud Tasks";
-      comment = "Tasks on Nextcloud";
-      exec = "${browser} --app=https://kwidzinski.net.pl/apps/tasks";
-      icon = "nextcloud";
-      categories = ["Network" "X-Productivity"];
-      mimeType = ["text/html" "application/xhtml+xml"];
+    nextcloud-deck = {
+      title = "Nextcloud Deck/Board";
+      exec = "${browser} --app=https://kwidzinski.net.pl/apps/deck/board/4";
     };
-
     nextcloud-calendar = {
-      name = "Nextcloud Calendar";
-      comment = "Calendar on Nextcloud";
+      title = "Nextcloud Calendar";
       exec = "${browser} --app=https://kwidzinski.net.pl/apps/calendar";
-      icon = "nextcloud";
-      categories = ["Network" "X-Productivity"];
-      mimeType = ["text/html" "application/xhtml+xml"];
     };
   };
 }

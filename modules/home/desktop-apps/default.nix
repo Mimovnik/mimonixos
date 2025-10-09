@@ -1,6 +1,8 @@
 {pkgs, ...}: {
   imports = [
     ./webapps.nix
+    ./xdg-entries.nix
+
     ./vscode
   ];
 

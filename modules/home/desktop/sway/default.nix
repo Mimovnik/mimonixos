@@ -237,16 +237,56 @@ in {
           cfg.workspaceOutputs
         );
 
-        startup = [
+        startup = let
+          webapps = config.mimo.webapps;
+          startupTime = 15; # seconds to wait for startup apps to open
+          startAppOnWorkspace = {
+            app,
+            title,
+            workspace,
+          }: "${app} & sleep ${toString startupTime} && swaymsg '[title=\"${title}\"] move workspace ${toString workspace}'";
+        in [
           {command = "waybar";}
           {command = "sway-battery-notify";}
           {command = "${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard regular";}
           {command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";}
 
-          {command = "${cfg.terminal} --app-id terminal & sleep 2 && swaymsg '[app_id=\"terminal\"] move scratchpad'";}
-          {command = "${cfg.browser} & sleep 10 && swaymsg '[title=\"Brave\"] move workspace 1'";}
-          {command = "signal-desktop & sleep 10 && swaymsg '[title=\"Signal\"] move workspace 5'";}
-          {command = "vesktop & sleep 10 && swaymsg '[title=\"Discord\"] move workspace 7'";}
+          {command = "${cfg.terminal} --app-id terminal & sleep ${toString startupTime} && swaymsg '[app_id=\"terminal\"] move scratchpad'";}
+          {
+            command = startAppOnWorkspace {
+              app = cfg.browser;
+              title = "Brave";
+              workspace = 1;
+            };
+          }
+          {
+            command = startAppOnWorkspace {
+              app = webapps.chatgpt.exec;
+              title = "ChatGPT";
+              workspace = 2;
+            };
+          }
+          {
+            command = startAppOnWorkspace {
+              app = "signal-desktop";
+              title = "Signal";
+              workspace = 5;
+            };
+          }
+          {
+            command = startAppOnWorkspace {
+              app = "vesktop";
+              title = "Vesktop";
+              workspace = 7;
+            };
+          }
+          {
+            command = startAppOnWorkspace {
+              app = webapps.nextcloud-deck.exec;
+              title = "Deck";
+              workspace = 8;
+            };
+          }
         ];
 
         # Keybindings
