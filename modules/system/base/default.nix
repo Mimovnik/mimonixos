@@ -1,6 +1,7 @@
 {
   pkgs,
   nixpkgs-unstable,
+  lib,
   hostname,
   username,
   ...
@@ -62,7 +63,7 @@
   networking.firewall.enable = true;
 
   # Bluetooth
-  hardware.bluetooth = {
+  hardware.bluetooth = lib.mkDefault {
     enable = true;
     powerOnBoot = true;
 
@@ -77,7 +78,6 @@
       };
     };
   };
-
   # Users
   ## Don't forget to set a password with ‘passwd’.
   users.users.${username} = {

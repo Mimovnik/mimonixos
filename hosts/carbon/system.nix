@@ -21,4 +21,17 @@
 
     ./adb-firewall.nix
   ];
+
+  hardware.bluetooth = {
+    settings = {
+      General = {
+        ControllerMode = "dual";
+        Experimental = true;
+        FastConnectable = true;
+      };
+      Policy = {
+        AutoEnable = true;
+      };
+    };
+  };
 }
