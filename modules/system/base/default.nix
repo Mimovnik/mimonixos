@@ -189,6 +189,7 @@
     vulkan-tools
     alejandra
     nixd
+    usbutils
   ];
 
   # Locale
