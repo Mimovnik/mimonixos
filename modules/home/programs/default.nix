@@ -17,6 +17,7 @@
     tealdeer
     socat
     pciutils
+    gh
 
     # tui
     yazi
