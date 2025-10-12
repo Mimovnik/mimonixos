@@ -40,4 +40,9 @@ rec {
     path = ./unity;
     description = "Unity development shell template with .NET 6 support";
   };
+
+  latex = {
+    path = ./latex;
+    description = "LaTeX development shell template";
+  };
 }
