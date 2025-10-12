@@ -22,9 +22,9 @@
           buildInputs =
             [
               python
+              pkgs.uv
             ]
             ++ (with pythonPackages; [
-              pip
               venvShellHook
             ]);
           venvDir = "venv";
@@ -35,13 +35,6 @@
 
             echo "Welcome to Python devshell!"
           '';
-
-          NIX_LD_LIBRARY_PATH = with pkgs;
-            lib.makeLibraryPath [
-              stdenv.cc.cc
-              zlib
-            ];
-          NIX_LD = with pkgs; lib.fileContents "${stdenv.cc}/nix-support/dynamic-linker";
         };
       };
     };
