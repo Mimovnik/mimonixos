@@ -10,6 +10,7 @@
   home.packages = with pkgs; [
     pavucontrol
     playerctl
+    ffmpeg
 
     unityhub
     godot
