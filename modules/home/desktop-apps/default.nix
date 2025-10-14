@@ -27,5 +27,6 @@
     nautilus
     gnome-disk-utility
     nextcloud-client
+    thunderbird
   ];
 }
