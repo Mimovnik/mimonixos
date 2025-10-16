@@ -45,4 +45,9 @@ rec {
     path = ./latex;
     description = "LaTeX development shell template";
   };
+
+  dotnet = {
+    path = ./dotnet;
+    description = "Dotnet development shell template";
+  };
 }
