@@ -69,7 +69,7 @@
 
     settings = {
       General = {
-        ControllerMode = "bredr"; # Fix frequent Bluetooth audio dropouts
+        ControllerMode = "dual";
         Experimental = true;
         FastConnectable = true;
       };
