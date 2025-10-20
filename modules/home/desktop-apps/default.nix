@@ -18,7 +18,7 @@
     obs-studio
     firefox
     kdePackages.kdenlive
-    vesktop
+    discord
     brave
     unstable.signal-desktop
     anki

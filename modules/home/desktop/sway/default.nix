@@ -275,8 +275,8 @@ in {
           }
           {
             command = startAppOnWorkspace {
-              app = "vesktop";
-              title = "Vesktop";
+              app = "discord";
+              title = "Discord";
               workspace = 7;
             };
           }
