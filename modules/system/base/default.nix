@@ -190,6 +190,7 @@
     alejandra
     nixd
     usbutils
+    jq
   ];
 
   # Locale
