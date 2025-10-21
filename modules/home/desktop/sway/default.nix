@@ -473,6 +473,7 @@ in {
           modules-right = [
             "tray"
             "custom/swaync"
+            "network"
             "pulseaudio"
             "battery"
           ];
@@ -512,6 +513,23 @@ in {
             on-click = "swaync-client --toggle-panel --skip-wait";
             on-click-right = "swaync-client --toggle-dnd --skip-wait";
             tooltip-format = "󰵚  {} notification(s)";
+          };
+          network = {
+            format-wifi = "{icon} {essid}";
+            format-ethernet = "󰈀  {ifname}";
+            format-disconnected = "󰖪  Disconnected";
+            tooltip-format = "{ifname} via {ip} ({speed} Mbps)";
+            interval = 1;
+            max-length = 20;
+            format-icons = {
+              wifi = [
+                "󰤯" # 0-19%
+                "󰤟" # 20-39%
+                "󰤢" # 40-59%
+                "󰤥" # 60-79%
+                "󰤨" # 80-100%
+              ];
+            };
           };
           pulseaudio = {
             format = "{icon}  {volume}%";
