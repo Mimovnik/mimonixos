@@ -92,6 +92,7 @@ in {
       wl-clipboard # wayland clipboard management
       sway-contrib.grimshot # screenshot script
       mimo.sway-battery-notify # battery level notifications
+      mimo.sway-close-gracefully # graceful sway session closer
 
       # Audio/Volume control
       alsa-utils # aplay command for playing sound
@@ -369,7 +370,7 @@ in {
 
             # System
             "${cfg.mod}+Shift+c" = "reload";
-            "${cfg.mod}+Shift+q" = "exec swaynag -t warning -m 'Are you sure you want to quit?' -b 'Yes, shutdown' 'shutdown now' -b 'No, cancel' ''";
+            "${cfg.mod}+Shift+q" = "exec sway-close-gracefully shutdown 30";
           };
 
         modes.resize = {
