@@ -93,6 +93,7 @@ in {
       sway-contrib.grimshot # screenshot script
       mimo.sway-battery-notify # battery level notifications
       mimo.sway-close-gracefully # graceful sway session closer
+      mimo.sway-splash # splash screen utility
 
       # Audio/Volume control
       alsa-utils # aplay command for playing sound
@@ -247,6 +248,7 @@ in {
             workspace,
           }: "${app} & sleep ${toString startupTime} && swaymsg '[title=\"${title}\"] move workspace ${toString workspace}'";
         in [
+          {command = "sway-splash ${toString startupTime}";}
           {command = "waybar";}
           {command = "sway-battery-notify";}
           {command = "${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard regular";}

@@ -14,6 +14,7 @@
       sway-volumectl = final.callPackage ../pkgs/sway-volumectl.nix {};
       sway-battery-notify = final.callPackage ../pkgs/sway-battery-notify.nix {};
       sway-close-gracefully = final.callPackage ../pkgs/sway-close-gracefully.nix {};
+      sway-splash = final.callPackage ../pkgs/sway-splash.nix {};
     };
   })
 ]
