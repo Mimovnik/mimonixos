@@ -166,6 +166,7 @@
   # Nix helper
   programs.nh = {
     enable = true;
+    package = pkgs.unstable.nh;
     clean.enable = true;
     clean.extraArgs = "--keep-since 31d --keep 6";
     flake = "/home/${username}/.mimonixos";
