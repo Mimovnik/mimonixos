@@ -372,7 +372,7 @@ in {
 
             # System
             "${cfg.mod}+Shift+c" = "reload";
-            "${cfg.mod}+Shift+q" = "exec sway-close-gracefully shutdown 30";
+            "${cfg.mod}+Shift+q" = "exec sway-close-gracefully shutdown 10";
           };
 
         modes.resize = {
