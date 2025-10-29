@@ -12,6 +12,7 @@
     playerctl
     ffmpeg
 
+    freecad
     unityhub
     godot
     vorta
