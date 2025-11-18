@@ -1,4 +1,14 @@
-{username, ...}: {
+{
+  username,
+  config,
+  ...
+}: {
+  home.file.".nix-profile" = {
+    source =
+      config.lib.file.mkOutOfStoreSymlink
+      "${config.xdg.stateHome}/nix/profiles/home-manager/home-path";
+  };
+
   home = {
     inherit username;
     homeDirectory = "/home/${username}";
