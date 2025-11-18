@@ -74,12 +74,6 @@
           echo "scale=2; $1" | bc
         }
 
-        find-nixpkgs() {
-          local query
-          query=$(printf ".*%s.*" "$@")
-          nix search nixpkgs "$query"
-        }
-
         deploy-nixos() {
           local config_dir=$1
 
@@ -94,37 +88,6 @@
             address=$host
           fi
           nixos-rebuild switch --flake $config_dir#$host --target-host root@$address
-        }
-
-        tmux-run() {
-          if [[ $# -eq 0 ]]; then
-              echo "Usage: tmux-run <command> [args...]"
-              return 1
-          fi
-
-          local command_name="$1"
-          local session_name="$command_name"
-          local suffix=0
-
-          # Handle name collisions by appending a suffix
-          while tmux has-session -t "$session_name" 2>/dev/null; do
-              session_name="''${command_name}_$((++suffix))"
-          done
-
-          tmux new-session -d -s "$session_name"
-
-          tmux send-keys -t "$session_name" "$*" C-m
-        }
-
-        run-nixpkgs() {
-          if [[ $# -eq 0 ]]; then
-              echo "Usage: tmux-run <command> [args...]"
-              return 1
-          fi
-
-          local cmd="$1"
-          local args="''${@:2}"
-          nix run nixpkgs#$cmd -- $args
         }
       '';
 
@@ -155,29 +118,11 @@
         mimv = "cd ${configDir} && vim";
         mimvim = "cd ${configDir} && vim";
 
-        mims = "find-nixpkgs";
-        mimsearch = "find-nixpkgs";
-
-        mimb = "nh os switch ${configDir}";
-        mimbuild = "nh os switch ${configDir}";
-
-        mimt = "nh os test ${configDir}";
-        mimtest = "nh os test ${configDir}";
-
         mimd = "deploy-nixos ${configDir}";
         mimdeploy = "deploy-nixos ${configDir}";
 
         mimup = "sudo nix flake update --flake ${configDir}";
         mimupdate = "sudo nix flake update --flake ${configDir}";
-
-        mimclean = "sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d";
-
-        mimgc = "sudo nix-collect-garbage --delete-old";
-        mimgarbagecollect = "sudo nix-collect-garbage --delete-old";
-
-        mimrun = "run-nixpkgs";
-
-        mimpreset = "~/.config/hypr/scripts/preset.sh";
       };
 
       plugins = [
