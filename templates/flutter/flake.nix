@@ -45,6 +45,7 @@
         cmake
         glxinfo
         gtk3
+        glib.dev
         pkg-config
         sysprof
         jdk17
