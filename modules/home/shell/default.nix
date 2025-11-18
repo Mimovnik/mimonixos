@@ -145,6 +145,8 @@
         grs = "git restore";
         grss = "git restore --staged";
         grb = "git rebase -i";
+        grbm = "git rebase -i origin/main";
+        grbc = "git rebase --continue";
 
         trash = "mv ~/Trash";
 
