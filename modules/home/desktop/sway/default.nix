@@ -246,7 +246,8 @@ in {
             app,
             title,
             workspace,
-          }: "${app} & sleep ${toString startupTime} && swaymsg '[title=\"${title}\"] move workspace ${toString workspace}'";
+            waitTime ? startupTime,
+          }: "${app} & sleep ${toString waitTime} && swaymsg '[title=\"${title}\"] move workspace ${toString workspace}'";
         in [
           {command = "sway-splash ${toString startupTime}";}
           {command = "waybar";}
@@ -260,13 +261,7 @@ in {
               app = cfg.browser;
               title = "Brave";
               workspace = 1;
-            };
-          }
-          {
-            command = startAppOnWorkspace {
-              app = webapps.chatgpt.exec;
-              title = "ChatGPT";
-              workspace = 2;
+              waitTime = startupTime - 1; # Start browser a bit earlier so other web apps load properly
             };
           }
           {
@@ -274,6 +269,13 @@ in {
               app = "signal-desktop";
               title = "Signal";
               workspace = 5;
+            };
+          }
+          {
+            command = startAppOnWorkspace {
+              app = webapps.chatgpt.exec;
+              title = "ChatGPT";
+              workspace = 6;
             };
           }
           {
