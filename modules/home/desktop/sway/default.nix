@@ -246,7 +246,8 @@ in {
             app,
             title,
             workspace,
-          }: "${app} & sleep ${toString startupTime} && swaymsg '[title=\"${title}\"] move workspace ${toString workspace}'";
+            launchDelay ? 0, # seconds to wait before launching the app
+          }: "sleep ${toString launchDelay} && ${app} & sleep ${toString (startupTime - launchDelay)} && swaymsg '[title=\"${title}\"] move workspace ${toString workspace}'";
         in [
           {command = "sway-splash ${toString startupTime}";}
           {command = "waybar";}
@@ -264,16 +265,17 @@ in {
           }
           {
             command = startAppOnWorkspace {
-              app = webapps.chatgpt.exec;
-              title = "ChatGPT";
-              workspace = 2;
+              app = "signal-desktop";
+              title = "Signal";
+              workspace = 5;
             };
           }
           {
             command = startAppOnWorkspace {
-              app = "signal-desktop";
-              title = "Signal";
-              workspace = 5;
+              app = webapps.chatgpt.exec;
+              title = "ChatGPT";
+              workspace = 6;
+              launchDelay = 2; # delay webapps so brave initializes with gpu support
             };
           }
           {
@@ -288,6 +290,7 @@ in {
               app = webapps.nextcloud-deck.exec;
               title = "Deck";
               workspace = 8;
+              launchDelay = 2; # delay webapps so brave initializes with gpu support
             };
           }
         ];
