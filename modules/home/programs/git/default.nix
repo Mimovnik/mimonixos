@@ -63,5 +63,6 @@
   # TODO: move the keys to a module
   home.file.".ssh/allowed_signers".text = ''
     mimovnik@protonmail.com  ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINmku0qaxDIbYb6MlZEMhqRC0KIdeQoNwIQi6/a4z3Fn mimovnik@glados
+    mimovnik@protonmail.com  ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEnVkTng/GTwCjsC24ALN09Poarxct0npERMip/XttL9 mimovnik@carbon
   '';
 }
