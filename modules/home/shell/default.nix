@@ -123,6 +123,8 @@
 
         mimup = "sudo nix flake update --flake ${configDir}";
         mimupdate = "sudo nix flake update --flake ${configDir}";
+
+        flet = "flutter";
       };
 
       plugins = [
