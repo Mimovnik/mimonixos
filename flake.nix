@@ -24,7 +24,10 @@
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
-    nixvim.url = "github:Mimovnik/nixvim";
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     systems.url = "github:nix-systems/default";
 

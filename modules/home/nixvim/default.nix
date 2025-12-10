@@ -1,12 +1,14 @@
-{
-  nixvim,
-  system,
-  ...
-}: let
-  nixvim' = nixvim.packages.${system}.default;
-  nvim = nixvim'.extend {
-    config.vimAlias = true;
+{...}: {
+  programs.nixvim = {
+    enable = true;
+    vimAlias = true;
+    viAlias = true;
+
+    imports = [
+      ./keymaps.nix
+      ./opts.nix
+      ./plugins
+      ./colorscheme.nix
+    ];
   };
-in {
-  home.packages = [nvim];
 }
