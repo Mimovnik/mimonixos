@@ -64,7 +64,7 @@
         bindkey  "^[[F"   end-of-line
         bindkey  "^[[3~"  delete-char
 
-        eval $(keychain --eval --quiet --agents ssh);
+        eval $(keychain --eval --quiet);
 
         calc() {
           if [[ $# -lt 1 ]]; then
