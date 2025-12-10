@@ -16,12 +16,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
     nixvim = {
@@ -43,7 +37,6 @@
     nixpkgs-unstable,
     disko,
     home-manager,
-    plasma-manager,
     nixvim,
     systems,
     pre-commit-hooks,
@@ -70,12 +63,6 @@
       walle = mkConfig {
         system = "x86_64-linux";
         hostname = "walle";
-        inherit inputs username;
-      };
-
-      samurai-tv = mkConfig {
-        system = "x86_64-linux";
-        hostname = "samurai-tv";
         inherit inputs username;
       };
 
@@ -115,12 +102,6 @@
       "${username}@walle" = mkHomeConfig {
         system = "x86_64-linux";
         hostname = "walle";
-        inherit inputs username;
-      };
-
-      "${username}@samurai-tv" = mkHomeConfig {
-        system = "x86_64-linux";
-        hostname = "samurai-tv";
         inherit inputs username;
       };
 
