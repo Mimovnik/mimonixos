@@ -9,7 +9,6 @@
   imports = [
     ../common/authorized-keys.nix
     ../common/tailscale.nix
-    ../common/adb-udev.nix
   ];
   # Services
   services = {
@@ -217,7 +216,7 @@
       # normal fonts
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       # nerdfonts
       nerd-fonts.jetbrains-mono
     ];

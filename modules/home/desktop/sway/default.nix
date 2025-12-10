@@ -118,8 +118,8 @@ in {
         package = pkgs.materia-theme;
       };
       iconTheme = {
-        name = "Tela";
-        package = pkgs.tela-icon-theme;
+        name = "Papirus";
+        package = pkgs.papirus-icon-theme;
       };
     };
 
@@ -422,7 +422,7 @@ in {
     # Rofi configuration
     programs.rofi = {
       enable = true;
-      package = pkgs.rofi-wayland;
+      package = pkgs.rofi;
 
       extraConfig = {
         display-drun = "";

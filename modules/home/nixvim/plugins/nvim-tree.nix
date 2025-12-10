@@ -2,11 +2,13 @@
   plugins.nvim-tree = {
     enable = true;
     autoClose = true;
-    hijackCursor = true;
-    updateFocusedFile.enable = true;
-    git = {
-      enable = true;
-      ignore = true;
+    settings = {
+      hijack_cursor = true;
+      update_focused_file.enable = true;
+      git = {
+        enable = true;
+        ignore = true;
+      };
     };
   };
 }

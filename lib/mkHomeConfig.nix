@@ -20,7 +20,7 @@ in
   home-manager.lib.homeManagerConfiguration {
     inherit pkgs;
     modules = [
-      nixvim.homeManagerModules.nixvim
+      nixvim.homeModules.nixvim
       ../hosts/${hostname}/home.nix
       {
         nix.package = pkgs.lixPackageSets.stable.lix;

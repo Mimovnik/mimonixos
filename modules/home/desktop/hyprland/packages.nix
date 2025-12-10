@@ -11,7 +11,7 @@
     wlogout
 
     # Application runner
-    rofi-wayland
+    rofi
 
     # Wallpaper and cursor
     hyprpaper

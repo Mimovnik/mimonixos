@@ -24,7 +24,7 @@
     unstable.signal-desktop
     anki
     krita
-    onlyoffice-bin
+    onlyoffice-desktopeditors
     nautilus
     gnome-disk-utility
     nextcloud-client

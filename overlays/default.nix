@@ -2,7 +2,7 @@
   # Unstable packages overlay
   (final: _prev: {
     unstable = import nixpkgs-unstable {
-      system = _prev.system;
+      system = _prev.stdenv.hostPlatform.system;
       config.allowUnfree = true;
     };
   })

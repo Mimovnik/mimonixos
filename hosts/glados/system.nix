@@ -23,7 +23,7 @@
 
     ../../modules/system/virtualisation/docker.nix
 
-    ../../modules/system/virtualisation/lxd.nix
+    ../../modules/system/virtualisation/incus.nix
 
     ../../modules/system/common/otd.nix
   ];
