@@ -50,4 +50,9 @@ rec {
     path = ./dotnet;
     description = "Dotnet development shell template";
   };
+
+  node = {
+    path = ./node;
+    description = "Node.js development shell template";
+  };
 }
