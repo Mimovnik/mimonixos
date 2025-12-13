@@ -100,7 +100,7 @@ in {
       mimo.sway-volumectl # Shell script to extend play sound when controlling volume
 
       # Waybar packages
-      unstable.wiremix # tui for pipewire volume control
+      wiremix # tui for pipewire volume control
     ];
 
     # GTK theme and cursor settings

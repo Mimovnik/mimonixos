@@ -165,7 +165,7 @@
   # Nix helper
   programs.nh = {
     enable = true;
-    package = pkgs.unstable.nh;
+    package = pkgs.nh;
     clean.enable = true;
     clean.extraArgs = "--keep-since 31d --keep 6";
     flake = "/home/${username}/.mimonixos";
@@ -182,7 +182,6 @@
     just
     ripgrep
     nix-tree
-    unstable.devenv
     pulseaudio
     home-manager
     mesa-demos

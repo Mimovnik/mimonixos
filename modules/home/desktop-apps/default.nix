@@ -21,7 +21,7 @@
     kdePackages.kdenlive
     discord
     brave
-    unstable.signal-desktop
+    signal-desktop
     anki
     krita
     onlyoffice-desktopeditors
