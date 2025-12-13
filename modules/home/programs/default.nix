@@ -24,6 +24,6 @@
     htop
     btop
     bluetui
-    impala
+    wifitui
   ];
 }

@@ -17,4 +17,9 @@ inputs: [
       sway-splash = final.callPackage ../pkgs/sway-splash.nix {};
     };
   })
+
+  # GitHub flake packages overlay
+  (final: _prev: {
+    wifitui = inputs.wifitui.packages.${final.stdenv.hostPlatform.system}.default;
+  })
 ]
