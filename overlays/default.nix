@@ -1,7 +1,7 @@
-{nixpkgs-unstable}: [
+inputs: [
   # Unstable packages overlay
   (final: _prev: {
-    unstable = import nixpkgs-unstable {
+    unstable = import inputs.nixpkgs-unstable {
       system = _prev.stdenv.hostPlatform.system;
       config.allowUnfree = true;
     };

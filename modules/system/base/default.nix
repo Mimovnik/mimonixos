@@ -1,6 +1,6 @@
 {
   pkgs,
-  nixpkgs-unstable,
+  inputs,
   lib,
   hostname,
   username,
@@ -172,7 +172,7 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = import ../../../overlays {inherit nixpkgs-unstable;};
+  nixpkgs.overlays = import ../../../overlays inputs;
 
   # System-wide packages
   environment.systemPackages = with pkgs; [

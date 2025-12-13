@@ -34,10 +34,6 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-unstable,
-    disko,
-    home-manager,
-    nixvim,
     systems,
     pre-commit-hooks,
     nixos-wsl,
@@ -88,7 +84,7 @@
         system = "x86_64-linux";
         hostname = "zibuk";
         username = "nixos";
-        inherit nixpkgs nixpkgs-unstable nixos-wsl;
+        inherit inputs nixpkgs nixos-wsl;
       };
     };
 

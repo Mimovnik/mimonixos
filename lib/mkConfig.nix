@@ -1,12 +1,10 @@
 {
   inputs,
-  system,
   hostname,
   username,
   ...
 }: let
   nixpkgs = inputs.nixpkgs;
-  nixpkgs-unstable = inputs.nixpkgs-unstable;
   disko = inputs.disko;
 in
   nixpkgs.lib.nixosSystem {
@@ -14,7 +12,7 @@ in
       ../hosts/${hostname}/system.nix
       {
         _module.args = {
-          inherit nixpkgs-unstable;
+          inherit inputs;
           inherit hostname;
           inherit username;
         };

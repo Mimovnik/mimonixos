@@ -1,6 +1,6 @@
 {
+  inputs,
   nixpkgs,
-  nixpkgs-unstable,
   nixos-wsl,
   system,
   hostname,
@@ -15,7 +15,7 @@ nixpkgs.lib.nixosSystem {
 
     {
       _module.args = {
-        inherit nixpkgs-unstable;
+        inherit inputs;
         inherit hostname;
         inherit username;
         inherit system;
