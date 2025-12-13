@@ -3,6 +3,7 @@
     ./git
     ./direnv
     ./kitty
+    ./yazi.nix
   ];
 
   home.packages = with pkgs; [
@@ -20,7 +21,6 @@
     gh
 
     # tui
-    yazi
     htop
     btop
     bluetui
