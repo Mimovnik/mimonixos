@@ -326,7 +326,7 @@ in {
             "${cfg.mod}+m" = "exec ${cfg.menu}";
 
             # Window control
-            "${cfg.mod}+q" = "kill";
+            "${cfg.mod}+Shift+q" = "kill";
             "${cfg.mod}+v" = "floating toggle";
             "${cfg.mod}+f" = "fullscreen toggle";
 
@@ -375,7 +375,7 @@ in {
 
             # System
             "${cfg.mod}+Shift+c" = "reload";
-            "${cfg.mod}+Shift+q" = "exec sway-close-gracefully shutdown 10";
+            "${cfg.mod}+Shift+e" = "exec sway-close-gracefully shutdown 10";
           };
 
         modes.resize = {
