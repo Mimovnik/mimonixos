@@ -4,6 +4,7 @@
     ./direnv
     ./kitty
     ./yazi.nix
+    ./ssh.nix
   ];
 
   home.packages = with pkgs; [
