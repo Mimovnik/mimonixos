@@ -26,6 +26,8 @@
     ../../modules/system/virtualisation/incus.nix
 
     ../../modules/system/common/otd.nix
+
+    ../../modules/system/binfmt
   ];
 
   powerManagement.cpuFreqGovernor = "performance";
