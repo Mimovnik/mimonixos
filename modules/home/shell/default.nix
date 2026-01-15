@@ -18,6 +18,7 @@
       sha256 = "sha256-ElwaE7C8MlVhwgnzyIbkl2fCqfWBe6CtmgzYHdZgeNU=";
     })
     lsof
+    nix-output-monitor
   ];
 
   programs = {
