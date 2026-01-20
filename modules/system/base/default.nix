@@ -9,6 +9,7 @@
   imports = [
     ../common/authorized-keys.nix
     ../common/tailscale.nix
+    ../common/mouse-accel.nix
   ];
   # Services
   services = {

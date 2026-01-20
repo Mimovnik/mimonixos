@@ -6,6 +6,7 @@
 }: let
   nixpkgs = inputs.nixpkgs;
   disko = inputs.disko;
+  maccel = inputs.maccel;
 in
   nixpkgs.lib.nixosSystem {
     modules = [
@@ -19,5 +20,7 @@ in
       }
 
       disko.nixosModules.disko
+
+      maccel.nixosModules.default
     ];
   }

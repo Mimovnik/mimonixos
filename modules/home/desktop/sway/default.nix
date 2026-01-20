@@ -402,8 +402,7 @@ in {
           "type:pointer" = {
             # -1.0 to 1.0, where -1.0 is slowest and 1.0 is fastest
             pointer_accel = "-0.5";
-            # "adaptive" or "flat"
-            accel_profile = "adaptive";
+            accel_profile = "flat"; # I use maccel for custom acceleration curve
           };
         };
 

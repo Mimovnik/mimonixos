@@ -34,6 +34,8 @@
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    maccel.url = "github:Gnarus-G/maccel";
   };
 
   outputs = {
