@@ -6,6 +6,16 @@
 }: let
   cfg = config.mimo.sway;
   inherit (config.lib.formats.rasi) mkLiteral;
+
+  sway-gaming-mode = pkgs.writeShellScript "sway-gaming-mode" ''
+    ${pkgs.sway}/bin/swaymsg '[instance="chat\.openai\.com"] kill'
+    ${pkgs.sway}/bin/swaymsg '[instance="kwidzinski\.net\.pl__apps_deck_board_4"] kill'
+    ${pkgs.sway}/bin/swaymsg '[app_id="signal"] kill'
+
+    if ! ${pkgs.procps}/bin/pgrep -x steam > /dev/null; then
+      steam &
+    fi
+  '';
 in {
   options.mimo.sway = {
     enable = lib.mkEnableOption "Sway window manager configuration";
@@ -231,6 +241,8 @@ in {
 
         assigns = {
           "1" = [{instance = "^brave-browser$";}];
+          "3" = [{class = "^steam$";}];
+          "4" = [{instance = "^Deadlock$";} {instance = "^Factorio$";}];
           "5" = [{app_id = "^signal$";}];
           "6" = [{class = "^discord$";}];
           "7" = [{instance = "^chat\\.openai\\.com$";}];
@@ -342,6 +354,9 @@ in {
             "XF86MonBrightnessUp" = "exec swayosd-client --brightness +10";
             "XF86MonBrightnessDown" = "exec swayosd-client --brightness -10";
 
+            # Gaming mode
+            "${cfg.mod}+Shift+g" = "exec ${sway-gaming-mode}";
+
             # System
             "${cfg.mod}+Shift+c" = "reload";
             "${cfg.mod}+Shift+e" = "exec sway-close-gracefully shutdown 10";
@@ -381,6 +396,8 @@ in {
 
       extraConfig = ''
         for_window [app_id="terminal"] move scratchpad
+        for_window [title="^Deadlock$"] fullscreen enable
+        for_window [title="^Factorio$"] fullscreen enable
 
         bindgesture swipe:3:left workspace next_on_output
         bindgesture swipe:3:right workspace prev_on_output
