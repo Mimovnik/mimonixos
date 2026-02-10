@@ -93,7 +93,6 @@ in {
       sway-contrib.grimshot # screenshot script
       mimo.sway-battery-notify # battery level notifications
       mimo.sway-close-gracefully # graceful sway session closer
-      mimo.sway-splash # splash screen utility
 
       # Audio/Volume control
       alsa-utils # aplay command for playing sound
@@ -230,6 +229,14 @@ in {
           titlebar = true;
         };
 
+        assigns = {
+          "1" = [{instance = "^brave-browser$";}];
+          "5" = [{app_id = "^signal$";}];
+          "6" = [{class = "^discord$";}];
+          "7" = [{instance = "^chat\\.openai\\.com$";}];
+          "8" = [{instance = "^kwidzinski\\.net\\.pl__apps_deck_board_4$";}];
+        };
+
         # Workspace output assignments
         workspaceOutputAssign = lib.mkIf (cfg.workspaceOutputs != {}) (
           lib.mapAttrsToList (workspace: output: {
@@ -241,58 +248,20 @@ in {
 
         startup = let
           webapps = config.mimo.webapps;
-          startupTime = 15; # seconds to wait for startup apps to open
-          startAppOnWorkspace = {
-            app,
-            title,
-            workspace,
-            launchDelay ? 0, # seconds to wait before launching the app
-          }: "sleep ${toString launchDelay} && ${app} & sleep ${toString (startupTime - launchDelay)} && swaymsg '[title=\"${title}\"] move workspace ${toString workspace}'";
+          # Delay webapps to ensure browser starts first and sets up gpu acceleration properly
+          delayedStart = cmd: "sleep 5 && ${cmd}";
         in [
-          {command = "sway-splash ${toString startupTime}";}
           {command = "waybar";}
           {command = "sway-battery-notify";}
           {command = "${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard regular";}
           {command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";}
 
-          {command = "${cfg.terminal} --app-id terminal & sleep ${toString startupTime} && swaymsg '[app_id=\"terminal\"] move scratchpad'";}
-          {
-            command = startAppOnWorkspace {
-              app = cfg.browser;
-              title = "Brave";
-              workspace = 1;
-            };
-          }
-          {
-            command = startAppOnWorkspace {
-              app = "signal-desktop";
-              title = "Signal";
-              workspace = 5;
-            };
-          }
-          {
-            command = startAppOnWorkspace {
-              app = webapps.chatgpt.exec;
-              title = "ChatGPT";
-              workspace = 6;
-              launchDelay = 2; # delay webapps so brave initializes with gpu support
-            };
-          }
-          {
-            command = startAppOnWorkspace {
-              app = "discord";
-              title = "Discord";
-              workspace = 7;
-            };
-          }
-          {
-            command = startAppOnWorkspace {
-              app = webapps.nextcloud-deck.exec;
-              title = "Deck";
-              workspace = 8;
-              launchDelay = 2; # delay webapps so brave initializes with gpu support
-            };
-          }
+          {command = "${cfg.terminal} --app-id terminal";}
+          {command = cfg.browser;}
+          {command = "signal-desktop";}
+          {command = delayedStart webapps.chatgpt.exec;}
+          {command = "discord";}
+          {command = delayedStart webapps.nextcloud-deck.exec;}
         ];
 
         # Keybindings
@@ -411,6 +380,8 @@ in {
       };
 
       extraConfig = ''
+        for_window [app_id="terminal"] move scratchpad
+
         bindgesture swipe:3:left workspace next_on_output
         bindgesture swipe:3:right workspace prev_on_output
         bindgesture swipe:3:up scratchpad show
