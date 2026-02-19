@@ -14,6 +14,8 @@ in {
       "${physical}".useDHCP = false;
       "${bridge}".useDHCP = true;
     };
+
+    firewall.checkReversePath = "loose";
   };
 
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
