@@ -62,6 +62,23 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   networking.firewall.enable = true;
 
+  services = {
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+
+      ipv6 = false;
+      nssmdns6 = true;
+
+      openFirewall = true;
+      publish = {
+        enable = true;
+        addresses = true;
+        workstation = true;
+      };
+    };
+  };
+
   # Bluetooth
   hardware.bluetooth = lib.mkDefault {
     enable = true;
