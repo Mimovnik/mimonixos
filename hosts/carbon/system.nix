@@ -20,6 +20,8 @@
     ../../modules/system/virtualisation/docker.nix
 
     ./adb-firewall.nix
+
+    ../../modules/system/binfmt
   ];
 
   hardware.bluetooth = {
