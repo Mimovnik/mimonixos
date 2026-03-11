@@ -36,6 +36,11 @@
     };
 
     maccel.url = "github:Gnarus-G/maccel";
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

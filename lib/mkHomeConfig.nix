@@ -11,6 +11,8 @@
     inherit system overlays;
     config.allowUnfree = true;
   };
+
+  nix-index-database = inputs.nix-index-database;
 in
   inputs.home-manager.lib.homeManagerConfiguration {
     inherit pkgs;
@@ -20,6 +22,8 @@ in
       {
         nix.package = pkgs.lixPackageSets.stable.lix;
       }
+
+      nix-index-database.homeModules.default
     ];
     extraSpecialArgs = {
       inherit inputs system username;
