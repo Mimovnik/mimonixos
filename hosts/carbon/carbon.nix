@@ -8,10 +8,8 @@
   username = "mimovnik";
 in {
   flake.nixosConfigurations.${hostname} = inputs.nixpkgs.lib.nixosSystem {
-    inherit system;
-
     specialArgs = {
-      inherit inputs self hostname username;
+      inherit system hostname username;
     };
 
     modules = [

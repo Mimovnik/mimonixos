@@ -1,18 +1,30 @@
 {
+  withSystem,
+  self,
+  inputs,
+  ...
+}: {
   flake.nixosModules.systemBase = {
-    self,
     pkgs,
-    inputs,
     lib,
+    system,
     hostname,
     username,
     ...
   }: {
     imports = [
+      inputs.nixpkgs.nixosModules.readOnlyPkgs
+
       self.nixosModules.systemCommonAuthorizedKeys
       self.nixosModules.systemCommonTailscale
       self.nixosModules.systemCommonMouseAccel
     ];
+
+    # Use the same nixpkgs as perSystem
+    # https://flake.parts/system.html
+    nixpkgs.pkgs = withSystem system (
+      {pkgs, ...}: pkgs
+    );
 
     # Services
     services = {
@@ -191,9 +203,6 @@
       clean.extraArgs = "--keep-since 31d --keep 6";
       flake = "/home/${username}/.mimonixos";
     };
-
-    nixpkgs.config.allowUnfree = true;
-    nixpkgs.overlays = import ../../../_overlays inputs;
 
     # System-wide packages
     environment.systemPackages = with pkgs; [

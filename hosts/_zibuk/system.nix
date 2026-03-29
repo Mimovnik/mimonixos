@@ -11,8 +11,6 @@
     ../../modules/system/virtualisation/docker.nix
   ];
 
-  nixpkgs.hostPlatform = lib.mkDefault system;
-
   wsl = {
     enable = true;
     defaultUser = "nixos";
