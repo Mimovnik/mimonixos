@@ -1,3 +1,5 @@
 {
-  hardware.opentabletdriver.enable = true;
+  flake.nixosModules.systemCommonOtd = {
+    hardware.opentabletdriver.enable = true;
+  };
 }

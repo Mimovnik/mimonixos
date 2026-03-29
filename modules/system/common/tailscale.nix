@@ -1,3 +1,5 @@
 {
-  services.tailscale.enable = true;
+  flake.nixosModules.systemCommonTailscale = {
+    services.tailscale.enable = true;
+  };
 }

@@ -1,15 +1,17 @@
 {
-  username,
-  pkgs,
-  ...
-}: {
-  programs.virt-manager.enable = true;
+  flake.nixosModules.systemVirtualisationLibvirt = {
+    username,
+    pkgs,
+    ...
+  }: {
+    programs.virt-manager.enable = true;
 
-  users.groups.libvirtd.members = ["${username}"];
+    users.groups.libvirtd.members = ["${username}"];
 
-  virtualisation.libvirtd.enable = true;
+    virtualisation.libvirtd.enable = true;
 
-  virtualisation.libvirtd.qemu.vhostUserPackages = [pkgs.virtiofsd];
+    virtualisation.libvirtd.qemu.vhostUserPackages = [pkgs.virtiofsd];
 
-  virtualisation.spiceUSBRedirection.enable = true;
+    virtualisation.spiceUSBRedirection.enable = true;
+  };
 }
