@@ -1,6 +1,7 @@
 {
   inputs,
   self,
+  withSystem,
   ...
 }: let
   hostname = "carbon";
@@ -44,6 +45,38 @@ in {
           };
         };
       }
+    ];
+  };
+
+  flake.homeConfigurations."${username}@${hostname}" = inputs.home-manager.lib.homeManagerConfiguration {
+    pkgs = withSystem system ({pkgs, ...}: pkgs);
+
+    extraSpecialArgs = {
+      inherit system username;
+    };
+
+    modules = [
+      inputs.nixvim.homeModules.nixvim
+      inputs.nix-index-database.homeModules.default
+
+      self.homeModules.homeBase
+      self.homeModules.homeShell
+      self.homeModules.homeNixvim
+      self.homeModules.homePrograms
+      self.homeModules.homeDesktopApps
+      self.homeModules.homeDesktopSway
+
+      ({pkgs, ...}: {
+        home.packages = with pkgs; [
+          auto-cpufreq
+          pika-backup
+        ];
+
+        mimo.sway = {
+          enable = true;
+          mod = "Mod1"; # Alt key
+        };
+      })
     ];
   };
 }

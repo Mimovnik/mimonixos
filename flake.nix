@@ -59,41 +59,4 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  #       homeConfigurations = {
-  #         "${username}@glados" = mkHomeConfig {
-  #           system = "x86_64-linux";
-  #           hostname = "glados";
-  #           inherit inputs username;
-  #         };
-  #         "${username}@walle" = mkHomeConfig {
-  #           system = "x86_64-linux";
-  #           hostname = "walle";
-  #           inherit inputs username;
-  #         };
-  #         "${username}@dryer" = mkHomeConfig {
-  #           system = "x86_64-linux";
-  #           hostname = "dryer";
-  #           inherit inputs username;
-  #         };
-  #         "${username}@carbon" = mkHomeConfig {
-  #           system = "x86_64-linux";
-  #           hostname = "carbon";
-  #           inherit inputs username;
-  #         };
-  #         "${username}@termi" = mkHomeConfig {
-  #           system = "x86_64-linux";
-  #           hostname = "termi";
-  #           inherit inputs username;
-  #         };
-  #         "nixos@zibuk" = mkHomeConfig {
-  #           system = "x86_64-linux";
-  #           hostname = "zibuk";
-  #           username = "nixos";
-  #           inherit inputs;
-  #         };
-  #       };
-  #
-  #       templates = import ./templates;
-  #     };
-  # }
 }

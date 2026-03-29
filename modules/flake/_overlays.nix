@@ -10,10 +10,10 @@ inputs: [
   # Custom packages overlay
   (final: _prev: {
     mimo = {
-      assets = final.callPackage ../pkgs/assets.nix {};
-      sway-volumectl = final.callPackage ../pkgs/sway-volumectl.nix {};
-      sway-battery-notify = final.callPackage ../pkgs/sway-battery-notify.nix {};
-      sway-close-gracefully = final.callPackage ../pkgs/sway-close-gracefully.nix {};
+      assets = final.callPackage ./_pkgs/assets.nix {};
+      sway-volumectl = final.callPackage ./_pkgs/sway-volumectl.nix {};
+      sway-battery-notify = final.callPackage ./_pkgs/sway-battery-notify.nix {};
+      sway-close-gracefully = final.callPackage ./_pkgs/sway-close-gracefully.nix {};
     };
   })
 
