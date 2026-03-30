@@ -27,13 +27,12 @@ in {
       ./_zfs.nix
       ./_nvidia.nix
       ./_adb-firewall.nix
+      ./_auto-cpufreq
 
       inputs.disko.nixosModules.disko
       inputs.maccel.nixosModules.default
 
       {
-        services.auto-cpufreq.enable = true;
-
         hardware.bluetooth = {
           settings = {
             General = {
