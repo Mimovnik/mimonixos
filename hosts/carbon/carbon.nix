@@ -32,6 +32,8 @@ in {
       inputs.maccel.nixosModules.default
 
       {
+        services.auto-cpufreq.enable = true;
+
         hardware.bluetooth = {
           settings = {
             General = {
@@ -68,7 +70,6 @@ in {
 
       ({pkgs, ...}: {
         home.packages = with pkgs; [
-          auto-cpufreq
           pika-backup
         ];
 
