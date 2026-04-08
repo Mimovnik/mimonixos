@@ -62,11 +62,13 @@
 
           zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
+          if [ -n "$SSH_AUTH_SOCK" ] && ! ssh-add -l >/dev/null 2>&1; then
+            ssh-add ~/.ssh/id_ed25519
+          fi
+
           bindkey  "^[[H"   beginning-of-line
           bindkey  "^[[F"   end-of-line
           bindkey  "^[[3~"  delete-char
-
-          eval $(keychain --eval --quiet);
 
           calc() {
             if [[ $# -lt 1 ]]; then
