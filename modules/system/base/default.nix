@@ -183,14 +183,17 @@
 
         substituters = [
           "https://cache.nixos.org"
-          "https://devenv.cachix.org"
-          "https://cosmic.cachix.org/"
+          "https://cache.dartkit.pl/dartkitos"
+        ];
+
+        trusted-substituters = [
+          "https://cache.nixos.org"
+          "https://cache.dartkit.pl/dartkitos"
         ];
 
         trusted-public-keys = [
           "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-          "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-          "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
+          "dartkitos:qbEVIC7PCAV2tfg+nUbUT9LqK30r6sdh9vOOcoiag40="
         ];
       };
     };
