@@ -184,16 +184,19 @@
         substituters = [
           "https://cache.nixos.org"
           "https://cache.dartkit.pl/dartkitos"
+          "https://nixos-raspberrypi.cachix.org"
         ];
 
         trusted-substituters = [
           "https://cache.nixos.org"
           "https://cache.dartkit.pl/dartkitos"
+          "https://nixos-raspberrypi.cachix.org"
         ];
 
         trusted-public-keys = [
           "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
           "dartkitos:qbEVIC7PCAV2tfg+nUbUT9LqK30r6sdh9vOOcoiag40="
+          "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
         ];
       };
     };
