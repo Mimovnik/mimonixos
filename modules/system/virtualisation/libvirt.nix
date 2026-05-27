@@ -8,10 +8,12 @@
 
     users.groups.libvirtd.members = ["${username}"];
 
-    virtualisation.libvirtd.enable = true;
-
-    virtualisation.libvirtd.qemu.vhostUserPackages = [pkgs.virtiofsd];
-
-    virtualisation.spiceUSBRedirection.enable = true;
+    virtualisation = {
+      libvirtd = {
+        enable = true;
+        qemu.vhostUserPackages = [pkgs.virtiofsd];
+      };
+      spiceUSBRedirection.enable = true;
+    };
   };
 }

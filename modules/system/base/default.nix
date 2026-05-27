@@ -54,30 +54,7 @@
 
       gvfs.enable = true;
       pulseaudio.enable = false;
-    };
 
-    systemd.services."getty@tty5".enable = true;
-
-    # Enable sound with pipewire.
-    security.rtkit.enable = true;
-
-    # Shell
-    programs.zsh.enable = true;
-    users.defaultUserShell = pkgs.zsh;
-
-    # Variables
-    environment.variables.EDITOR = "vim";
-
-    # Networking
-    networking.networkmanager.enable = true;
-    networking.hostName = hostname;
-    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-    # Open ports in the firewall.
-    # networking.firewall.allowedTCPPorts = [ ... ];
-    # networking.firewall.allowedUDPPorts = [ ... ];
-    networking.firewall.enable = true;
-
-    services = {
       avahi = {
         enable = true;
         nssmdns4 = true;
@@ -92,6 +69,45 @@
           workstation = true;
         };
       };
+    };
+
+    systemd.services."getty@tty5".enable = true;
+
+    # Enable sound with pipewire.
+    security.rtkit.enable = true;
+
+    # Shell
+    programs = {
+      zsh.enable = true;
+
+      nh = {
+        enable = true;
+        package = pkgs.nh;
+        clean.enable = true;
+        clean.extraArgs = "--keep-since 31d --keep 6";
+        flake = "/home/${username}/.mimonixos";
+      };
+
+      # For gtk apps
+      dconf.enable = true;
+
+      # https://github.com/nix-community/nix-ld
+      nix-ld.enable = true;
+    };
+    users.defaultUserShell = pkgs.zsh;
+
+    # Variables
+    environment.variables.EDITOR = "vim";
+
+    # Networking
+    networking = {
+      networkmanager.enable = true;
+      hostName = hostname;
+      # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+      # Open ports in the firewall.
+      # firewall.allowedTCPPorts = [ ... ];
+      # firewall.allowedUDPPorts = [ ... ];
+      firewall.enable = true;
     };
 
     # Bluetooth
@@ -201,15 +217,6 @@
       };
     };
 
-    # Nix helper
-    programs.nh = {
-      enable = true;
-      package = pkgs.nh;
-      clean.enable = true;
-      clean.extraArgs = "--keep-since 31d --keep 6";
-      flake = "/home/${username}/.mimonixos";
-    };
-
     # System-wide packages
     environment.systemPackages = with pkgs; [
       vim
@@ -266,12 +273,6 @@
 
     # Security
     security.polkit.enable = true;
-
-    # For gtk apps
-    programs.dconf.enable = true;
-
-    # https://github.com/nix-community/nix-ld
-    programs.nix-ld.enable = true;
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions

@@ -8,19 +8,12 @@
 
   outputs = inputs @ {
     self,
-    nixpkgs,
     flake-parts,
     ...
   }:
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin"];
-      perSystem = {
-        config,
-        lib,
-        system,
-        pkgs,
-        ...
-      }: let
+      perSystem = {system, ...}: let
         pkgs = import self.inputs.nixpkgs {
           inherit system;
           config.allowUnfree = true;

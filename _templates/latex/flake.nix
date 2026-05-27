@@ -8,7 +8,6 @@
 
   outputs = inputs @ {
     self,
-    nixpkgs,
     flake-parts,
     ...
   }:

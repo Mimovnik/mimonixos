@@ -96,25 +96,33 @@
 
     config = lib.mkIf cfg.enable {
       # Packages needed for Sway setup
-      home.packages = with pkgs; [
-        # Base packages
-        xdg-utils # for xdg-open etc.
-        playerctl # for controlling media player apps
-        wl-clipboard # wayland clipboard management
-        sway-contrib.grimshot # screenshot script
-        mimo.sway-battery-notify # battery level notifications
-        mimo.sway-close-gracefully # graceful sway session closer
+      home = {
+        packages = with pkgs; [
+          # Base packages
+          xdg-utils # for xdg-open etc.
+          playerctl # for controlling media player apps
+          wl-clipboard # wayland clipboard management
+          sway-contrib.grimshot # screenshot script
+          mimo.sway-battery-notify # battery level notifications
+          mimo.sway-close-gracefully # graceful sway session closer
 
-        # Audio/Volume control
-        alsa-utils # aplay command for playing sound
-        mimo.sway-volumectl # Shell script to extend play sound when controlling volume
+          # Audio/Volume control
+          alsa-utils # aplay command for playing sound
+          mimo.sway-volumectl # Shell script to extend play sound when controlling volume
 
-        # Waybar packages
-        wiremix # tui for pipewire volume control
-      ];
+          # Waybar packages
+          wiremix # tui for pipewire volume control
+        ];
 
-      # GTK theme and cursor settings
-      home.sessionVariables.GTK_THEME = "Materia-dark";
+        # GTK theme and cursor settings
+        sessionVariables.GTK_THEME = "Materia-dark";
+
+        pointerCursor = {
+          name = "Bibata-Modern-Ice";
+          package = pkgs.bibata-cursors;
+          size = 22;
+        };
+      };
 
       gtk = {
         enable = true;
@@ -139,12 +147,6 @@
         };
       };
 
-      home.pointerCursor = {
-        name = "Bibata-Modern-Ice";
-        package = pkgs.bibata-cursors;
-        size = 22;
-      };
-
       # MIME app associations
       xdg.mimeApps = let
         setForAll = mimeApp: mimeTypes: lib.attrsets.genAttrs mimeTypes (_: mimeApp);
@@ -167,37 +169,39 @@
       };
 
       # Services
-      services.swaync = {
-        enable = true;
-        settings = {
-          "$schema" = "${pkgs.swaynotificationcenter}/etc/xdg/swaync/configSchema.json";
-          notification-inline-replies = true;
-          positionX = "right";
-          positionY = "top";
-          widgets = ["title" "dnd" "notifications" "mpris" "volume"];
-          widget-config = {
-            title = {
-              text = "Notifications";
-              clear-all-button = true;
-              button-text = "󰩹";
-            };
-            dnd.text = "Do Not Disturb";
-            mpris.blur = true;
-            volume = {
-              label = "󰓃";
-              show-per-app = false;
+      services = {
+        swaync = {
+          enable = true;
+          settings = {
+            "$schema" = "${pkgs.swaynotificationcenter}/etc/xdg/swaync/configSchema.json";
+            notification-inline-replies = true;
+            positionX = "right";
+            positionY = "top";
+            widgets = ["title" "dnd" "notifications" "mpris" "volume"];
+            widget-config = {
+              title = {
+                text = "Notifications";
+                clear-all-button = true;
+                button-text = "󰩹";
+              };
+              dnd.text = "Do Not Disturb";
+              mpris.blur = true;
+              volume = {
+                label = "󰓃";
+                show-per-app = false;
+              };
             };
           };
         };
-      };
 
-      services.swayosd = {
-        enable = true;
-        topMargin = 0.1;
-      };
+        swayosd = {
+          enable = true;
+          topMargin = 0.1;
+        };
 
-      services.udiskie.enable = true;
-      services.playerctld.enable = true;
+        udiskie.enable = true;
+        playerctld.enable = true;
+      };
 
       # Sway window manager configuration
       wayland.windowManager.sway = {
@@ -253,14 +257,13 @@
           # Workspace output assignments
           workspaceOutputAssign = lib.mkIf (cfg.workspaceOutputs != {}) (
             lib.mapAttrsToList (workspace: output: {
-              workspace = workspace;
-              output = output;
+              inherit workspace output;
             })
             cfg.workspaceOutputs
           );
 
           startup = let
-            webapps = config.mimo.webapps;
+            inherit (config.mimo) webapps;
             # Delay webapps to ensure browser starts first and sets up gpu acceleration properly
             delayedStart = cmd: "sleep 5 && ${cmd}";
           in [

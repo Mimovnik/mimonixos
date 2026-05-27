@@ -3,7 +3,6 @@
 # to /etc/nixos/configuration.nix instead.
 {
   lib,
-  pkgs,
   modulesPath,
   ...
 }: {
@@ -11,10 +10,14 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["ahci" "ohci_pci" "ehci_pci" "xhci_pci" "usb_storage" "usbhid" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
+  boot = {
+    initrd = {
+      availableKernelModules = ["ahci" "ohci_pci" "ehci_pci" "xhci_pci" "usb_storage" "usbhid" "sd_mod"];
+      kernelModules = [];
+    };
+    kernelModules = ["kvm-amd"];
+    extraModulePackages = [];
+  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

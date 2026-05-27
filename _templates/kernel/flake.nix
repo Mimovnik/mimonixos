@@ -11,7 +11,7 @@
   }: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
-    kernel = pkgs.linuxPackages.kernel; # Replace with your desired kernel version
+    inherit (pkgs.linuxPackages) kernel; # Replace with your desired kernel version
   in {
     # Package for building the kernel module
     packages.${system}.default = pkgs.stdenv.mkDerivation {
