@@ -144,7 +144,7 @@ Somewhere in the nixos module add
 ```nix
 users.users.${username}.openssh.authorizedKeys.keys = [
   "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKdW1UbkbF0p1yTBh2CKv//RsDvot07/t7AtdNGeAsx/ mimo@glados"
-  "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPb0nrIl2mNjcXMmYWIMalZUGb9Kv/1htsLtqA8hYC/F mimovnik@walle"
+  "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEnVkTng/GTwCjsC24ALN09Poarxct0npERMip/XttL9 mimovnik@carbon"
 ];
 ```
 or import `modules/system/common/authorized-keys.nix`
@@ -191,7 +191,7 @@ ssh root@$TARGET
 
 5. Run nixos-anywhere
 ```bash
-CONFIG="samurai-tv"
+CONFIG="carbon"
 TARGET=192.168.0.5
 nix run github:nix-community/nixos-anywhere -- --generate-hardware-config nixos-generate-config ~/.mimonixos/hosts/$CONFIG/hardware-configuration.nix --flake ~/.mimonixos#$CONFIG --target-host root@$TARGET
 ```
@@ -214,7 +214,7 @@ nix run home-manager/release-25.05 -- init --switch
 home-manager switch --flake ~/.mimonixos#${USER}@$CONFIG
 ```
 
-Example of such configuration is in `hosts/samurai-tv`
+Example of such configuration is in `hosts/carbon`
 > [!NOTE]
 > I didn't have hardware-configuration.nix before running nixos-anywhere
 > Although I imported it in system.nix

@@ -33,8 +33,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-
     nixvim = {
       url = "github:nix-community/nixvim/nixos-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
