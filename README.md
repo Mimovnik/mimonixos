@@ -2,6 +2,27 @@
 
 Collection of my NixOS configs
 
+## Structure
+
+I use various patterns and frameworks throughout the repository.
+
+flake-parts, import-tree, dendritic pattern:
+- avoid relative imports like `imports = [ ../../path/to/module.nix ]`
+- decouple the file location from references
+- private files convention `_dir/` and `_file.nix` that don't need to follow the dendritic pattern
+
+NixOS:
+- provide options for system-wide configuration
+- boot, kernel, hardware, services, users, programs
+
+home-manager:
+- provide options for user configuration
+- home directory, themes, programs
+
+nix-wrapper-modules:
+- can wrap binaries to bundle their configs
+- useful when you need multiple flavors of the same program
+
 ## Quick Start
 
 For detailed installation instructions, see [INSTALLATION.md](./INSTALLATION.md).
