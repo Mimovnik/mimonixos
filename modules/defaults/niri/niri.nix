@@ -111,8 +111,10 @@
 
       "config.kdl".content = ''
         layout {
+            background-color "#000000"
+
             gaps 12
-            center-focused-column "on-overflow"
+            center-focused-column "never"
 
             focus-ring {
                 width 3
@@ -124,6 +126,8 @@
                 off
             }
         }
+
+        prefer-no-csd
 
         cursor {
             xcursor-theme "Bibata-Modern-Ice"
@@ -137,12 +141,29 @@
                     options "caps:escape"
                 }
             }
+
+            mouse {
+                accel-speed -0.5
+                accel-profile "flat"
+            }
         }
 
+<<<<<<< HEAD
+=======
+        clipboard {
+            disable-primary
+        }
+
+        environment {
+            NIXOS_OZONE_WL "1"
+            ELECTRON_OZONE_PLATFORM_HINT "auto"
+        }
+
+>>>>>>> 08fcef4 (fix: fixup niri)
         spawn-at-startup "${noctalia}"
-        spawn-at-startup "${lib.getExe pkgs.brave}"
-        spawn-at-startup "${lib.getExe pkgs.discord}"
-        spawn-at-startup "${lib.getExe pkgs.signal-desktop}"
+        spawn-sh-at-startup "sleep 2 && ${lib.getExe pkgs.brave}"
+        spawn-sh-at-startup "sleep 2 && ${lib.getExe pkgs.discord}"
+        spawn-sh-at-startup "sleep 2 && ${lib.getExe pkgs.signal-desktop}"
 
         xwayland-satellite {
             path "${lib.getExe pkgs.xwayland-satellite}"
@@ -154,6 +175,23 @@
 
         window-rule {
             open-maximized true
+        }
+
+        window-rule {
+            match app-id=r#"^kitty$"#
+            open-maximized false
+            default-column-width { proportion 0.5; }
+        }
+
+        window-rule {
+            // Match bitwarden extenstion
+            // <brave prefix>-<extension id>-<profile name>
+            match app-id=r#"^brave-nngceckbapebfimnlniiiahkandclblb-.*$"#
+
+            open-focused true
+            open-floating true
+            default-column-width { fixed 448; }
+            default-window-height { fixed 620; }
         }
 
         window-rule {
