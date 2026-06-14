@@ -135,6 +135,7 @@
           name = "Materia-dark";
           package = pkgs.materia-theme;
         };
+        gtk4.theme = config.gtk.theme;
         iconTheme = {
           name = "Papirus";
           package = pkgs.papirus-icon-theme;
