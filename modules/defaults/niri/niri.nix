@@ -148,8 +148,6 @@
             }
         }
 
-<<<<<<< HEAD
-=======
         clipboard {
             disable-primary
         }
@@ -159,7 +157,6 @@
             ELECTRON_OZONE_PLATFORM_HINT "auto"
         }
 
->>>>>>> 08fcef4 (fix: fixup niri)
         spawn-at-startup "${noctalia}"
         spawn-sh-at-startup "sleep 2 && ${lib.getExe pkgs.brave}"
         spawn-sh-at-startup "sleep 2 && ${lib.getExe pkgs.discord}"
