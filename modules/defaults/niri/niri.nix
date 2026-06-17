@@ -144,6 +144,19 @@
                 }
             }
 
+            touchpad {
+                drag true
+                drag-lock
+                natural-scroll
+                accel-speed 0.2
+                accel-profile "adaptive"
+                scroll-method "two-finger"
+                scroll-factor 0.8
+                tap-button-map "left-right-middle"
+                click-method "clickfinger"
+                middle-emulation
+            }
+
             mouse {
                 accel-speed -0.5
                 accel-profile "flat"

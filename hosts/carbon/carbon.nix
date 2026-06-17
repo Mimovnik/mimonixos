@@ -16,7 +16,7 @@ in {
     modules = [
       self.nixosModules.systemBase
       self.nixosModules.systemBoot
-      self.nixosModules.systemDesktopSway
+      self.nixosModules.systemDesktopNiri
       self.nixosModules.systemCommonHostnames
       self.nixosModules.systemSteam
       self.nixosModules.systemVirtualisationDocker
@@ -33,6 +33,8 @@ in {
       inputs.maccel.nixosModules.default
 
       {
+        defaults.niri.enable = true;
+
         hardware.bluetooth = {
           settings = {
             General = {
@@ -45,6 +47,8 @@ in {
             };
           };
         };
+
+        services.upower.enable = true;
       }
     ];
   };
@@ -65,17 +69,11 @@ in {
       self.homeModules.homeNixvim
       self.homeModules.homePrograms
       self.homeModules.homeDesktopApps
-      self.homeModules.homeDesktopSway
 
       ({pkgs, ...}: {
         home.packages = with pkgs; [
           pika-backup
         ];
-
-        mimo.sway = {
-          enable = true;
-          mod = "Mod1"; # Alt key
-        };
       })
     ];
   };
