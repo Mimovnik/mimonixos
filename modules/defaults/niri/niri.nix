@@ -104,6 +104,8 @@
     noctalia = "${noctalia-shell}/bin/noctalia-shell";
     noctalia-shell = inputs.nix-wrapper-modules.wrappers.noctalia-shell.wrap {
       inherit pkgs;
+
+      settings = lib.fromJSON (lib.readFile ./noctalia-settings.json);
     };
 
     niri = inputs.nix-wrapper-modules.wrappers.niri.wrap {
