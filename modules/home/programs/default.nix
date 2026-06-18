@@ -6,6 +6,7 @@
       ./_kitty
       ./_yazi.nix
       ./_ssh.nix
+      ./_agents.nix
     ];
 
     home.packages = with pkgs; [
