@@ -32,7 +32,7 @@
 
     {
       mode = "n";
-      key = "<C-n>";
+      key = "<leader>n";
       action = "<cmd>Lspsaga diagnostic_jump_next<CR>";
       options = {
         desc = "Go to next diagnostic";
@@ -41,7 +41,7 @@
 
     {
       mode = "n";
-      key = "<C-p>";
+      key = "<leader>p";
       action = "<cmd>Lspsaga diagnostic_jump_prev<CR>";
       options = {
         desc = "Go to previous diagnostic";
@@ -187,6 +187,20 @@
       options = {
         desc = "Show git commits and diff preview";
       };
+    }
+
+    {
+      mode = "n";
+      key = "<C-n>";
+      action = "<cmd>lua require('gitsigns').nav_hunk('next', { target = 'all' })<CR>";
+      options.desc = "Go to next git hunk";
+    }
+
+    {
+      mode = "n";
+      key = "<C-p>";
+      action = "<cmd>lua require('gitsigns').nav_hunk('prev', { target = 'all' })<CR>";
+      options.desc = "Go to previous git hunk";
     }
 
     # Comments
