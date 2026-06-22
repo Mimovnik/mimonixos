@@ -24,8 +24,6 @@
     ignores = [
       ".envrc"
       ".direnv/"
-      "flake.nix"
-      "flake.lock"
     ];
   };
 
