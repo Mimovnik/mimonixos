@@ -9,6 +9,7 @@
         enable = true;
         ignore = true;
       };
+      filters.dotfiles = true;
     };
   };
 }
