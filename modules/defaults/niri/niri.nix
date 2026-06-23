@@ -174,8 +174,8 @@
 
         spawn-at-startup "${noctalia}"
         spawn-sh-at-startup "sleep 2 && ${lib.getExe pkgs.brave}"
-        spawn-sh-at-startup "sleep 2 && ${lib.getExe pkgs.discord}"
         spawn-sh-at-startup "sleep 2 && ${lib.getExe pkgs.signal-desktop}"
+        spawn-sh-at-startup "sleep 2 && ${lib.getExe pkgs.discord}"
 
         xwayland-satellite {
             path "${lib.getExe pkgs.xwayland-satellite}"
@@ -212,9 +212,13 @@
         }
 
         window-rule {
-            match at-startup=true app-id=r#"^discord$"#
             match at-startup=true app-id=r#"^signal$"#
             open-on-workspace "6"
+        }
+
+        window-rule {
+            match at-startup=true app-id=r#"^discord$"#
+            open-on-workspace "7"
         }
 
         binds {
