@@ -82,7 +82,8 @@
         enable = true;
         package = pkgs.nh;
         clean.enable = true;
-        clean.extraArgs = "--keep-since 31d --keep 6";
+        # TODO: Replace --no-gcroots with --no-direnv once nh releases it.
+        clean.extraArgs = "--keep-since 31d --keep 6 --no-gcroots";
         flake = "/home/${username}/.mimonixos";
       };
 
