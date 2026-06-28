@@ -30,6 +30,7 @@
       gnome-disk-utility
       nextcloud-client
       thunderbird
+      orca-slicer
     ];
   };
 }
