@@ -18,6 +18,7 @@
       self.nixosModules.systemCommonAuthorizedKeys
       self.nixosModules.systemCommonTailscale
       self.nixosModules.systemCommonMouseAccel
+      self.nixosModules.systemCommonAudioPriority
     ];
 
     # Use the same nixpkgs as perSystem
