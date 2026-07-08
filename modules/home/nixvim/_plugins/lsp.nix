@@ -7,11 +7,9 @@
         extraOptions.filetypes = ["cpp" "c" "arduino"];
       };
 
-      nil_ls = {
+      nixd = {
         enable = true;
-        settings.nil = {
-          formatting.command = ["alejandra"];
-        };
+        settings.nixd.formatting.command = ["alejandra"];
       };
 
       basedpyright.enable = true;

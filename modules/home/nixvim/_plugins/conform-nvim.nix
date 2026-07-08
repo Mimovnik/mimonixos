@@ -18,7 +18,7 @@
         ino = ["clang-format"];
         "_" = ["trim_whitespace"];
       };
-      default_format_opts.lsp_format = "first";
+      default_format_opts.lsp_format = "fallback";
     };
   };
   extraPackages = with pkgs; [
