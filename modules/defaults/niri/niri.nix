@@ -379,8 +379,7 @@
             Mod+Ctrl+Shift+R { switch-preset-window-height; }
             Mod+Ctrl+R { reset-window-height; }
 
-            Mod+Shift+E { quit; }
-            Ctrl+Alt+Delete { quit; }
+            Mod+Shift+E hotkey-overlay-title="Session Menu" { spawn "${noctalia}" "ipc" "call" "sessionMenu" "toggle"; }
         }
       '';
     };
