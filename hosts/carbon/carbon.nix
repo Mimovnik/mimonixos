@@ -33,7 +33,55 @@ in {
       inputs.maccel.nixosModules.default
 
       {
-        defaults.niri.enable = true;
+        defaults.niri = let
+          # Obtain with `niri msg outputs` or `niri msg focused-output`
+          mainMonitor = "eDP-1";
+          scndMonitor = "DP-1";
+        in {
+          enable = true;
+
+          workspaces = {
+            "1".output = mainMonitor;
+            "2".output = mainMonitor;
+            "3".output = mainMonitor;
+            "4".output = mainMonitor;
+            "5".output = mainMonitor;
+
+            "6".output = scndMonitor;
+            "7".output = scndMonitor;
+            "8".output = scndMonitor;
+            "9".output = scndMonitor;
+            "10".output = scndMonitor;
+          };
+
+          kanshi.profiles = {
+            "00-laptop-external" = {
+              config = ''
+                output "${mainMonitor}" {
+                    enable
+                    position 0,0
+                    scale 2
+                }
+
+                output "*" {
+                    enable
+                    position 1920,0
+                    scale 1
+                }
+              '';
+            };
+
+            "99-laptop" = {
+              config = ''
+                output "${mainMonitor}" {
+                    enable
+                    position 0,0
+                    scale 2
+                }
+              '';
+            };
+          };
+        };
 
         hardware.bluetooth = {
           settings = {

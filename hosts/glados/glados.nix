@@ -56,19 +56,21 @@ in {
             "10".output = scndMonitor;
           };
 
-          extraConfig = ''
-            output "${mainMonitor}" {
-                mode "2560x1440"
-                scale 1
-                position x=0 y=0
-            }
+          kanshi.profiles.glados = {
+            config = ''
+              output "${mainMonitor}" {
+                  mode 2560x1440
+                  scale 1
+                  position 0,0
+              }
 
-            output "${scndMonitor}" {
-                mode "1920x1080"
-                scale 1
-                position x=2560 y=0
-            }
-          '';
+              output "${scndMonitor}" {
+                  mode 1920x1080
+                  scale 1
+                  position 2560,0
+              }
+            '';
+          };
         };
 
         powerManagement.cpuFreqGovernor = "performance";

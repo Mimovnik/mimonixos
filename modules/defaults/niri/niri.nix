@@ -46,6 +46,22 @@
         default = "";
         description = "Host-specific niri KDL appended to the generated config.";
       };
+
+      kanshi.profiles = lib.mkOption {
+        type = lib.types.attrsOf (
+          lib.types.submodule {
+            options = {
+              config = lib.mkOption {
+                type = lib.types.lines;
+                default = "";
+                description = "Kanshi profile directives.";
+              };
+            };
+          }
+        );
+        default = {};
+        description = "Kanshi profiles started with the niri session.";
+      };
     };
 
     config = lib.mkIf cfg.enable {
@@ -76,9 +92,33 @@
         };
       };
 
+      systemd.user.services.kanshi = lib.mkIf (cfg.kanshi.profiles != {}) {
+        description = "Dynamic output configuration";
+        wantedBy = ["graphical-session.target"];
+        partOf = ["graphical-session.target"];
+        after = ["graphical-session.target"];
+
+        serviceConfig = let
+          kanshiConfig = pkgs.writeText "kanshi-config" ''
+            ${lib.concatStringsSep "\n" (
+              lib.mapAttrsToList (name: profile: ''
+                profile ${builtins.toJSON name} {
+                ${profile.config}
+                }
+              '')
+              cfg.kanshi.profiles
+            )}
+          '';
+        in {
+          ExecStart = "${pkgs.kanshi}/bin/kanshi -c ${kanshiConfig}";
+          Restart = "on-failure";
+        };
+      };
+
       environment.systemPackages = [
         cfg.package
         pkgs.bibata-cursors
+        pkgs.kanshi
         pkgs.xwayland-satellite
         pkgs.tuigreet
       ];
@@ -311,6 +351,11 @@
             Mod+Ctrl+Shift+J { move-column-to-monitor-down; }
             Mod+Ctrl+Shift+K { move-column-to-monitor-up; }
             Mod+Ctrl+Shift+L { move-column-to-monitor-right; }
+
+            Mod+Alt+Shift+Left { move-workspace-to-monitor-left; }
+            Mod+Alt+Shift+Right { move-workspace-to-monitor-right; }
+            Mod+Alt+Shift+H { move-workspace-to-monitor-left; }
+            Mod+Alt+Shift+L { move-workspace-to-monitor-right; }
 
             Mod+U { focus-workspace-down; }
             Mod+I { focus-workspace-up; }
