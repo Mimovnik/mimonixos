@@ -17,6 +17,13 @@ inputs: [
     };
   })
 
+  # Python 3.13 argparse now quotes invalid choices, which breaks commitizen's golden-output test.
+  (_final: prev: {
+    commitizen = prev.commitizen.overridePythonAttrs (old: {
+      disabledTests = (old.disabledTests or []) ++ ["test_invalid_command"];
+    });
+  })
+
   # niri's current PipeWire screencast path is dmabuf-only. Some Electron
   # clients, including Discord/Vesktop, need SHM fallback to negotiate video.
   (_final: prev: {
