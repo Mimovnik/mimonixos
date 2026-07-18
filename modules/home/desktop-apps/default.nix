@@ -31,6 +31,7 @@
       nextcloud-client
       thunderbird
       orca-slicer
+      vlc
     ];
   };
 }
