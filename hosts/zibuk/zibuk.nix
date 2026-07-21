@@ -18,19 +18,12 @@ in {
 
       inputs.nixos-wsl.nixosModules.default
 
-      ({lib, ...}: {
+      {
         wsl = {
           enable = true;
           defaultUser = username;
         };
-
-        # WSL manages networking; desktop/audio services are pointless here.
-        networking.networkmanager.enable = lib.mkForce false;
-        services.printing.enable = lib.mkForce false;
-        services.pipewire.enable = lib.mkForce false;
-        services.avahi.enable = lib.mkForce false;
-        hardware.bluetooth.enable = lib.mkForce false;
-      })
+      }
     ];
   };
 

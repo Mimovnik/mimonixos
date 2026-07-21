@@ -4,9 +4,11 @@
   inputs,
   ...
 }: {
+  # Shared by every NixOS config, WSL and bare-metal Linux alike.
+  # Bare-metal/desktop-only bits live in systemLinuxBase; WSL-only bits
+  # live in the host (hosts/zibuk/zibuk.nix).
   flake.nixosModules.systemBase = {
     pkgs,
-    lib,
     system,
     hostname,
     username,
@@ -17,7 +19,6 @@
 
       self.nixosModules.systemCommonAuthorizedKeys
       self.nixosModules.systemCommonTailscale
-      self.nixosModules.systemCommonAudioPriority
     ];
 
     # Use the same nixpkgs as perSystem
@@ -27,52 +28,10 @@
     );
 
     # Services
-    services = {
-      printing.enable = true;
-
-      openssh = {
-        enable = true;
-        settings.PasswordAuthentication = false;
-      };
-
-      dbus.enable = true;
-
-      pipewire = {
-        enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-        # If you want to use JACK applications, uncomment this
-        #jack.enable = true;
-      };
-
-      udisks2 = {
-        enable = true;
-      };
-
-      gvfs.enable = true;
-      pulseaudio.enable = false;
-
-      avahi = {
-        enable = true;
-        nssmdns4 = true;
-
-        ipv6 = false;
-        nssmdns6 = true;
-
-        openFirewall = true;
-        publish = {
-          enable = true;
-          addresses = true;
-          workstation = true;
-        };
-      };
+    services.openssh = {
+      enable = true;
+      settings.PasswordAuthentication = false;
     };
-
-    systemd.services."getty@tty5".enable = true;
-
-    # Enable sound with pipewire.
-    security.rtkit.enable = true;
 
     # Shell
     programs = {
@@ -87,9 +46,6 @@
         flake = "/home/${username}/.mimonixos";
       };
 
-      # For gtk apps
-      dconf.enable = true;
-
       # https://github.com/nix-community/nix-ld
       nix-ld.enable = true;
     };
@@ -100,31 +56,13 @@
 
     # Networking
     networking = {
-      networkmanager.enable = true;
       hostName = hostname;
-      # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
       # Open ports in the firewall.
       # firewall.allowedTCPPorts = [ ... ];
       # firewall.allowedUDPPorts = [ ... ];
       firewall.enable = true;
     };
 
-    # Bluetooth
-    hardware.bluetooth = lib.mkDefault {
-      enable = true;
-      powerOnBoot = true;
-
-      settings = {
-        General = {
-          ControllerMode = "dual";
-          Experimental = true;
-          FastConnectable = true;
-        };
-        Policy = {
-          AutoEnable = true;
-        };
-      };
-    };
     # Users
     ## Don't forget to set a password with ‘passwd’.
     users.users.${username} = {
@@ -224,10 +162,7 @@
       just
       ripgrep
       nix-tree
-      pulseaudio
       home-manager
-      mesa-demos
-      vulkan-tools
       alejandra
       nixd
       usbutils
@@ -248,30 +183,6 @@
       LC_TELEPHONE = "pl_PL.UTF-8";
       LC_TIME = "pl_PL.UTF-8";
     };
-
-    # Fonts
-    fonts = {
-      packages = with pkgs; [
-        # icon fonts
-        material-design-icons
-        # normal fonts
-        noto-fonts
-        noto-fonts-cjk-sans
-        noto-fonts-color-emoji
-        # nerdfonts
-        nerd-fonts.jetbrains-mono
-      ];
-      enableDefaultPackages = false;
-      fontconfig.defaultFonts = {
-        serif = ["Noto Serif" "Noto Color Emoji"];
-        sansSerif = ["Noto Sans" "Noto Color Emoji"];
-        monospace = ["JetBrainsMono Nerd Font" "Noto Color Emoji"];
-        emoji = ["Noto Color Emoji"];
-      };
-    };
-
-    # Security
-    security.polkit.enable = true;
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions

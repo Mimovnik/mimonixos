@@ -14,7 +14,7 @@ in {
     };
 
     modules = [
-      self.nixosModules.systemBase
+      self.nixosModules.systemLinuxBase
       self.nixosModules.systemBoot
       self.nixosModules.systemAmdGpu
       self.nixosModules.systemDesktopNiri
