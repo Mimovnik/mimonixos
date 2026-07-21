@@ -21,6 +21,7 @@ in {
       self.nixosModules.systemSteam
       self.nixosModules.systemVirtualisationDocker
       self.nixosModules.systemBinfmt
+      self.nixosModules.systemCommonMouseAccel
 
       ./_hardware-configuration.nix
       ./_disko-config.nix
@@ -30,7 +31,6 @@ in {
       ./_auto-cpufreq
 
       inputs.disko.nixosModules.disko
-      inputs.maccel.nixosModules.default
 
       {
         defaults.niri = let

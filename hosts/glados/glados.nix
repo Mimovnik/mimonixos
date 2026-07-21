@@ -26,13 +26,13 @@ in {
       self.nixosModules.systemVirtualisationIncus
       self.nixosModules.systemCommonOtd
       self.nixosModules.systemBinfmt
+      self.nixosModules.systemCommonMouseAccel
 
       ./_hardware-configuration.nix
       ./_disko-config.nix
       ./_zfs.nix
 
       inputs.disko.nixosModules.disko
-      inputs.maccel.nixosModules.default
 
       {
         defaults.niri = let

@@ -1,9 +1,11 @@
-{
+{inputs, ...}: {
   flake.nixosModules.systemCommonMouseAccel = {
     pkgs,
     username,
     ...
   }: {
+    imports = [inputs.maccel.nixosModules.default];
+
     # Enable ratbagd and piper for mouse configuration management (dpi, buttons, leds)
     services.ratbagd.enable = true;
     environment.systemPackages = with pkgs; [piper];
