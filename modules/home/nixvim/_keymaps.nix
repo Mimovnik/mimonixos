@@ -257,6 +257,15 @@
       };
     }
 
+    {
+      mode = "n";
+      key = "<leader>y";
+      action = "<cmd>Yazi<cr>";
+      options = {
+        desc = "Open yazi";
+      };
+    }
+
     #BufferLine
     {
       mode = "n";

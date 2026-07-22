@@ -15,6 +15,7 @@
     ./telescope.nix
     ./toggleterm.nix
     ./treesitter.nix
+    ./yazi.nix
   ];
 
   plugins = {
