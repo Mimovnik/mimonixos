@@ -1,7 +1,11 @@
 {inputs, ...}: {
-  perSystem = {pkgs, ...}: {
+  perSystem = {
+    pkgs,
+    system,
+    ...
+  }: {
     pre-commit = {
-      check.enable = true;
+      check.enable = system == "x86_64-linux";
 
       settings.hooks = {
         # Common
