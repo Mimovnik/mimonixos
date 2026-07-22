@@ -137,8 +137,10 @@
   perSystem = {
     pkgs,
     lib,
+    system,
     ...
   }: let
+    isX86Linux = system == "x86_64-linux";
     terminal = "${lib.getExe pkgs.kitty}";
 
     noctalia = "${noctalia-shell}/bin/noctalia-shell";
@@ -383,8 +385,9 @@
         }
       '';
     };
-  in {
-    packages.noctalia-shell = noctalia-shell;
-    packages.niri = niri;
-  };
+  in
+    lib.optionalAttrs isX86Linux {
+      packages.noctalia-shell = noctalia-shell;
+      packages.niri = niri;
+    };
 }

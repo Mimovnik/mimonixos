@@ -35,7 +35,7 @@
         flake-check = {
           enable = true;
           name = "flake check";
-          entry = "${pkgs.nix}/bin/nix flake check";
+          entry = "${pkgs.nix}/bin/nix flake check --all-systems";
           pass_filenames = false;
           stages = ["pre-push"];
         };
