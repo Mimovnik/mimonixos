@@ -15,7 +15,7 @@
 
       freecad
       unityhub
-      godot
+      unstable.godot
       vorta
       obs-studio
       firefox
