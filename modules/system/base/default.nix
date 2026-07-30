@@ -74,12 +74,21 @@
 
     # Nix
     nix = {
-      package = pkgs.lixPackageSets.stable.lix;
+      package = pkgs.lixPackageSets.latest.lix;
 
       settings = {
-        experimental-features = "nix-command flakes";
+        experimental-features = [
+          "nix-command"
+          "flakes"
+          "auto-allocate-uids"
+          "cgroups"
+        ];
 
         max-jobs = "auto";
+
+        auto-allocate-uids = true;
+        use-cgroups = true;
+        extra-system-features = ["uid-range"];
 
         # Make legacy nix commands use the XDG base directories instead of creating directories in $HOME.
         use-xdg-base-directories = true;
@@ -152,6 +161,13 @@
           "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
         ];
       };
+    };
+
+    # Required by Lix cgroups/uid-range support.
+    # https://docs.lix.systems/manual/lix/stable/release-notes/rl-2.94.html#new-cgroup-delegation-model
+    systemd.services.nix-daemon.serviceConfig = {
+      Delegate = true;
+      DelegateSubtree = "supervisor";
     };
 
     # System-wide packages
