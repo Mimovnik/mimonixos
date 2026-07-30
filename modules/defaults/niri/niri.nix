@@ -141,7 +141,16 @@
     ...
   }: let
     isX86Linux = system == "x86_64-linux";
-    terminal = "${lib.getExe pkgs.kitty}";
+
+    open-terminal = pkgs.writeShellScriptBin "niri-open-terminal" ''
+      focused_pid="$(${lib.getExe pkgs.niri} msg --json focused-window 2>/dev/null | ${lib.getExe pkgs.jq} -r '.pid // empty' 2>/dev/null || true)"
+
+      if [ -n "$focused_pid" ]; then
+        ${lib.getExe pkgs.kitty} @ --to "unix:@mimonixos-kitty-$focused_pid" launch --type=os-window --source-window state:focused --cwd=current >/dev/null 2>&1 && exit 0
+      fi
+
+      exec ${lib.getExe pkgs.kitty} --directory "$HOME"
+    '';
 
     noctalia = "${noctalia-shell}/bin/noctalia-shell";
     noctalia-shell = inputs.nix-wrapper-modules.wrappers.noctalia-shell.wrap {
@@ -289,7 +298,7 @@
             Mod+Ctrl+0 { move-column-to-workspace "10"; }
 
 
-            Mod+T hotkey-overlay-title="Open a Terminal" { spawn "${terminal}"; }
+            Mod+T hotkey-overlay-title="Open a Terminal" { spawn "${lib.getExe open-terminal}"; }
             Mod+D hotkey-overlay-title="Run an Application" { spawn "${noctalia}" "ipc" "call" "launcher" "toggle"; }
             Mod+Shift+O repeat=false { toggle-overview; }
 

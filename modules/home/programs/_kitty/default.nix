@@ -25,9 +25,12 @@
 
     settings = {
       background_opacity = "0.99";
+      allow_remote_control = "socket-only";
       enable_audio_bell = false;
+      listen_on = "unix:@mimonixos-kitty";
       tab_bar_edge = "top";
       scrollback_pager = "~/.config/kitty/nvim-pager.sh 'INPUT_LINE_NUMBER' 'CURSOR_LINE' 'CURSOR_COLUMN'";
+      single_instance = true;
     };
   };
 }
