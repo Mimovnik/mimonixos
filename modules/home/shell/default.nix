@@ -1,9 +1,17 @@
 {
   flake.homeModules.homeShell = {
     config,
+    lib,
     pkgs,
     ...
-  }: {
+  }: let
+    zshPerProjectHistory = pkgs.fetchFromGitHub {
+      owner = "ivan-cukic";
+      repo = "zsh-per-project-history";
+      rev = "c7009249fb37f4e5c207e8f2348567756b522ec0";
+      hash = "sha256-HQ3EvNGTS5zZrO+UwP0jXh/ogyllpF2VQ14cmKtNJx4=";
+    };
+  in {
     home.packages = with pkgs; [
       file
       which
@@ -55,45 +63,52 @@
           MANPAGER = "nvim +Man!";
         };
 
-        initContent = ''
-          POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true;
+        initContent = lib.mkMerge [
+          (lib.mkOrder 500 ''
+            HISTORY_BASE="''${XDG_STATE_HOME:-$HOME/.local/state}/zsh/project-history"
+            PER_PROJECT_HISTORY_TAGS=(.git .envrc .per_project_history)
+            PER_PROJECT_HISTORY_TOGGLE='^G'
+          '')
+          (lib.mkOrder 1000 ''
+            POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true;
 
-          unset SSH_ASKPASS;
+            unset SSH_ASKPASS;
 
-          zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+            zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
-          if [ -n "$SSH_AUTH_SOCK" ] && ! ssh-add -l >/dev/null 2>&1; then
-            ssh-add ~/.ssh/id_ed25519
-          fi
-
-          bindkey  "^[[H"   beginning-of-line
-          bindkey  "^[[F"   end-of-line
-          bindkey  "^[[3~"  delete-char
-
-          calc() {
-            if [[ $# -lt 1 ]]; then
-              echo "Error: Too many args. Usage: `calc "2 * 2"`. Remember to use double quotes."
-              return 1
-            fi
-            echo "scale=2; $1" | bc
-          }
-
-          deploy-nixos() {
-            local config_dir=$1
-
-            if [ -z $2 ]; then
-              echo "usage: mimdeploy <host> [address=host]"
-              return 1
+            if [ -n "$SSH_AUTH_SOCK" ] && ! ssh-add -l >/dev/null 2>&1; then
+              ssh-add ~/.ssh/id_ed25519
             fi
 
-            local host=$2
-            local address=$3
-            if [ -z $3 ]; then
-              address=$host
-            fi
-            nixos-rebuild switch --flake $config_dir#$host --target-host root@$address
-          }
-        '';
+            bindkey  "^[[H"   beginning-of-line
+            bindkey  "^[[F"   end-of-line
+            bindkey  "^[[3~"  delete-char
+
+            calc() {
+              if [[ $# -lt 1 ]]; then
+                echo "Error: Too many args. Usage: `calc "2 * 2"`. Remember to use double quotes."
+                return 1
+              fi
+              echo "scale=2; $1" | bc
+            }
+
+            deploy-nixos() {
+              local config_dir=$1
+
+              if [ -z $2 ]; then
+                echo "usage: mimdeploy <host> [address=host]"
+                return 1
+              fi
+
+              local host=$2
+              local address=$3
+              if [ -z $3 ]; then
+                address=$host
+              fi
+              nixos-rebuild switch --flake $config_dir#$host --target-host root@$address
+            }
+          '')
+        ];
 
         shellAliases = let
           configDir = "~/.mimonixos";
@@ -132,6 +147,11 @@
         };
 
         plugins = [
+          {
+            name = "zsh-per-project-history";
+            src = zshPerProjectHistory;
+            file = "per-project-history.zsh";
+          }
           {
             name = "powerlevel10k";
             src = pkgs.zsh-powerlevel10k;
