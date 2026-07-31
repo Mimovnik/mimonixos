@@ -58,7 +58,6 @@ pre-commit install
 ```
 
 The following checks are configured:
-- **Conventional Commits**: Enforces commit message format
 - **Alejandra**: Nix code formatting
 - **File checks**: Trailing whitespace, end-of-file, large files, etc.
 - **Data formats**: JSON, YAML, TOML validation and formatting

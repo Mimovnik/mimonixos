@@ -31,11 +31,6 @@
         # Git
         check-merge-conflicts.enable = true;
 
-        commitizen = {
-          enable = true;
-          stages = ["commit-msg"];
-        };
-
         flake-check = {
           enable = true;
           name = "flake check";
