@@ -53,8 +53,8 @@ This repository uses pre-commit hooks to maintain code quality. To set up the de
 # Enter the development shell
 nix develop
 
-# Install pre-commit hooks
-pre-commit install
+# Install git hooks
+prek install
 ```
 
 The following checks are configured:

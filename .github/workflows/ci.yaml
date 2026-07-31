@@ -27,7 +27,7 @@ jobs:
       - name: Setup Magic Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@v8
       - name: Run pre-commit checks
-        run: nix develop --command pre-commit run --all-files
+        run: nix develop --command prek run --all-files
   evaluate-outputs:
     runs-on: ubuntu-latest
     outputs:
