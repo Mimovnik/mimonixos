@@ -8,7 +8,7 @@
       check.enable = system == "x86_64-linux";
 
       settings = {
-        package = pkgs.prek;
+        package = pkgs.unstable.prek;
 
         hooks = {
           # Common
@@ -40,6 +40,7 @@
             entry = "${pkgs.nix}/bin/nix flake check --all-systems";
             pass_filenames = false;
             stages = ["pre-push"];
+            verbose = true;
           };
 
           # Nix
