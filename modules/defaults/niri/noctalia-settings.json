@@ -153,7 +153,7 @@
         },
         {
           "deviceNativePath": "__default__",
-          "displayMode": "graphic-clean",
+          "displayMode": "graphic",
           "hideIfIdle": false,
           "hideIfNotDetected": true,
           "id": "Battery",
@@ -182,7 +182,7 @@
           "diskPath": "/",
           "iconColor": "none",
           "id": "SystemMonitor",
-          "showCpuCores": false,
+          "showCpuCores": true,
           "showCpuFreq": false,
           "showCpuTemp": true,
           "showCpuUsage": true,

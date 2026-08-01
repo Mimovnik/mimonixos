@@ -156,6 +156,7 @@
     noctalia-shell = inputs.nix-wrapper-modules.wrappers.noctalia-shell.wrap {
       inherit pkgs;
 
+      # , noctalia-shell ipc call state all | jq .settings > noctalia-settings.json
       settings = lib.fromJSON (lib.readFile ./noctalia-settings.json);
     };
 
