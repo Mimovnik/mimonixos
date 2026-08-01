@@ -9,7 +9,7 @@
         (inputs.import-tree ./modules)
       ];
 
-      systems = import inputs.systems;
+      systems = ["x86_64-linux"];
 
       flake.templates = import ./_templates;
     };
@@ -47,8 +47,6 @@
       url = "github:shazow/wifitui";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    systems.url = "github:nix-systems/default";
 
     pre-commit-hooks = {
       url = "github:cachix/git-hooks.nix";
