@@ -24,11 +24,9 @@ inputs: [
       patches =
         (old.patches or [])
         ++ [
-          (prev.fetchpatch {
-            name = "niri-shm-screencast-26.04.patch";
-            url = "https://github.com/wrvsrx/niri/compare/tag_support-shm-sharing_4~19..tag_support-shm-sharing_4.patch";
-            hash = "sha256-mfX0CVJWSFb/Hr1lDvlggphpXc2PI6C5CBa+aGwkVIM=";
-          })
+          # SHM screencast fallback patch contributed by wrvsrx:
+          # https://github.com/wrvsrx/niri/compare/8ed0da44d974c32c6877d2f4630c314da0717ecb..2ab59b90d55afbbe362a63e2a061afe4b524d8c4.patch
+          ./_patches/niri-shm-screencast-26.04.patch
         ];
     });
   })
