@@ -10,6 +10,7 @@
       setup = true;
       settings.order = 1500;
     };
+    plugins.vcs-files = pkgs.yaziPlugins.vcs-files;
 
     settings.plugin.prepend_fetchers = [
       {
@@ -34,6 +35,11 @@
       {
         on = ["<Esc>"];
         run = "quit";
+      }
+      {
+        on = ["g" "c"];
+        run = "plugin vcs-files";
+        desc = "Show Git file changes";
       }
     ];
   };
