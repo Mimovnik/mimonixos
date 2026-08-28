@@ -1,6 +1,6 @@
 {
+  getSystem,
   inputs,
-  self,
   ...
 }: {
   flake.nixosModules.systemDesktopNiri = {
@@ -11,6 +11,7 @@
     ...
   }: let
     cfg = config.defaults.niri;
+    systemConfig = getSystem pkgs.stdenv.hostPlatform.system;
   in {
     imports = [
       ./_login.nix
@@ -22,7 +23,7 @@
 
       package = lib.mkOption {
         type = lib.types.package;
-        default = self.packages.${pkgs.stdenv.hostPlatform.system}.niri;
+        default = systemConfig.packages.niri;
         readOnly = true;
         description = "Wrapped niri package used by this desktop module.";
       };
@@ -112,6 +113,32 @@
         in {
           ExecStart = "${pkgs.kanshi}/bin/kanshi -c ${kanshiConfig}";
           Restart = "on-failure";
+        };
+      };
+
+      systemd.user.services.noctalia-shell = {
+        description = "Noctalia shell";
+        wantedBy = ["graphical-session.target"];
+        partOf = ["graphical-session.target"];
+        after = [
+          "graphical-session.target"
+          "niri.service"
+        ];
+        environment = {
+          XDG_DATA_HOME = "%h/.local/share";
+          XDG_DATA_DIRS = "%h/.nix-profile/share:/run/current-system/sw/share";
+        };
+        path = [
+          "%h/.nix-profile"
+          config.system.path
+          pkgs.bash
+          pkgs.systemd
+        ];
+
+        serviceConfig = {
+          ExecStart = lib.getExe systemConfig.packages.noctalia-shell;
+          Restart = "on-failure";
+          RestartSec = "2s";
         };
       };
 
@@ -224,7 +251,7 @@
             ELECTRON_OZONE_PLATFORM_HINT "auto"
         }
 
-        spawn-at-startup "${noctalia}"
+        spawn-sh-at-startup "${lib.getExe' pkgs.systemd "systemctl"} --user import-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_ID XDG_SESSION_TYPE NIRI_SOCKET PATH XDG_DATA_DIRS"
         spawn-sh-at-startup "sleep 2 && ${lib.getExe pkgs.brave}"
         spawn-sh-at-startup "sleep 2 && ${lib.getExe pkgs.signal-desktop}"
         spawn-sh-at-startup "sleep 2 && ${lib.getExe pkgs.discord}"
