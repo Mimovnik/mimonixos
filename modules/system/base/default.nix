@@ -40,9 +40,11 @@
       nh = {
         enable = true;
         package = pkgs.nh;
-        clean.enable = true;
-        # TODO: Replace --no-gcroots with --no-direnv once nh releases it.
-        clean.extraArgs = "--keep-since 31d --keep 6 --no-gcroots";
+        clean = {
+          enable = true;
+          dates = "weekly";
+          extraArgs = "--keep 3 --keep-since 14d --keep-one";
+        };
         flake = "/home/${username}/.mimonixos";
       };
 
@@ -108,8 +110,8 @@
         # When free disk space in /nix/store drops below min-free during a build, Nix performs a
         # garbage-collection until max-free bytes are available or there is no more garbage.
         # A value of 0 (the default) disables this feature.
-        min-free = 128000000; # 128 MB
-        max-free = 1000000000; # 1 GB
+        min-free = 20 * 1024 * 1024 * 1024; # 20 GiB
+        max-free = 40 * 1024 * 1024 * 1024; # 40 GiB
 
         # Prevent garbage collection from altering nix-shells managed by nix-direnv
         # https://github.com/nix-community/nix-direnv#installation
