@@ -131,17 +131,16 @@
         # It corresponds to curl’s –connect-timeout option. A value of 0 means no limit.
         connect-timeout = 5;
 
-        # Allow the use of cachix
         trusted-users = [
-          "root"
           "mimovnik"
         ];
 
         builders-use-substitutes = true;
+        always-allow-substitutes = true;
 
         # If set to true, Nix will fall back to building from source if a binary substitute
         # fails. This is equivalent to the –fallback flag. The default is false.
-        fallback = true;
+        fallback = false;
 
         substituters = [
           "https://cache.nixos.org"

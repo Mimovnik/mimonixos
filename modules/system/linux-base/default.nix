@@ -9,6 +9,7 @@
   }: {
     imports = [
       self.nixosModules.systemBase
+      self.nixosModules.nixBuilders
       self.nixosModules.systemCommonAudioPriority
     ];
 
