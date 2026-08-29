@@ -191,7 +191,7 @@
 
     {
       mode = "n";
-      key = "<leader>gs";
+      key = "<C-g>";
       action = "<cmd>Telescope git_status<CR>";
       options = {
         desc = "Show git status (with diff preview)";
