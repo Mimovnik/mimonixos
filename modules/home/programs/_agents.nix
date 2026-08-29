@@ -4,7 +4,7 @@
   # command = "mcp-nixos"
   # type = "stdio"
   home.packages = with pkgs; [
-    codex
+    unstable.codex
     mcp-nixos
   ];
 }
