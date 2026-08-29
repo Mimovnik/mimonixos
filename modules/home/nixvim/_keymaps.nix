@@ -130,10 +130,10 @@
 
     {
       mode = "n";
-      key = "<leader>fb";
-      action = "<cmd>Telescope buffers<CR>";
+      key = "<leader>fm";
+      action = "<cmd>Telescope marks<CR>";
       options = {
-        desc = "Find buffers";
+        desc = "Find marks";
       };
     }
 
@@ -263,45 +263,6 @@
       action = "<cmd>Yazi<cr>";
       options = {
         desc = "Open yazi";
-      };
-    }
-
-    #BufferLine
-    {
-      mode = "n";
-      key = "<Tab>";
-      action = "<cmd>BufferLineCycleNext<cr>";
-      options = {
-        desc = "Cycle to next buffer";
-      };
-    }
-
-    {
-      mode = "n";
-      key = "<S-Tab>";
-      action = "<cmd>BufferLineCyclePrev<cr>";
-      options = {
-        desc = "Cycle to previous buffer";
-      };
-    }
-
-    # Bufdelete
-    {
-      mode = "n";
-      key = "<leader>x";
-      action = "<cmd>Bdelete<cr>";
-      options = {
-        desc = "Delete current buffer";
-      };
-    }
-
-    # nvim-tree
-    {
-      mode = "n";
-      key = "<leader>e";
-      action = "<cmd>NvimTreeToggle<cr>";
-      options = {
-        desc = "Toggle file explorer";
       };
     }
 

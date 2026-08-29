@@ -1,7 +1,5 @@
 {...}: {
   imports = [
-    ./bufdelete.nix
-    ./bufferline.nix
     ./cmp.nix
     ./conform-nvim.nix
     ./copilot.nix
@@ -11,7 +9,6 @@
     ./lualine.nix
     ./neogen.nix
     ./notify.nix
-    ./nvim-tree.nix
     ./telescope.nix
     ./toggleterm.nix
     ./treesitter.nix
