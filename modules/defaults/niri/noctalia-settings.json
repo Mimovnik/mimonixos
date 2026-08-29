@@ -32,7 +32,7 @@
     "spectrumFrameRate": 30,
     "spectrumMirrored": true,
     "visualizerType": "linear",
-    "volumeFeedback": false,
+    "volumeFeedback": true,
     "volumeFeedbackSoundFile": "",
     "volumeOverdrive": false,
     "volumeStep": 5
@@ -273,10 +273,7 @@
           "id": "Bluetooth"
         },
         {
-          "id": "WallpaperSelector"
-        },
-        {
-          "id": "NoctaliaPerformance"
+          "id": "AirplaneMode"
         }
       ],
       "right": [
@@ -284,13 +281,10 @@
           "id": "Notifications"
         },
         {
-          "id": "PowerProfile"
+          "id": "NightLight"
         },
         {
           "id": "KeepAwake"
-        },
-        {
-          "id": "NightLight"
         }
       ]
     }
