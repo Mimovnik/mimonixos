@@ -130,6 +130,24 @@
 
     {
       mode = "n";
+      key = "<leader>fi";
+      action = "<cmd>Telescope find_files hidden=true no_ignore=true<CR>";
+      options = {
+        desc = "Find files including ignored";
+      };
+    }
+
+    {
+      mode = "n";
+      key = "<leader>fp";
+      action = "<cmd>Telescope find_files cwd=plan hidden=true no_ignore=true<CR>";
+      options = {
+        desc = "Find plan files";
+      };
+    }
+
+    {
+      mode = "n";
       key = "<leader>fm";
       action = "<cmd>Telescope marks<CR>";
       options = {
