@@ -1,4 +1,7 @@
-inputs: [
+{
+  inputs,
+  flakeRoot,
+}: [
   # Unstable packages overlay
   (_final: _prev: {
     unstable = import inputs.nixpkgs-unstable {
@@ -10,7 +13,7 @@ inputs: [
   # Custom packages overlay
   (final: _prev: {
     mimo = {
-      assets = final.callPackage ./_pkgs/assets.nix {};
+      assets = final.callPackage ./_pkgs/assets.nix {inherit flakeRoot;};
       sway-volumectl = final.callPackage ./_pkgs/sway-volumectl.nix {};
       sway-battery-notify = final.callPackage ./_pkgs/sway-battery-notify.nix {};
       sway-close-gracefully = final.callPackage ./_pkgs/sway-close-gracefully.nix {};

@@ -4,6 +4,8 @@
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake {inherit inputs;}
     {
+      _module.args.flakeRoot = ./.;
+
       imports = [
         (inputs.import-tree ./hosts)
         (inputs.import-tree ./modules)
