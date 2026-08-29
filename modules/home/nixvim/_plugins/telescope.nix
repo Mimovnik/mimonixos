@@ -21,4 +21,21 @@
       # };
     };
   };
+
+  extraConfigLua = ''
+    local telescope_actions = require("telescope.actions")
+
+    require("telescope").setup({
+      defaults = {
+        mappings = {
+          i = {
+            ["<Esc>"] = telescope_actions.close,
+          },
+          n = {
+            ["<Esc>"] = telescope_actions.close,
+          },
+        },
+      },
+    })
+  '';
 }
