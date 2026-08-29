@@ -179,6 +179,43 @@
       exec ${lib.getExe pkgs.kitty} --directory "$HOME"
     '';
 
+    move-workspace-group = pkgs.writeShellScriptBin "niri-move-workspace-group" ''
+      direction="''${1:-}"
+      shift || true
+
+      case "$direction" in
+        left|right) ;;
+        *)
+          echo "Usage: niri-move-workspace-group <left|right> <workspace>..." >&2
+          exit 64
+          ;;
+      esac
+
+      workspaces_json="$(${lib.getExe pkgs.niri} msg --json workspaces)"
+      focused_workspace_id="$(printf '%s\n' "$workspaces_json" | ${lib.getExe pkgs.jq} -r '.[] | select(.is_focused) | .id // empty')"
+
+      focus_workspace_id() {
+        printf '{"Action":{"FocusWorkspace":{"reference":{"Id":%s}}}}\n' "$1" \
+          | ${lib.getExe pkgs.socat} - "UNIX-CONNECT:$NIRI_SOCKET" >/dev/null
+      }
+
+      target_index=1
+      for workspace in "$@"; do
+        workspace_id="$(printf '%s\n' "$workspaces_json" | ${lib.getExe pkgs.jq} -r --arg name "$workspace" '.[] | select(.name == $name) | .id // empty')"
+
+        if [ -n "$workspace_id" ] \
+          && focus_workspace_id "$workspace_id" \
+          && ${lib.getExe pkgs.niri} msg action "move-workspace-to-monitor-$direction"; then
+          ${lib.getExe pkgs.niri} msg action move-workspace-to-index "$target_index"
+          target_index=$((target_index + 1))
+        fi
+      done
+
+      if [ -n "$focused_workspace_id" ]; then
+        focus_workspace_id "$focused_workspace_id"
+      fi
+    '';
+
     noctalia = "${noctalia-shell}/bin/noctalia-shell";
     noctalia-shell = inputs.nix-wrapper-modules.wrappers.noctalia-shell.wrap {
       inherit pkgs;
@@ -391,10 +428,10 @@
             Mod+Ctrl+Shift+K { move-column-to-monitor-up; }
             Mod+Ctrl+Shift+L { move-column-to-monitor-right; }
 
-            Mod+Alt+Shift+Left { move-workspace-to-monitor-left; }
-            Mod+Alt+Shift+Right { move-workspace-to-monitor-right; }
-            Mod+Alt+Shift+H { move-workspace-to-monitor-left; }
-            Mod+Alt+Shift+L { move-workspace-to-monitor-right; }
+            Mod+Alt+H hotkey-overlay-title="Move Workspaces 1-5 to Left Monitor" { spawn "${lib.getExe move-workspace-group}" "left" "1" "2" "3" "4" "5"; }
+            Mod+Alt+L hotkey-overlay-title="Move Workspaces 1-5 to Right Monitor" { spawn "${lib.getExe move-workspace-group}" "right" "1" "2" "3" "4" "5"; }
+            Mod+Alt+Shift+H hotkey-overlay-title="Move Workspaces 6-10 to Left Monitor" { spawn "${lib.getExe move-workspace-group}" "left" "6" "7" "8" "9" "10"; }
+            Mod+Alt+Shift+L hotkey-overlay-title="Move Workspaces 6-10 to Right Monitor" { spawn "${lib.getExe move-workspace-group}" "right" "6" "7" "8" "9" "10"; }
 
             Mod+U { focus-workspace-down; }
             Mod+I { focus-workspace-up; }
