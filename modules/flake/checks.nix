@@ -8,6 +8,8 @@
       check.enable = system == "x86_64-linux";
 
       settings = {
+        default_stages = ["pre-commit" "pre-push"];
+
         package = pkgs.unstable.prek;
 
         hooks = {
