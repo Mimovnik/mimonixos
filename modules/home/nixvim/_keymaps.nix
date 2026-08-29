@@ -210,14 +210,14 @@
     {
       mode = "n";
       key = "<C-n>";
-      action = "<cmd>lua require('gitsigns').nav_hunk('next', { target = 'all' })<CR>";
+      action = "<cmd>lua require('gitsigns').nav_hunk('next', { target = 'all' })<CR>zz";
       options.desc = "Go to next git hunk";
     }
 
     {
       mode = "n";
       key = "<C-p>";
-      action = "<cmd>lua require('gitsigns').nav_hunk('prev', { target = 'all' })<CR>";
+      action = "<cmd>lua require('gitsigns').nav_hunk('prev', { target = 'all' })<CR>zz";
       options.desc = "Go to previous git hunk";
     }
 
