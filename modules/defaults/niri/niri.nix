@@ -173,7 +173,19 @@
       focused_pid="$(${lib.getExe pkgs.niri} msg --json focused-window 2>/dev/null | ${lib.getExe pkgs.jq} -r '.pid // empty' 2>/dev/null || true)"
 
       if [ -n "$focused_pid" ]; then
-        ${lib.getExe pkgs.kitty} @ --to "unix:@mimonixos-kitty-$focused_pid" launch --type=os-window --source-window state:focused --cwd=current >/dev/null 2>&1 && exit 0
+        kitty_to="unix:@mimonixos-kitty-$focused_pid"
+        focused_window_json="$(${lib.getExe pkgs.kitty} @ --to "$kitty_to" ls --match state:focused 2>/dev/null || true)"
+        local_cwd="$(printf '%s\n' "$focused_window_json" | ${lib.getExe pkgs.jq} -r '
+          [
+            .[]?.tabs[]?.windows[]?
+            | select(.is_focused == true)
+            | .cwd // empty
+          ][0] // empty
+        ')"
+
+        if [ -n "$local_cwd" ] && [ -d "$local_cwd" ]; then
+          ${lib.getExe pkgs.kitty} @ --to "$kitty_to" launch --type=os-window --cwd="$local_cwd" >/dev/null 2>&1 && exit 0
+        fi
       fi
 
       exec ${lib.getExe pkgs.kitty} --directory "$HOME"
