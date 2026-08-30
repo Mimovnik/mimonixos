@@ -22,10 +22,6 @@
       bitwarden-cli
       sshpass
       bc
-      (pkgs.fetchgit {
-        url = "https://github.com/Mimovnik/NeedSsh.git";
-        sha256 = "sha256-ElwaE7C8MlVhwgnzyIbkl2fCqfWBe6CtmgzYHdZgeNU=";
-      })
       lsof
       nix-output-monitor
     ];
@@ -91,22 +87,6 @@
               fi
               echo "scale=2; $1" | bc
             }
-
-            deploy-nixos() {
-              local config_dir=$1
-
-              if [ -z $2 ]; then
-                echo "usage: mimdeploy <host> [address=host]"
-                return 1
-              fi
-
-              local host=$2
-              local address=$3
-              if [ -z $3 ]; then
-                address=$host
-              fi
-              nixos-rebuild switch --flake $config_dir#$host --target-host root@$address
-            }
           '')
         ];
 
@@ -131,20 +111,10 @@
           grbm = "git rebase -i origin/main";
           grbc = "git rebase --continue";
 
-          trash = "mv ~/Trash";
-
           ssh = "kitten ssh";
 
           mimv = "cd ${configDir} && vim";
           mimvim = "cd ${configDir} && vim";
-
-          mimd = "deploy-nixos ${configDir}";
-          mimdeploy = "deploy-nixos ${configDir}";
-
-          mimup = "sudo nix flake update --flake ${configDir}";
-          mimupdate = "sudo nix flake update --flake ${configDir}";
-
-          flet = "flutter";
         };
 
         plugins = [
