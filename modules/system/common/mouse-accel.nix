@@ -15,7 +15,7 @@
       enableCli = true; # Optional: for parameter discovery
 
       parameters = {
-        inputDpi = 400.0;
+        inputDpi = 800.0;
         sensMultiplier = 1.0;
         yxRatio = 1.0;
         angleRotation = 0.0;
