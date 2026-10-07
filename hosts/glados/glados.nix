@@ -74,6 +74,20 @@ in {
         };
 
         powerManagement.cpuFreqGovernor = "performance";
+
+        services.pipewire.wireplumber.extraConfig."disable-fifine-output" = {
+          "monitor.alsa.rules" = [
+            {
+              matches = [
+                {
+                  "media.class" = "Audio/Sink";
+                  "node.description" = "fifine Microphone Analog Stereo";
+                }
+              ];
+              actions.update-props."node.disabled" = true;
+            }
+          ];
+        };
       }
     ];
   };
