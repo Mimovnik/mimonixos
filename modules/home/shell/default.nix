@@ -76,9 +76,17 @@
               ssh-add ~/.ssh/id_ed25519
             fi
 
-            bindkey  "^[[H"   beginning-of-line
-            bindkey  "^[[F"   end-of-line
-            bindkey  "^[[3~"  delete-char
+            bindkey -M emacs "^[[H" beginning-of-line
+            bindkey -M emacs "^[OH" beginning-of-line
+            bindkey -M emacs "^[[1~" beginning-of-line
+            bindkey -M emacs "^[[F" end-of-line
+            bindkey -M emacs "^[OF" end-of-line
+            bindkey -M emacs "^[[4~" end-of-line
+            bindkey -M emacs "^[[1;5D" backward-word
+            bindkey -M emacs "^[Od" backward-word
+            bindkey -M emacs "^[[1;5C" forward-word
+            bindkey -M emacs "^[Oc" forward-word
+            bindkey -M emacs "^[[3~" delete-char
 
             calc() {
               if [[ $# -lt 1 ]]; then
