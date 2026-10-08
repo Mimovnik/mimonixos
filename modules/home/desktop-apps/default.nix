@@ -7,6 +7,15 @@
       ./_vscode
     ];
 
+    # Make the cursor theme visible to sandboxed desktop applications such as Steam.
+    xdg.dataFile = {
+      "icons/Bibata-Modern-Ice".source = "${pkgs.bibata-cursors}/share/icons/Bibata-Modern-Ice";
+      "icons/default/index.theme".text = ''
+        [Icon Theme]
+        Inherits=Bibata-Modern-Ice
+      '';
+    };
+
     # Programs that are useful only in desktop environment (so not in wsl for example)
     home.packages = with pkgs; [
       pavucontrol
