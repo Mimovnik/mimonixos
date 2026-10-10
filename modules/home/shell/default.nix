@@ -95,6 +95,35 @@
               fi
               echo "scale=2; $1" | bc
             }
+
+            grev() {
+              local branch="$1"
+              local selected commit
+
+              if [[ -z "$branch" ]]; then
+                echo "usage: grev <branch>"
+                return 1
+              fi
+
+              git rev-parse --is-inside-work-tree >/dev/null || return 1
+
+              if [[ -n "$(git status --porcelain)" ]]; then
+                echo "grev requires a clean worktree and staging area"
+                return 1
+              fi
+
+              git switch "$branch" || return 1
+
+              selected="$(
+                git log --reverse --format='%h %s' "origin/main..$branch" |
+                  fzf --prompt='Review commit: '
+              )" || return 1
+
+              commit="''${selected%% *}"
+
+              git switch --detach "$commit^" &&
+                git cherry-pick --no-commit "$commit"
+            }
           '')
         ];
 
