@@ -140,7 +140,7 @@
           gca = "git commit --amend";
           gcan = "git commit --amend --no-edit";
           gl = "git log --all --decorate --oneline --graph";
-          glo = "git log --decorate --oneline --graph origin/main...@";
+          glo = "git log --decorate --oneline --graph origin/main..@";
           gsw = "git switch";
           grs = "git restore";
           grss = "git restore --staged";
