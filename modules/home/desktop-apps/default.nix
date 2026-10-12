@@ -32,6 +32,7 @@
       discord
       brave
       signal-desktop
+      element-desktop
       anki
       krita
       onlyoffice-desktopeditors
