@@ -27,6 +27,7 @@ in {
       self.nixosModules.systemCommonOtd
       self.nixosModules.systemBinfmt
       self.nixosModules.systemCommonMouseAccel
+      self.nixosModules.systemCommonRivalcfg
 
       ./_hardware-configuration.nix
       ./_disko-config.nix
