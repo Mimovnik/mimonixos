@@ -74,6 +74,8 @@ in {
           };
         };
 
+        hardware.keyboard.qmk.enable = true;
+
         powerManagement.cpuFreqGovernor = "performance";
 
         services.pipewire.wireplumber.extraConfig."disable-fifine-output" = {
