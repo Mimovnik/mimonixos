@@ -1,0 +1,6 @@
+interface:
+  display_name: Review Change Quality
+  short_description: Check maintainability and repo consistency
+  default_prompt: Review the given change for readability, maintainability, documentation, and repository-wide consistency.
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,6 @@
+interface:
+  display_name: Review Change Risks
+  short_description: Find edge cases and architectural flaws
+  default_prompt: Review the given change for edge cases, correctness risks, and architectural flaws.
+policy:
+  allow_implicit_invocation: false

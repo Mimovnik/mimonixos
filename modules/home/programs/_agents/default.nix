@@ -1,5 +1,15 @@
 {pkgs, ...}: {
-  home.file.".codex/AGENTS.md".source = ./human-in-the-loop-mode.md;
+  home.file = {
+    ".codex/AGENTS.md".source = ./human-in-the-loop-mode.md;
+    ".agents/skills/review-risks" = {
+      source = ./skills/review-risks;
+      recursive = true;
+    };
+    ".agents/skills/review-quality" = {
+      source = ./skills/review-quality;
+      recursive = true;
+    };
+  };
 
   # Currently needed in CODEX_HOME/config.toml for Codex to connect:
   # [mcp_servers.nixos]
