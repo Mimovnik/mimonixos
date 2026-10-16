@@ -1,4 +1,13 @@
 {
+  autoCmd = [
+    {
+      event = "FileType";
+      pattern = "gitcommit";
+      command = "setlocal textwidth=70";
+      desc = "Wrap commit message descriptions at 70 characters";
+    }
+  ];
+
   opts = {
     number = true;
     relativenumber = true;
