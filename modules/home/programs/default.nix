@@ -24,6 +24,7 @@
       gh
 
       # tui
+      aerc
       htop
       btop
       bluetui
