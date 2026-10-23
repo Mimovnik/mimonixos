@@ -19,6 +19,7 @@
 
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
+      branch.autoSetupMerge = "simple";
     };
 
     ignores = [
