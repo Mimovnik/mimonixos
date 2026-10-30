@@ -7,6 +7,9 @@
     ".agents/skills/review-quality" = {
       source = ./skills/review-quality;
     };
+    ".agents/skills/landscape" = {
+      source = ./skills/landscape;
+    };
   };
 
   # Currently needed in CODEX_HOME/config.toml for Codex to connect:
