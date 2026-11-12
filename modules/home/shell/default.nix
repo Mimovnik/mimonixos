@@ -152,6 +152,8 @@
 
           mimv = "cd ${configDir} && vim";
           mimvim = "cd ${configDir} && vim";
+
+          ts = "tailscale";
         };
 
         plugins = [
