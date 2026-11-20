@@ -10,6 +10,17 @@
     };
   })
 
+  # Codex can be updated independently of the shared unstable packages.
+  (_final: prev: {
+    inherit
+      (import inputs.nixpkgs-codex {
+        inherit (prev.stdenv.hostPlatform) system;
+        config.allowUnfree = true;
+      })
+      codex
+      ;
+  })
+
   # Custom packages overlay
   (final: _prev: {
     mimo = {
