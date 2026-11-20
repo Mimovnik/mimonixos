@@ -146,6 +146,7 @@
         cfg.package
         pkgs.bibata-cursors
         pkgs.kanshi
+        pkgs.wl-mirror
         pkgs.xwayland-satellite
         pkgs.tuigreet
       ];
