@@ -68,7 +68,7 @@ in {
               output "${scndMonitor}" {
                   mode 1920x1080
                   scale 1
-                  position 2560,0
+                  position -1920,0
               }
             '';
           };
