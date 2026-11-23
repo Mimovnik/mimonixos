@@ -18,6 +18,7 @@
   # type = "stdio"
   home.packages = with pkgs; [
     codex
+    bubblewrap
     mcp-nixos
   ];
 }
