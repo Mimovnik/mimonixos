@@ -110,6 +110,7 @@ in {
 
         self.homeModules.homeBase
         self.homeModules.homePrograms
+        self.homeModules.homeAgents
         self.homeModules.homeShell
         self.homeModules.homeDesktopApps
         self.homeModules.homeNixvim

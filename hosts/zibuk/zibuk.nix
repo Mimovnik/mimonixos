@@ -42,6 +42,7 @@ in {
       self.homeModules.homeShell
       self.homeModules.homeNixvim
       self.homeModules.homePrograms
+      self.homeModules.homeAgents
     ];
   };
 }
