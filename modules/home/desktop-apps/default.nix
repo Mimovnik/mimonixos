@@ -31,7 +31,7 @@
       kdePackages.kdenlive
       discord
       brave
-      signal-desktop
+      unstable.signal-desktop
       element-desktop
       anki
       krita
