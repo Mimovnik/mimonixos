@@ -131,6 +131,15 @@
           "textColor": "none",
           "useFixedWidth": false,
           "visualizerType": "linear"
+        },
+        {
+          "defaultSettings": {
+            "compactMode": false,
+            "defaultDuration": 0,
+            "iconColor": "none",
+            "textColor": "none"
+          },
+          "id": "plugin:timer"
         }
       ],
       "right": [

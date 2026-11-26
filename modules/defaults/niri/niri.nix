@@ -235,6 +235,11 @@
 
       # , noctalia-shell ipc call state all | jq .settings > noctalia-settings.json
       settings = lib.fromJSON (lib.readFile ./noctalia-settings.json);
+      colors = lib.fromJSON (lib.readFile ./noctalia-colors.json);
+      preInstalledPlugins.timer = {
+        src = "${inputs.noctalia-plugins}/timer";
+        sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+      };
     };
 
     niri = inputs.nix-wrapper-modules.wrappers.niri.wrap {
