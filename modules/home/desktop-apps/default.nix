@@ -29,7 +29,7 @@
       obs-studio
       firefox
       kdePackages.kdenlive
-      discord
+      unstable.discord
       brave
       unstable.signal-desktop
       element-desktop
